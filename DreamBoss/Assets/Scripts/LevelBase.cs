@@ -12,6 +12,9 @@ public class LevelBase : MonoBehaviour
     [Header("正確與錯誤音效")]
     public AudioClip soundCorrect;
     public AudioClip soundWrong;
+    [Header("正確特效")]
+    public RectTransform correctRect;
+    public ParticleSystem correctParticle;
 
     protected AudioSource aud;
 
@@ -22,25 +25,42 @@ public class LevelBase : MonoBehaviour
         InteractableSwitch(false);
     }
 
+    /// <summary>
+    /// 轉換互動物件
+    /// </summary>
+    /// <param name="interactableSwitch">能否互動</param>
     private void InteractableSwitch(bool interactableSwitch)
     {
         for (int i = 0; i < interactable.childCount; i++)
             interactable.GetChild(i).GetComponent<Button>().interactable = interactableSwitch;
     }
 
+    /// <summary>
+    /// 問題
+    /// </summary>
+    /// <param name="delayStart">延遲開始</param>
     protected virtual void Question(float delayStart)
     {
         Invoke("StartGame", delayStart);
     }
 
+    /// <summary>
+    /// 開始遊戲：啟動互動
+    /// </summary>
     protected virtual void StartGame()
     {
         InteractableSwitch(true);
     }
 
-    protected virtual IEnumerator Win()
+    /// <summary>
+    /// 勝利
+    /// </summary>
+    protected virtual IEnumerator Win(int index)
     {
         aud.PlayOneShot(soundCorrect);
+        correctRect.anchoredPosition = interactable.GetChild(index).GetComponent<RectTransform>().anchoredPosition;
+        correctParticle.Play();
+        
         final.raycastTarget = true;
 
         while (final.color.a < 0.5f)
@@ -50,6 +70,9 @@ public class LevelBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 失敗
+    /// </summary>
     protected virtual IEnumerator Lose()
     {
         aud.PlayOneShot(soundWrong, 2);

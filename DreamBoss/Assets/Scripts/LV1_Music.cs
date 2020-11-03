@@ -30,7 +30,7 @@ public class LV1_Music : LevelBase
 
     public void ClickMusicalInstrument(int index)
     {
-        if (index == indexCorrect) StartCoroutine(Win());
+        if (index == indexCorrect) StartCoroutine(Win(index));
         else StartCoroutine(Lose());
     }
 }
