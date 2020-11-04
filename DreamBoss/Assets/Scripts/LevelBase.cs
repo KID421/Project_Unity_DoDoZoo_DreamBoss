@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class LevelBase : MonoBehaviour
@@ -16,10 +17,14 @@ public class LevelBase : MonoBehaviour
     public RectTransform correctRect;
     public ParticleSystem correctParticle;
 
+    protected Transform canvas;
     protected AudioSource aud;
+    
+    public  static int winCount;
 
     private void Awake()
     {
+        canvas = GameObject.Find("畫布").transform;
         aud = GetComponent<AudioSource>();
 
         InteractableSwitch(false);
@@ -57,15 +62,34 @@ public class LevelBase : MonoBehaviour
     /// </summary>
     protected virtual IEnumerator Win(int index)
     {
+        winCount++;
         aud.PlayOneShot(soundCorrect);
-        correctRect.anchoredPosition = interactable.GetChild(index).GetComponent<RectTransform>().anchoredPosition;
         correctParticle.Play();
-        
         final.raycastTarget = true;
+        StartCoroutine(ShowCorrectObject(index));
 
         while (final.color.a < 0.5f)
         {
-            final.color += new Color(0.2f, 0.2f, 0.2f, 0.1f) * Time.deltaTime * 5;
+            final.color += new Color(0, 0, 0, 0.1f) * Time.deltaTime * 5;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(2);
+
+        if (winCount < 5) Replay();
+        else WinPanel();
+    }
+
+    private IEnumerator ShowCorrectObject(int index)
+    {
+        RectTransform rect = interactable.GetChild(index).GetComponent<RectTransform>();
+        rect.SetParent(canvas);
+        rect.GetComponent<Image>().raycastTarget = false;
+        correctRect.SetAsLastSibling();
+
+        while (rect.anchoredPosition != new Vector2(0, 120))
+        {
+            rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition, new Vector2(0, 120), 10 * Time.deltaTime);
             yield return null;
         }
     }
@@ -83,5 +107,19 @@ public class LevelBase : MonoBehaviour
             final.color += new Color(0, 0, 0, 0.1f) * Time.deltaTime * 5;
             yield return null;
         }
+
+        yield return new WaitForSeconds(2);
+
+        Replay();
+    }
+
+    private void Replay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void WinPanel()
+    {
+        SceneManager.LoadScene("選取關卡");
     }
 }

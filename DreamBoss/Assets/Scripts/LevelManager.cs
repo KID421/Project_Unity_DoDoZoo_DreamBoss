@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void LoadScene()
     {
+        LevelBase.winCount = 0;
         SceneManager.LoadScene(nameScene);
     }
 

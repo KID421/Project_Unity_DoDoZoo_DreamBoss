@@ -6,9 +6,7 @@ ScriptsOnlyBuild:
     - LV1_Music
     - LevelManager
     Unity.2D.Animation.Editor.dll:
-    - UnityEditor.U2D.Animation.BoneCache
     - UnityEditor.U2D.Animation.BoneGizmo
-    - UnityEditor.U2D.Animation.SkinningCachePersistentState
     Unity.2D.Animation.Runtime.dll:
     - UnityEngine.U2D.Animation.SpriteSkin
     Unity.Rider.Editor.dll:
@@ -69,35 +67,35 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 13696}
+      Script: {instanceID: 11268}
     - Class: 114
-      Script: {instanceID: 13852}
+      Script: {instanceID: 11536}
     - Class: 114
-      Script: {instanceID: 13854}
+      Script: {instanceID: 11540}
     - Class: 114
-      Script: {instanceID: 13856}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 13894}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 13944}
+      Script: {instanceID: 11678}
     - Class: 114
-      Script: {instanceID: 13992}
+      Script: {instanceID: 11744}
     - Class: 114
-      Script: {instanceID: 14190}
+      Script: {instanceID: 12028}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 12182}
     - Class: 114
-      Script: {instanceID: 14466}
+      Script: {instanceID: 12500}
     - Class: 114
-      Script: {instanceID: 14658}
+      Script: {instanceID: 12824}
     - Class: 114
-      Script: {instanceID: 14680}
+      Script: {instanceID: 12856}
     - Class: 114
-      Script: {instanceID: 15120}
+      Script: {instanceID: 13082}
     - Class: 114
-      Script: {instanceID: 15468}
+      Script: {instanceID: 13534}
     - Class: 114
-      Script: {instanceID: 19650}
+      Script: {instanceID: 14088}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -154,29 +152,29 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 13696}
+      Script: {instanceID: 11268}
     - Class: 114
-      Script: {instanceID: 13852}
+      Script: {instanceID: 11536}
     - Class: 114
-      Script: {instanceID: 13854}
+      Script: {instanceID: 11540}
     - Class: 114
-      Script: {instanceID: 13894}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 12182}
     - Class: 114
-      Script: {instanceID: 14658}
+      Script: {instanceID: 12774}
     - Class: 114
-      Script: {instanceID: 14680}
+      Script: {instanceID: 12824}
     - Class: 114
-      Script: {instanceID: 15120}
+      Script: {instanceID: 12856}
     - Class: 114
-      Script: {instanceID: 15468}
+      Script: {instanceID: 13082}
     - Class: 114
-      Script: {instanceID: 15498}
+      Script: {instanceID: 13534}
     - Class: 114
-      Script: {instanceID: 19650}
+      Script: {instanceID: 14088}
     - Class: 114
-      Script: {instanceID: 121722}
+      Script: {instanceID: 14128}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -231,32 +229,36 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 13696}
+      Script: {instanceID: 11268}
     - Class: 114
-      Script: {instanceID: 13854}
+      Script: {instanceID: 11540}
     - Class: 114
-      Script: {instanceID: 13894}
+      Script: {instanceID: 11548}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 14658}
+      Script: {instanceID: 12182}
     - Class: 114
-      Script: {instanceID: 14680}
+      Script: {instanceID: 12610}
     - Class: 114
-      Script: {instanceID: 15120}
+      Script: {instanceID: 12824}
     - Class: 114
-      Script: {instanceID: 15468}
+      Script: {instanceID: 12856}
     - Class: 114
-      Script: {instanceID: 19650}
+      Script: {instanceID: 13082}
     - Class: 114
-      Script: {instanceID: 96232}
+      Script: {instanceID: 13534}
     - Class: 114
-      Script: {instanceID: 107394}
+      Script: {instanceID: 14088}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -315,19 +317,19 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 13696}
+      Script: {instanceID: 11268}
     - Class: 114
-      Script: {instanceID: 13852}
+      Script: {instanceID: 11536}
     - Class: 114
-      Script: {instanceID: 13894}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 14190}
+      Script: {instanceID: 12028}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 12182}
     - Class: 114
-      Script: {instanceID: 15120}
+      Script: {instanceID: 13534}
     - Class: 114
-      Script: {instanceID: 15468}
+      Script: {instanceID: 14088}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -413,6 +415,12 @@ ScriptsOnlyBuild:
     className: Scrollbar
   - hash:
       serializedVersion: 2
+      Hash: 7b1f2ca60ca4193b5b532fa3b1fab3ab
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LV1_Music
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -485,6 +493,12 @@ ScriptsOnlyBuild:
     className: AspectRatioFitter
   - hash:
       serializedVersion: 2
+      Hash: 87cef3c82381dc586f6772c3e27561b6
+    assemblyName: Unity.2D.Animation.Runtime.dll
+    namespaceName: UnityEngine.Experimental.U2D.Animation
+    className: SpriteLibrary
+  - hash:
+      serializedVersion: 2
       Hash: ef5c43f921427d03730f6ea4c848f07d
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -519,6 +533,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: EventSystem
+  - hash:
+      serializedVersion: 2
+      Hash: b424b4eeb810aecb0ff91c62639241e9
+    assemblyName: Unity.2D.Animation.Runtime.dll
+    namespaceName: UnityEngine.Experimental.U2D.Animation
+    className: SpriteResolver
   - hash:
       serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
@@ -558,6 +578,18 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Unity.2D.Animation.Runtime.dll
+    namespaceName: UnityEngine.U2D.Animation
+    className: SpriteSkinEntity
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ButtomCustomArea
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
@@ -567,6 +599,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
+  - hash:
+      serializedVersion: 2
+      Hash: f8baf9ba08bd6c9d050e8efddf79550f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioManager
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -593,6 +631,12 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
+      Hash: 71b711096c6c32621c1d4c02310898b7
+    assemblyName: Unity.2D.Animation.Runtime.dll
+    namespaceName: UnityEngine.U2D.Animation
+    className: SpriteSkin
+  - hash:
+      serializedVersion: 2
       Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -615,6 +659,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_FontAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 28cfb4bd305dd11c6326cc3ee7c14138
+    assemblyName: Unity.2D.Animation.Runtime.dll
+    namespaceName: UnityEngine.Experimental.U2D.Animation
+    className: SpriteLibraryAsset
   - hash:
       serializedVersion: 2
       Hash: 87ad3705a58f19c47136728d4a6e9c47
@@ -663,6 +713,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 68d41169dd4205874c084653bf83af29
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DontDestroyManager
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -761,6 +817,12 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
+      Hash: 71e12935d7dc4b69bf0a3c0733189e7b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelBase
+  - hash:
+      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -771,66 +833,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 87cef3c82381dc586f6772c3e27561b6
-    assemblyName: Unity.2D.Animation.Runtime.dll
-    namespaceName: UnityEngine.Experimental.U2D.Animation
-    className: SpriteLibrary
-  - hash:
-      serializedVersion: 2
-      Hash: b424b4eeb810aecb0ff91c62639241e9
-    assemblyName: Unity.2D.Animation.Runtime.dll
-    namespaceName: UnityEngine.Experimental.U2D.Animation
-    className: SpriteResolver
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Unity.2D.Animation.Runtime.dll
-    namespaceName: UnityEngine.U2D.Animation
-    className: SpriteSkinEntity
-  - hash:
-      serializedVersion: 2
-      Hash: 71b711096c6c32621c1d4c02310898b7
-    assemblyName: Unity.2D.Animation.Runtime.dll
-    namespaceName: UnityEngine.U2D.Animation
-    className: SpriteSkin
-  - hash:
-      serializedVersion: 2
-      Hash: 28cfb4bd305dd11c6326cc3ee7c14138
-    assemblyName: Unity.2D.Animation.Runtime.dll
-    namespaceName: UnityEngine.Experimental.U2D.Animation
-    className: SpriteLibraryAsset
-  - hash:
-      serializedVersion: 2
-      Hash: 68d41169dd4205874c084653bf83af29
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: DontDestroyManager
-  - hash:
-      serializedVersion: 2
-      Hash: f034ad9597e25efdc6b995a3af2048b0
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LV1_Music
-  - hash:
-      serializedVersion: 2
-      Hash: 494431bfd9a71f7397cecc2ff40e7ffd
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LevelBase
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ButtomCustomArea
-  - hash:
-      serializedVersion: 2
-      Hash: f8baf9ba08bd6c9d050e8efddf79550f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: AudioManager
   platform: 20
   scenePathNames:
   - "Assets/\u5834\u666F/\u9078\u55AE.unity"
