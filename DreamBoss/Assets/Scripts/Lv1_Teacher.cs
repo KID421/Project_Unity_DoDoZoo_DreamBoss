@@ -2,11 +2,27 @@
 using PDollarGestureRecognizer;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.UI;
 
 public class Lv1_Teacher : LevelBase
 {
     [Header("手勢物件 - 線條渲染")]
     public Transform gesture;
+    [Header("繪製區域樣式")]
+    public GUIStyle style;
+    [Header("題目：圖片")]
+    public Image imgQuestion;
+    public Sprite[] sprQuestion;
+
+    private string[] questions =
+    {
+        "0", "1", "2","3", "4", "5", "6", "7", "8", "9",
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", 
+        "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+        "S", "T", "U", "V", "W", "X", "Y", "Z"
+    };
+
+    private string answer;
 
     private List<Gesture> traingSet = new List<Gesture>();                              // 手勢清單
 
@@ -29,7 +45,9 @@ public class Lv1_Teacher : LevelBase
     private void Start()
     {
         platform = Application.platform;                                                                    // 目前平台
-        drawArea = new Rect(0, 0, Screen.width - Screen.width / 3, Screen.height);                          // 設定彗置區域
+
+        int w = Screen.width / 2;
+        drawArea = new Rect(w / 2, (Screen.height - w) / 2, w, w);                                          // 設定彗置區域
 
         TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("GestureSet/10-stylus-MEDIUM/");             // 讀取 預先製作 手勢
         foreach (TextAsset gestureXml in gesturesXml)
@@ -38,10 +56,15 @@ public class Lv1_Teacher : LevelBase
         string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.xml");                   // 讀取 自訂 手勢
         foreach (string filePath in filePaths)
             traingSet.Add(GestureIO.ReadGestureFromFile(filePath));
+
+        
+        Question(0);        // 發問題
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer)                                            // 如果 平台 為 Android 或者 IPhoneP
         {
             if (Input.touchCount > 0) virtualKeyPosition = new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);     // 點擊座標 為 觸碰 座標
@@ -91,12 +114,15 @@ public class Lv1_Teacher : LevelBase
 
     private void OnGUI()
     {
-        GUI.Box(drawArea, "繪製區域");
+        GUI.Box(drawArea, "繪製區域", style);
 
         GUI.Label(new Rect(10, Screen.height - 40, 500, 50), message);
     }
 
-    public void Recognize()
+    /// <summary>
+    /// 辨識
+    /// </summary>
+    public bool Recognize()
     {
         recognized = true;
 
@@ -104,5 +130,26 @@ public class Lv1_Teacher : LevelBase
         Result gestureResult = PointCloudRecognizer.Classify(candidate, traingSet.ToArray());
 
         message = gestureResult.GestureClass + " " + gestureResult.Score;
+
+        print(message);
+        print(answer);
+        print(gestureResult.GestureClass == answer && gestureResult.Score > 0.3f);
+
+        return gestureResult.GestureClass == answer && gestureResult.Score > 0.3f;
+    }
+
+    protected override void TimeStop()
+    {
+        if (Recognize()) StartCoroutine(Win()); else StartCoroutine(Lose());
+    }
+
+    protected override void Question(float delayStart)
+    {
+        int r = Random.Range(0, questions.Length);
+        answer = questions[r];
+
+        imgQuestion.sprite = sprQuestion[r];
+
+        base.Question(delayStart);
     }
 }
