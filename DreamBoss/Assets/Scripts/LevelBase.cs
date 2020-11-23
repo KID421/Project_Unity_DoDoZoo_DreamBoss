@@ -20,6 +20,8 @@ public class LevelBase : MonoBehaviour
     public bool needCount;
     [Header("全對特效")]
     public ParticleSystem allCorrectParticle;
+    [Header("角色動畫控制器")]
+    public Animator ani;
 
     protected Transform canvas;
     protected AudioSource aud;
@@ -73,6 +75,7 @@ public class LevelBase : MonoBehaviour
     /// </summary>
     protected virtual IEnumerator Win(int index = 0)
     {
+        ani.SetTrigger("正確");
         winCount++;
         aud.PlayOneShot(soundCorrect);
         if (correctParticle) correctParticle.Play();
@@ -114,6 +117,7 @@ public class LevelBase : MonoBehaviour
     /// </summary>
     protected virtual IEnumerator Lose()
     {
+        ani.SetTrigger("錯誤");
         aud.PlayOneShot(soundWrong, 2);
         final.raycastTarget = true;
 
@@ -141,6 +145,7 @@ public class LevelBase : MonoBehaviour
     /// </summary>
     private IEnumerator WinPanel()
     {
+        ani.SetTrigger("正確");
         allCorrectParticle.Play();
 
         yield return new WaitForSeconds(2);

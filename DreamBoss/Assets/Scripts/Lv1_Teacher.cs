@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using PDollarGestureRecognizer;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine.UI;
 
 public class Lv1_Teacher : LevelBase
 {
@@ -10,19 +11,26 @@ public class Lv1_Teacher : LevelBase
     public Transform gesture;
     [Header("繪製區域樣式")]
     public GUIStyle style;
-    [Header("題目：圖片")]
+    [Header("圖片：題目")]
     public Image imgQuestion;
+    [Header("圖片：答案")]
+    public Image imgAnswer;
+    [Header("圖片：題目")]
     public Sprite[] sprQuestion;
+    [Header("圖片：答案 - 字母")]
+    public Sprite[] sprAnswer;
 
     private string[] questions =
     {
         "0", "1", "2","3", "4", "5", "6", "7", "8", "9",
-        "A", "B", "C", "D", "E", "F", "G", "H", "I", 
+        "A", "B", "C", "D", "E", "F", "G", "H", "I",
         "J", "K", "L", "M", "N", "O", "P", "Q", "R",
         "S", "T", "U", "V", "W", "X", "Y", "Z"
     };
 
-    private string answer;
+    private string answer;              // 答案字串
+    private int index;                  // 答案編號
+    private bool startWrite;            // 是否開始寫
 
     private List<Gesture> traingSet = new List<Gesture>();                              // 手勢清單
 
@@ -57,7 +65,7 @@ public class Lv1_Teacher : LevelBase
         foreach (string filePath in filePaths)
             traingSet.Add(GestureIO.ReadGestureFromFile(filePath));
 
-        
+
         Question(0);        // 發問題
     }
 
@@ -110,6 +118,8 @@ public class Lv1_Teacher : LevelBase
                 currentGestureLineRenderer.SetPosition(vertexCount - 1, Camera.main.ScreenToWorldPoint(new Vector3(virtualKeyPosition.x, virtualKeyPosition.y, 10)));
             }
         }
+
+        StartWrite();   // 開始寫的動畫
     }
 
     private void OnGUI()
@@ -138,6 +148,15 @@ public class Lv1_Teacher : LevelBase
         return gestureResult.GestureClass == answer && gestureResult.Score > 0.3f;
     }
 
+    public void StartWrite()
+    {
+        if (!startWrite && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            startWrite = true;
+            ani.SetTrigger("開始寫開心的笑");
+        }
+    }
+
     protected override void TimeStop()
     {
         if (Recognize()) StartCoroutine(Win()); else StartCoroutine(Lose());
@@ -145,11 +164,35 @@ public class Lv1_Teacher : LevelBase
 
     protected override void Question(float delayStart)
     {
-        int r = Random.Range(0, questions.Length);
-        answer = questions[r];
+        index = Random.Range(0, questions.Length);
+        answer = questions[index];
 
-        imgQuestion.sprite = sprQuestion[r];
+        imgQuestion.sprite = sprQuestion[index];
 
         base.Question(delayStart);
+    }
+
+    protected override IEnumerator Win(int index = 0)
+    {
+        imgQuestion.enabled = false;
+        imgAnswer.enabled = true;
+        imgAnswer.sprite = sprAnswer[this.index];
+        imgAnswer.transform.SetAsLastSibling();
+
+        if (this.index > 9)
+        {
+            imgAnswer.rectTransform.anchoredPosition = new Vector2(170, -10);
+            imgAnswer.rectTransform.sizeDelta = new Vector2(340, 340);
+        }
+
+        foreach (LineRenderer lineRenderer in gestureLinesRenderer)         // 迴圈執行每個線條渲染
+        {
+            lineRenderer.positionCount = 0;                                 // 數量歸零
+            Destroy(lineRenderer.gameObject);                               // 刪除線條渲染
+        }
+
+        yield return null;
+
+        yield return base.Win(index);
     }
 }
