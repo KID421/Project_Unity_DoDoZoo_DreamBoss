@@ -159,7 +159,7 @@ public class Lv1_Teacher : LevelBase
 
     protected override void TimeStop()
     {
-        if (Recognize()) StartCoroutine(Win()); else StartCoroutine(Lose());
+        if (Recognize()) StartCoroutine(Correct()); else StartCoroutine(Wrong());
     }
 
     protected override void Question(float delayStart)
@@ -172,7 +172,7 @@ public class Lv1_Teacher : LevelBase
         base.Question(delayStart);
     }
 
-    protected override IEnumerator Win(int index = 0)
+    protected override IEnumerator Correct(int index = 0)
     {
         imgQuestion.enabled = false;
         imgAnswer.enabled = true;
@@ -193,6 +193,6 @@ public class Lv1_Teacher : LevelBase
 
         yield return null;
 
-        yield return base.Win(index);
+        yield return base.Correct(index);
     }
 }

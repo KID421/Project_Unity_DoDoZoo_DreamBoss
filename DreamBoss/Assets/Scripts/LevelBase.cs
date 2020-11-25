@@ -18,14 +18,21 @@ public class LevelBase : MonoBehaviour
     public ParticleSystem correctParticle;
     [Header("是否需要倒數")]
     public bool needCount;
+    [Header("倒數時間")]
+    public float countTime = 8;
     [Header("全對特效")]
     public ParticleSystem allCorrectParticle;
     [Header("角色動畫控制器")]
     public Animator ani;
+    [Header("正確後停留時間")]
+    public float timeCorrect = 2;
+    [Header("錯誤後停留時間")]
+    public float timeWrong = 2;
+    [Header("過關後要播放的動畫參數")]
+    public string aniPass = "過關";
 
     protected Transform canvas;
     protected AudioSource aud;
-    protected float timeCount = 5;
     protected float timer = 0;
 
     public  static int winCount;
@@ -73,22 +80,23 @@ public class LevelBase : MonoBehaviour
     /// <summary>
     /// 勝利
     /// </summary>
-    protected virtual IEnumerator Win(int index = 0)
+    protected virtual IEnumerator Correct(int index = 0)
     {
         ani.SetTrigger("正確");
         winCount++;
         aud.PlayOneShot(soundCorrect);
         if (correctParticle) correctParticle.Play();
         final.raycastTarget = true;
+        final.transform.SetAsLastSibling();
         StartCoroutine(ShowCorrectObject(index));
 
-        while (final.color.a < 0.5f)
-        {
-            final.color += new Color(0, 0, 0, 0.1f) * Time.deltaTime * 5;
-            yield return null;
-        }
+        //while (final.color.a < 0.5f)
+        //{
+        //    final.color += new Color(0, 0, 0, 0.1f) * Time.deltaTime * 5;
+        //    yield return null;
+        //}
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(timeCorrect);
 
         if (winCount < 5) Replay();
         else StartCoroutine(WinPanel());
@@ -115,19 +123,20 @@ public class LevelBase : MonoBehaviour
     /// <summary>
     /// 失敗
     /// </summary>
-    protected virtual IEnumerator Lose()
+    protected virtual IEnumerator Wrong()
     {
         ani.SetTrigger("錯誤");
         aud.PlayOneShot(soundWrong, 2);
         final.raycastTarget = true;
+        final.transform.SetAsLastSibling();
 
-        while (final.color.a < 0.5f)
-        {
-            final.color += new Color(0, 0, 0, 0.1f) * Time.deltaTime * 5;
-            yield return null;
-        }
+        //while (final.color.a < 0.5f)
+        //{
+        //    final.color += new Color(0, 0, 0, 0.1f) * Time.deltaTime * 5;
+        //    yield return null;
+        //}
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(timeWrong);
 
         Replay();
     }
@@ -145,7 +154,7 @@ public class LevelBase : MonoBehaviour
     /// </summary>
     private IEnumerator WinPanel()
     {
-        ani.SetTrigger("正確");
+        ani.SetTrigger(aniPass);
         allCorrectParticle.Play();
 
         yield return new WaitForSeconds(2);
@@ -158,7 +167,7 @@ public class LevelBase : MonoBehaviour
     /// </summary>
     protected void TimeCount()
     {
-        if (timer >= timeCount && needCount)
+        if (timer >= countTime && needCount)
         {
             needCount = false;
             TimeStop();
