@@ -32,7 +32,8 @@ public class Lv11_Stylist : LevelBase
     /// 7 裙子
     /// 8 褲子
     /// </summary>
-    private Vector2[] posCorrectAll =
+    [HideInInspector]
+    public Vector2[] posCorrectAll =
     {
         new Vector2(-20, -45),
         new Vector2(-20, -39),
@@ -45,9 +46,10 @@ public class Lv11_Stylist : LevelBase
         new Vector2(-19, -155)
     };
     /// <summary>
-    /// 是否選取所有部位：頭飾、上衣、飾品 (可有可無)、褲子、鞋子
+    /// 是否選取所有部位：頭飾、上衣、飾品、褲子、鞋子
     /// </summary>
-    private bool[] chooseParts = { false, false, false, false, false };
+    /// [HideInInspector]
+    public bool[] chooseParts = { false, false, false, false, false };
 
     /// <summary>
     /// 選取的部位編號 
@@ -62,6 +64,15 @@ public class Lv11_Stylist : LevelBase
     /// 8 褲子
     /// </summary>
     public int index { get; set; }
+
+    public static Lv11_Stylist instance;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        instance = this;
+    }
 
     /// <summary>
     /// 玩家點選了飾品
@@ -82,11 +93,17 @@ public class Lv11_Stylist : LevelBase
     /// <returns></returns>
     private IEnumerator PartMoveToCorrectPosition()
     {
+        final.transform.SetAsLastSibling();
+        final.raycastTarget = true;
+
         while (Vector2.Distance(rectParts[index].anchoredPosition, posCorrectAll[index]) > 0.3f)
         {
             rectParts[index].anchoredPosition = Vector2.Lerp(rectParts[index].anchoredPosition, posCorrectAll[index], Time.deltaTime * 10);
             yield return null;
         }
+
+        final.transform.SetAsFirstSibling();
+        final.raycastTarget = false;
 
         var truePart = chooseParts.Where(x => x == true);
 

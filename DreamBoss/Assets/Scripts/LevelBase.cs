@@ -30,14 +30,18 @@ public class LevelBase : MonoBehaviour
     public float timeWrong = 2;
     [Header("過關後要播放的動畫參數")]
     public string aniPass = "過關";
+    [Header("是否需要正確錯誤後重新載入遊戲")]
+    public bool afterCorrectWrongReplay = true;
+    [Header("是否需要顯示正確物件")]
+    public bool needShowCorrectObject;
 
     protected Transform canvas;
     protected AudioSource aud;
     protected float timer = 0;
 
-    public  static int winCount;
+    public static int winCount;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         canvas = GameObject.Find("畫布").transform;
         aud = GetComponent<AudioSource>();
@@ -78,28 +82,30 @@ public class LevelBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 勝利
+    /// 正確
     /// </summary>
-    protected virtual IEnumerator Correct(int index = 0)
+    public virtual IEnumerator Correct(int index = 0)
     {
         ani.SetTrigger("正確");
         winCount++;
         aud.PlayOneShot(soundCorrect);
         if (correctParticle) correctParticle.Play();
-        final.raycastTarget = true;
-        final.transform.SetAsLastSibling();
-        StartCoroutine(ShowCorrectObject(index));
+        if (needShowCorrectObject) StartCoroutine(ShowCorrectObject(index));
 
-        //while (final.color.a < 0.5f)
-        //{
-        //    final.color += new Color(0, 0, 0, 0.1f) * Time.deltaTime * 5;
-        //    yield return null;
-        //}
+        if (afterCorrectWrongReplay)
+        {
+            final.raycastTarget = true;
+            final.transform.SetAsLastSibling();
 
-        yield return new WaitForSeconds(timeCorrect);
+            yield return new WaitForSeconds(timeCorrect);
 
-        if (winCount < 5) Replay();
-        else StartCoroutine(WinPanel());
+            if (winCount < 5) Replay();
+            else StartCoroutine(WinPanel());
+        }
+        else
+        {
+            if (winCount == 5) StartCoroutine(WinPanel());
+        }
     }
 
     /// <summary>
@@ -121,24 +127,21 @@ public class LevelBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 失敗
+    /// 錯誤
     /// </summary>
-    protected virtual IEnumerator Wrong()
+    public virtual IEnumerator Wrong()
     {
         ani.SetTrigger("錯誤");
         aud.PlayOneShot(soundWrong, 2);
-        final.raycastTarget = true;
-        final.transform.SetAsLastSibling();
 
-        //while (final.color.a < 0.5f)
-        //{
-        //    final.color += new Color(0, 0, 0, 0.1f) * Time.deltaTime * 5;
-        //    yield return null;
-        //}
+        if (afterCorrectWrongReplay)
+        {
+            final.raycastTarget = true;
+            final.transform.SetAsLastSibling();
 
-        yield return new WaitForSeconds(timeWrong);
-
-        Replay();
+            yield return new WaitForSeconds(timeWrong);
+            Replay();
+        }
     }
 
     /// <summary>

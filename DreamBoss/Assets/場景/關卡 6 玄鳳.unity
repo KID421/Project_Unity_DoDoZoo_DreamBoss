@@ -953,11 +953,14 @@ MonoBehaviour:
   correctRect: {fileID: 767882637}
   correctParticle: {fileID: 904457435}
   needCount: 0
+  countTime: 8
   allCorrectParticle: {fileID: 759801367}
   ani: {fileID: 124045851}
   timeCorrect: 2
   timeWrong: 2
   aniPass: "\u904E\u95DC"
+  afterCorrectWrongReplay: 1
+  needShowCorrectObject: 1
   sounds:
   - {fileID: 8300000, guid: ac8d2112e2590894294f7531794916ee, type: 3}
   - {fileID: 8300000, guid: 5715987774347614ca244fdbe134530d, type: 3}
@@ -6928,7 +6931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 120}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1280, y: 1280}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1435387892

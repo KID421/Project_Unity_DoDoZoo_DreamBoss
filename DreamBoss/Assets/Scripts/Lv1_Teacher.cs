@@ -172,7 +172,7 @@ public class Lv1_Teacher : LevelBase
         base.Question(delayStart);
     }
 
-    protected override IEnumerator Correct(int index = 0)
+    public override IEnumerator Correct(int index = 0)
     {
         imgQuestion.enabled = false;
         imgAnswer.enabled = true;
