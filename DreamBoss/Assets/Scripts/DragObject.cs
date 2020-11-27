@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class DragObject : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    [Header("編號"), Tooltip("所有飾品：0 藍色上衣, 1 黃色上衣, 2 水壺, 3 粉色鞋子, 4 咖啡鞋子, 5 頭帶, 6 帽子, 7 裙子, 8 褲子")]
+    [Header("編號"), Tooltip("所有飾品：0 藍色上衣, 1 黃色上衣, 2 水壺, 3 背包, 4 粉色鞋子, 5 咖啡鞋子, 6 頭帶, 7 帽子, 8 裙子, 9 褲子")]
     public int index;
     [Header("部位：0 頭飾、1 上衣、2 飾品、3 褲子、4 鞋子")]
     public int indexPart;

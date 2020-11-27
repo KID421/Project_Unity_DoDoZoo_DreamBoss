@@ -10,12 +10,13 @@ public class Lv11_Stylist : LevelBase
     /// 0 藍色上衣
     /// 1 黃色上衣
     /// 2 水壺
-    /// 3 粉色鞋子
-    /// 4 咖啡鞋子
-    /// 5 頭帶
-    /// 6 帽子
-    /// 7 裙子
-    /// 8 褲子
+    /// 3 背包
+    /// 4 粉色鞋子
+    /// 5 咖啡鞋子
+    /// 6 頭帶
+    /// 7 帽子
+    /// 8 裙子
+    /// 9 褲子
     /// </summary>
     [Header("所有部位")]
     public RectTransform[] rectParts;
@@ -25,19 +26,20 @@ public class Lv11_Stylist : LevelBase
     /// 0 藍色上衣
     /// 1 黃色上衣
     /// 2 水壺
-    /// 3 粉色鞋子
-    /// 4 咖啡鞋子
-    /// 5 頭帶
-    /// 6 帽子
-    /// 7 裙子
-    /// 8 褲子
+    /// 3 背包
+    /// 4 粉色鞋子
+    /// 5 咖啡鞋子
+    /// 6 頭帶
+    /// 7 帽子
+    /// 8 裙子
+    /// 9 褲子
     /// </summary>
-    [HideInInspector]
     public Vector2[] posCorrectAll =
     {
         new Vector2(-20, -45),
         new Vector2(-20, -39),
         new Vector2(-5, -75),
+        new Vector2(-51, -61),
         new Vector2(-19, -290),
         new Vector2(-19, -288),
         new Vector2(-26, 277),

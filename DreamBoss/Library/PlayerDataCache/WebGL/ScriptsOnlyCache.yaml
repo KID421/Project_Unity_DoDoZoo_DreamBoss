@@ -3,8 +3,13 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AudioManager
     - ButtomCustomArea
-    - LV1_Music
+    - DragObject
+    - LV6_Music
     - LevelManager
+    - Lv11_Stylist
+    - Lv1_Teacher
+    - Lv2_Doctor
+    - ScaleEffecter
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
@@ -77,25 +82,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 11678}
+      Script: {instanceID: 11680}
     - Class: 114
-      Script: {instanceID: 11744}
+      Script: {instanceID: 11746}
     - Class: 114
-      Script: {instanceID: 12028}
+      Script: {instanceID: 12032}
     - Class: 114
-      Script: {instanceID: 12182}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12500}
+      Script: {instanceID: 12510}
     - Class: 114
-      Script: {instanceID: 12824}
+      Script: {instanceID: 12836}
     - Class: 114
-      Script: {instanceID: 12856}
+      Script: {instanceID: 12868}
     - Class: 114
-      Script: {instanceID: 13082}
+      Script: {instanceID: 13098}
     - Class: 114
-      Script: {instanceID: 13534}
+      Script: {instanceID: 13552}
     - Class: 114
-      Script: {instanceID: 14088}
+      Script: {instanceID: 14112}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -135,6 +140,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
@@ -160,21 +167,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 12182}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12774}
+      Script: {instanceID: 12786}
     - Class: 114
-      Script: {instanceID: 12824}
+      Script: {instanceID: 12836}
     - Class: 114
-      Script: {instanceID: 12856}
+      Script: {instanceID: 12868}
     - Class: 114
-      Script: {instanceID: 13082}
+      Script: {instanceID: 13098}
     - Class: 114
-      Script: {instanceID: 13534}
+      Script: {instanceID: 13552}
     - Class: 114
-      Script: {instanceID: 14088}
+      Script: {instanceID: 14112}
     - Class: 114
-      Script: {instanceID: 14128}
+      Script: {instanceID: 14152}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -199,7 +206,234 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 245
       Script: {instanceID: 0}
-    "Assets/\u5834\u666F/\u95DC\u53611_\u7487\u9CF3.unity":
+    "Assets/\u5834\u666F/\u95DC\u5361 1 \u9577\u9838\u9E7F.unity":
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 84
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11268}
+    - Class: 114
+      Script: {instanceID: 11536}
+    - Class: 114
+      Script: {instanceID: 11540}
+    - Class: 114
+      Script: {instanceID: 11592}
+    - Class: 114
+      Script: {instanceID: 12186}
+    - Class: 114
+      Script: {instanceID: 12836}
+    - Class: 114
+      Script: {instanceID: 12868}
+    - Class: 114
+      Script: {instanceID: 12972}
+    - Class: 114
+      Script: {instanceID: 13098}
+    - Class: 114
+      Script: {instanceID: 13552}
+    - Class: 114
+      Script: {instanceID: 14112}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 120
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    "Assets/\u5834\u666F/\u95DC\u5361 11 \u523A\u875F.unity":
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 84
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11268}
+    - Class: 114
+      Script: {instanceID: 11536}
+    - Class: 114
+      Script: {instanceID: 11540}
+    - Class: 114
+      Script: {instanceID: 11592}
+    - Class: 114
+      Script: {instanceID: 12186}
+    - Class: 114
+      Script: {instanceID: 12374}
+    - Class: 114
+      Script: {instanceID: 12620}
+    - Class: 114
+      Script: {instanceID: 12836}
+    - Class: 114
+      Script: {instanceID: 12868}
+    - Class: 114
+      Script: {instanceID: 13098}
+    - Class: 114
+      Script: {instanceID: 13552}
+    - Class: 114
+      Script: {instanceID: 13926}
+    - Class: 114
+      Script: {instanceID: 14112}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    "Assets/\u5834\u666F/\u95DC\u5361 2 \u868A\u5B50.unity":
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 84
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11268}
+    - Class: 114
+      Script: {instanceID: 11536}
+    - Class: 114
+      Script: {instanceID: 11540}
+    - Class: 114
+      Script: {instanceID: 11592}
+    - Class: 114
+      Script: {instanceID: 11996}
+    - Class: 114
+      Script: {instanceID: 12186}
+    - Class: 114
+      Script: {instanceID: 12836}
+    - Class: 114
+      Script: {instanceID: 12868}
+    - Class: 114
+      Script: {instanceID: 13098}
+    - Class: 114
+      Script: {instanceID: 13552}
+    - Class: 114
+      Script: {instanceID: 13826}
+    - Class: 114
+      Script: {instanceID: 14112}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    "Assets/\u5834\u666F/\u95DC\u5361 6 \u7384\u9CF3.unity":
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -237,19 +471,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 12182}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12610}
+      Script: {instanceID: 12620}
     - Class: 114
-      Script: {instanceID: 12824}
+      Script: {instanceID: 12836}
     - Class: 114
-      Script: {instanceID: 12856}
+      Script: {instanceID: 12868}
     - Class: 114
-      Script: {instanceID: 13082}
+      Script: {instanceID: 13098}
     - Class: 114
-      Script: {instanceID: 13534}
+      Script: {instanceID: 13552}
     - Class: 114
-      Script: {instanceID: 14088}
+      Script: {instanceID: 14112}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -275,76 +509,6 @@ ScriptsOnlyBuild:
     - Class: 243
       Script: {instanceID: 0}
     - Class: 245
-      Script: {instanceID: 0}
-    "Assets/\u5834\u666F/\u95DC\u53612_\u8B8A\u8272\u9F8D.unity":
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    "Assets/\u5834\u666F/\u95DC\u53613_\u9577\u9838\u9E7F.unity":
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 74
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
-    - Class: 95
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 11268}
-    - Class: 114
-      Script: {instanceID: 11536}
-    - Class: 114
-      Script: {instanceID: 11592}
-    - Class: 114
-      Script: {instanceID: 12028}
-    - Class: 114
-      Script: {instanceID: 12182}
-    - Class: 114
-      Script: {instanceID: 13534}
-    - Class: 114
-      Script: {instanceID: 14088}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -415,10 +579,10 @@ ScriptsOnlyBuild:
     className: Scrollbar
   - hash:
       serializedVersion: 2
-      Hash: 7b1f2ca60ca4193b5b532fa3b1fab3ab
+      Hash: d87369eae9add2a6f0fdb1fa70d54cdd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: LV1_Music
+    className: LV6_Music
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -517,6 +681,12 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 6c85e2d5db334a7cbca013356b5b883f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Lv2_Doctor
+  - hash:
+      serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -565,6 +735,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: fb162381d71f8979db78eb2842a984e4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DragObject
+  - hash:
+      serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -601,6 +777,12 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
+      Hash: 19273e6521c69a176b5925fdde0eadc2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Demo
+  - hash:
+      serializedVersion: 2
       Hash: f8baf9ba08bd6c9d050e8efddf79550f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -623,6 +805,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: 007f7082c811d9cc6e11ea960eb7cc0c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Lv1_Teacher
   - hash:
       serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
@@ -733,6 +921,18 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
+      Hash: 2094d0f8708ffa49664bbe73870509de
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ScaleEffecter
+  - hash:
+      serializedVersion: 2
+      Hash: 15ccf7507d4d530ec8ccbb9aef313dcd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Lv11_Stylist
+  - hash:
+      serializedVersion: 2
       Hash: 8cd1cbba27f3cb1717254f668e9e0d5a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -817,7 +1017,7 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
-      Hash: 71e12935d7dc4b69bf0a3c0733189e7b
+      Hash: ea9c93400ee8e0b58d929019f5753556
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelBase
@@ -837,7 +1037,8 @@ ScriptsOnlyBuild:
   scenePathNames:
   - "Assets/\u5834\u666F/\u9078\u55AE.unity"
   - "Assets/\u5834\u666F/\u9078\u53D6\u95DC\u5361.unity"
-  - "Assets/\u5834\u666F/\u95DC\u53611_\u7487\u9CF3.unity"
-  - "Assets/\u5834\u666F/\u95DC\u53612_\u8B8A\u8272\u9F8D.unity"
-  - "Assets/\u5834\u666F/\u95DC\u53613_\u9577\u9838\u9E7F.unity"
-  playerPath: C:/KID/Projects/Unity/Project_Unity_DoDoZoo_DreamBoss/Web
+  - "Assets/\u5834\u666F/\u95DC\u5361 1 \u9577\u9838\u9E7F.unity"
+  - "Assets/\u5834\u666F/\u95DC\u5361 2 \u868A\u5B50.unity"
+  - "Assets/\u5834\u666F/\u95DC\u5361 6 \u7384\u9CF3.unity"
+  - "Assets/\u5834\u666F/\u95DC\u5361 11 \u523A\u875F.unity"
+  playerPath: C:/KID/Projects/Unity/Project_Unity_DoDoZoo_DreamBoss/WebV1_2

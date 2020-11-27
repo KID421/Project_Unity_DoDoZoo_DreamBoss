@@ -15,10 +15,14 @@ public class Lv1_Teacher : LevelBase
     public Image imgQuestion;
     [Header("圖片：答案")]
     public Image imgAnswer;
+    [Header("圖片：圖示")]
+    public Image imgIcon;
     [Header("圖片：題目")]
     public Sprite[] sprQuestion;
     [Header("圖片：答案 - 字母")]
     public Sprite[] sprAnswer;
+    [Header("圖片：答案 - 圖示")]
+    public Sprite[] sprIcon;
 
     private string[] questions =
     {
@@ -183,6 +187,8 @@ public class Lv1_Teacher : LevelBase
         {
             imgAnswer.rectTransform.anchoredPosition = new Vector2(170, -10);
             imgAnswer.rectTransform.sizeDelta = new Vector2(340, 340);
+            imgIcon.enabled = true;
+            imgIcon.sprite = sprIcon[this.index - 10];
         }
 
         foreach (LineRenderer lineRenderer in gestureLinesRenderer)         // 迴圈執行每個線條渲染
