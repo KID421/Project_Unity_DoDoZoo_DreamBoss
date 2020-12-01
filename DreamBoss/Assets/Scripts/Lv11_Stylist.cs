@@ -20,7 +20,6 @@ public class Lv11_Stylist : LevelBase
     /// </summary>
     [Header("所有部位")]
     public RectTransform[] rectParts;
-
     /// <summary>
     /// 所有飾品正確的位置
     /// 0 藍色上衣
@@ -52,6 +51,8 @@ public class Lv11_Stylist : LevelBase
     /// </summary>
     /// [HideInInspector]
     public bool[] chooseParts = { false, false, false, false, false };
+    [Header("判定距離：小於此距離就算判定成功")]
+    public float distance = 30f;
 
     /// <summary>
     /// 選取的部位編號 

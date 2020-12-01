@@ -47,7 +47,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IEndDragHandler
         Vector2 posCorrect = Lv11_Stylist.instance.posCorrectAll[index];        // 取得正確位置
 
         // 判定距離正確位置 20 個單位 並且 此部位尚未拖拉至正確位置
-        if (Vector2.Distance(rect.anchoredPosition, posCorrect) < 20f && !Lv11_Stylist.instance.chooseParts[indexPart])
+        if (Vector2.Distance(rect.anchoredPosition, posCorrect) < Lv11_Stylist.instance.distance && !Lv11_Stylist.instance.chooseParts[indexPart])
         {
             correct = true;                                                     // 已在正確位置
             Lv11_Stylist.instance.chooseParts[indexPart] = true;                // 此部位已經放置
