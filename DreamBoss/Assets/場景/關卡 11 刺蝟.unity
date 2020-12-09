@@ -238,6 +238,7 @@ MonoBehaviour:
   - {x: -19, y: -135}
   - {x: -19, y: -155}
   chooseParts: 0000000000
+  distance: 50
 --- !u!82 &205757193
 AudioSource:
   m_ObjectHideFlags: 0
