@@ -34,6 +34,8 @@ public class LevelBase : MonoBehaviour
     public bool afterCorrectWrongReplay = true;
     [Header("是否需要顯示正確物件")]
     public bool needShowCorrectObject;
+    [Header("正確次數：要正確幾次才會過關")]
+    public int countCorrect = 5;
 
     protected Transform canvas;
     protected AudioSource aud;
@@ -99,12 +101,12 @@ public class LevelBase : MonoBehaviour
 
             yield return new WaitForSeconds(timeCorrect);
 
-            if (winCount < 5) Replay();
+            if (winCount < countCorrect) Replay();
             else StartCoroutine(WinPanel());
         }
         else
         {
-            if (winCount == 5) StartCoroutine(WinPanel());
+            if (winCount == countCorrect) StartCoroutine(WinPanel());
         }
     }
 

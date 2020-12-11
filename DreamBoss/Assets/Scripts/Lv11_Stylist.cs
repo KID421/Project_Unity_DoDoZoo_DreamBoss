@@ -77,6 +77,7 @@ public class Lv11_Stylist : LevelBase
         instance = this;
     }
 
+    /* 舊模式
     /// <summary>
     /// 玩家點選了飾品
     /// </summary>
@@ -112,4 +113,5 @@ public class Lv11_Stylist : LevelBase
 
         if (truePart.ToList().Count == 5) StartCoroutine(Correct());
     }
+    */
 }
