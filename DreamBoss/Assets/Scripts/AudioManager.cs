@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [Header("滑桿")]
     public Slider sliderBGM;
     public Slider sliderSFX;
+    public Slider sliderAll;
 
     private void Start()
     {
@@ -26,6 +27,10 @@ public class AudioManager : MonoBehaviour
         mixer.GetFloat("音量_音效", out sfx);
         sliderBGM.value = (bgm + 10) / 20;
         sliderSFX.value = (sfx + 10) / 20;
+
+        float volume;
+        mixer.GetFloat("整體音量", out volume);
+        sliderAll.value = (volume + 10) / 20;
     }
 
     /// <summary>
@@ -44,5 +49,15 @@ public class AudioManager : MonoBehaviour
     public void SetSFX(float volume)
     {
         mixer.SetFloat("音量_音效", 20 * volume - 10);
+    }
+
+    /// <summary>
+    /// KID 2020.12.11 添加
+    /// 設定整體音像
+    /// </summary>
+    /// <param name="volume">音量</param>
+    public void SetAllVolume(float volume)
+    {
+        mixer.SetFloat("整體音量", 20 * volume - 10);
     }
 }
