@@ -8,6 +8,10 @@ public class Lv10_CivilServant : LevelBase
     public Transform traSealOnPaper;
     [Header("印章")]
     public Transform seals;
+    [Header("蓋印章動畫控制器")]
+    public Animator aniSeal;
+    [Header("蓋印章灰塵特效")]
+    public ParticleSystem psDust;
 
     /// <summary>
     /// 正確答案
@@ -56,6 +60,10 @@ public class Lv10_CivilServant : LevelBase
 
     public override IEnumerator Correct(int index = 0)
     {
+        // 蓋印章動畫與特效
+        aniSeal.SetTrigger("蓋印章");
+        psDust.Play();
+
         // 文件上的印章恢復原本顏色
         traSealOnPaper.GetChild(answer).GetComponent<Image>().color = new Color(1, 1, 1, 1);
         yield return base.Correct(index);

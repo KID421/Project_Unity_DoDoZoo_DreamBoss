@@ -36,10 +36,20 @@ public class LevelBase : MonoBehaviour
     public bool needShowCorrectObject;
     [Header("正確次數：要正確幾次才會過關")]
     public int countCorrect = 5;
+    [Header("分享畫面圖片：預設皆為一張")]
+    public Sprite[] sprShares;
 
     protected Transform canvas;
     protected AudioSource aud;
     protected float timer = 0;
+    /// <summary>
+    /// 分享畫面群組元件
+    /// </summary>
+    protected CanvasGroup groupShare;
+    /// <summary>
+    /// 分享畫面圖片
+    /// </summary>
+    protected Image imgShare;
 
     public static int winCount;
 
@@ -47,6 +57,12 @@ public class LevelBase : MonoBehaviour
     {
         canvas = GameObject.Find("畫布").transform;
         aud = GetComponent<AudioSource>();
+
+        // KID 2020.12.16
+        // 取得過關分享畫面 
+        groupShare = GameObject.Find("過關分享畫面群組").GetComponent<CanvasGroup>();
+        imgShare = GameObject.Find("過關分享畫面").GetComponent<Image>();
+        // KID --
 
         InteractableSwitch(false);
     }
@@ -162,9 +178,36 @@ public class LevelBase : MonoBehaviour
         ani.SetTrigger(aniPass);
         allCorrectParticle.Play();
 
+        // 等待兩秒後顯示分享畫面
         yield return new WaitForSeconds(2);
+        yield return StartCoroutine(ShowShare());
 
-        SceneManager.LoadScene("選取關卡");
+        // 等待一秒後顯示離開場景過場動畫
+        //yield return new WaitForSeconds(1);
+        //LevelManager.instance.LeaveLevel();
+
+        // 等待一秒後回到選取關卡
+        //yield return new WaitForSeconds(1);
+        //SceneManager.LoadScene("選取關卡");
+    }
+
+
+    /// <summary>
+    /// 顯示分享畫面
+    /// </summary>
+    private IEnumerator ShowShare()
+    {
+        imgShare.sprite = sprShares[0];
+        groupShare.transform.SetAsLastSibling();
+
+        while (groupShare.alpha < 1)
+        {
+            groupShare.alpha += 1 * Time.deltaTime;
+            yield return null;
+        }
+
+        groupShare.interactable = true;
+        groupShare.blocksRaycasts = true;
     }
 
     /// <summary>
