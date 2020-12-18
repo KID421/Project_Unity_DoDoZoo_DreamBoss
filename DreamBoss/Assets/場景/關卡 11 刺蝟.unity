@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 9779377}
   m_Layer: 5
   m_Name: "\u6236\u5916"
-  m_TagString: Untagged
+  m_TagString: "\u523A\u875F\u5C0F\u5973\u5B69\u62CD\u7167"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5716,11 +5716,11 @@ RectTransform:
   m_Father: {fileID: 566638992}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -620, y: 180}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -60, y: 100}
   m_SizeDelta: {x: 432, y: 261}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &331175289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16697,12 +16697,12 @@ PrefabInstance:
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -580
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 300
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
@@ -16717,32 +16717,32 @@ PrefabInstance:
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5685711351932635116, guid: abd9aac7aed0bef4891f326735a94119,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abd9aac7aed0bef4891f326735a94119, type: 3}
@@ -17925,7 +17925,7 @@ GameObject:
   - component: {fileID: 1574603812}
   m_Layer: 5
   m_Name: "\u5B78\u6821"
-  m_TagString: Untagged
+  m_TagString: "\u523A\u875F\u5C0F\u5973\u5B69\u62CD\u7167"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

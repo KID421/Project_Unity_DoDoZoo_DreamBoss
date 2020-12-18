@@ -22,6 +22,11 @@ public class Lv8_Artist : LevelBase
 
     private int index;
 
+    /// <summary>
+    /// 紀錄每個顏料是否有在選取後畫畫過
+    /// </summary>
+    private bool[] colorPaint = { false, false, false, false, false, false, false };
+
     protected override void Awake()
     {
         base.Awake();
@@ -53,7 +58,17 @@ public class Lv8_Artist : LevelBase
     /// <param name="index">每個顏料的編號</param>
     public void ColorChooseEffect(int index)
     {
-        btnColors[index].interactable = false;
+        // 迴圈跑每一個顏料，如果沒有選取後點過圖片就恢復原位
+        for (int i = 0; i < btnColors.Length; i++)
+        {
+            if (!colorPaint[i])
+            {
+                float y = btnColors[i].GetComponent<RectTransform>().anchoredPosition.y;
+                btnColors[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(i < 4 ? -650 : 650, y);
+            }
+        }
+
+        // 選取的顏料凸出來
         btnColors[index].GetComponent<RectTransform>().anchoredPosition += Vector2.right * (index < 4 ? 150 : -150);
     }
 
@@ -62,16 +77,22 @@ public class Lv8_Artist : LevelBase
     /// </summary>
     public void ClickPicture()
     {
+        // 選正確的效果
         if (colorChoose == index)
         {
             fruites[index].GetComponent<Image>().color = new Color(1, 1, 1, 0);
             fruites[index].transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
             StartCoroutine(Correct());
         }
+        // 選錯誤的效果 - 不能再選取
         else
         {
+            btnColors[colorChoose].interactable = false;
             StartCoroutine(Wrong());
         }
+
+        // 選取顏料後有點選圖片
+        colorPaint[colorChoose] = true;
     }
 
     public override IEnumerator Correct(int index = 0)

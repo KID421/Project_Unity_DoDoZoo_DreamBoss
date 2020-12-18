@@ -56,6 +56,10 @@ public class LevelBase : MonoBehaviour
     /// 分享畫面圖片
     /// </summary>
     protected Image imgShare;
+    /// <summary>
+    /// 分享畫面的圖片編號
+    /// </summary>
+    protected int indexSharePicture;
 
     public static int winCount;
 
@@ -182,7 +186,7 @@ public class LevelBase : MonoBehaviour
     /// <summary>
     /// 勝利
     /// </summary>
-    protected IEnumerator WinPanel()
+    protected virtual IEnumerator WinPanel()
     {
         ani.SetTrigger(aniPass);
         allCorrectParticle.Play();
@@ -200,13 +204,12 @@ public class LevelBase : MonoBehaviour
         //SceneManager.LoadScene("選取關卡");
     }
 
-
     /// <summary>
     /// 顯示分享畫面
     /// </summary>
     private IEnumerator ShowShare()
     {
-        imgShare.sprite = sprShares[0];
+        imgShare.sprite = sprShares[indexSharePicture];
         groupShare.transform.SetAsLastSibling();
 
         while (groupShare.alpha < 1)
@@ -222,7 +225,7 @@ public class LevelBase : MonoBehaviour
     /// <summary>
     /// 倒數計時
     /// </summary>
-    protected void TimeCount()
+    protected virtual void TimeCount()
     {
         if (timer >= countTime && needCount)
         {

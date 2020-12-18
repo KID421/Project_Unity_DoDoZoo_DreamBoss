@@ -37,7 +37,7 @@ public class Lv11_Stylist : LevelBase
     private Vector2[] posCorrectAllOutOfSchool =
     {
         new Vector2(-20, -45),
-        new Vector2(-20, -39),
+        new Vector2(-24, -39),
         new Vector2(-5, -75),
         new Vector2(-51, -61),
         new Vector2(-19, -290),
@@ -186,12 +186,35 @@ public class Lv11_Stylist : LevelBase
     private IEnumerator MoveToPicturePosition()
     {
         yield return new WaitForSeconds(2f);
-        GameObject[] girl = GameObject.FindGameObjectsWithTag("刺蝟小女孩拍照");
 
-        for (int i = 0; i < girl.Length; i++)
+        //GameObject[] girl = GameObject.FindGameObjectsWithTag("刺蝟小女孩拍照");
+        //for (int i = 0; i < girl.Length; i++)
+        //{
+        //    girl[i].transform.SetParent(traPictureParent); 
+        //}
+
+        dressSchool[0].transform.SetParent(traPictureParent);
+        GameObject.Find("渲染圖片 小女孩").transform.SetParent(traPictureParent);
+        dressSchool[1].transform.SetParent(traPictureParent);
+        dressOutside[0].transform.SetParent(traPictureParent);
+
+        for (int i = 0; i < traPictureParent.childCount; i++)
         {
-            girl[i].transform.SetParent(traPictureParent); 
+            Transform child = traPictureParent.GetChild(i);
+            if (child.name == "帽子 制服" && child.tag != "刺蝟小女孩拍照") child.gameObject.SetActive(false);
+
+            if (child.name == "戶外" || child.name == "學校")
+            {
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).tag != "刺蝟小女孩拍照")
+                    {
+                        child.GetChild(j).gameObject.SetActive(false);
+                    }
+                }
+            }
         }
+
         traPictureParent.localScale = Vector3.one * 0.5f;
         traPictureParent.GetComponent<RectTransform>().anchoredPosition = new Vector2(10, 35);
 
