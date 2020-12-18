@@ -551,7 +551,8 @@ MonoBehaviour:
   timeCorrect: 2
   timeWrong: 2
   aniPass: "\u6B63\u78BA"
-  afterCorrectWrongReplay: 1
+  afterCorrectReplay: 1
+  afterWrongReplay: 1
   needShowCorrectObject: 0
   countCorrect: 5
   sprShares:
@@ -6897,7 +6898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1934371148
 RectTransform:
   m_ObjectHideFlags: 0

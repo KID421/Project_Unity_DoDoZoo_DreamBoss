@@ -1,26 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class LV6_Music : LevelBase
 {
     [Header("所有音效")]
     public AudioClip[] sounds;
+    [Header("音符特效")]
+    public ParticleSystem psNote;
 
     private int indexCorrect;
+    private int indexClick;
 
     private void Start()
     {
-        Question(2);
+        StartCoroutine(Question(2));
     }
 
-    protected override void Question(float delayStart)
+    protected override IEnumerator Question(float delayStart)
     {
-        int r = Random.Range(0, sounds.Length);
+        yield return new WaitForSeconds(1.5f);
 
-        indexCorrect = r;
+        indexCorrect = Random.Range(0, sounds.Length);
+        aud.PlayOneShot(sounds[indexCorrect]);
+        psNote.Play();                                  // 播放音符特效
 
-        aud.PlayOneShot(sounds[r]);
-
-        base.Question(sounds[r].length);
+        yield return base.Question(sounds[indexCorrect].length);
     }
 
     protected override void StartGame()
@@ -30,7 +35,14 @@ public class LV6_Music : LevelBase
 
     public void ClickMusicalInstrument(int index)
     {
+        indexClick = index;
+
         if (index == indexCorrect) StartCoroutine(Correct(index));
         else StartCoroutine(Wrong());
+    }
+
+    public void ClickMusicInstrument(Button btn)
+    {
+        if (indexClick != indexCorrect) btn.interactable = false;
     }
 }

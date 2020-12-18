@@ -30,8 +30,10 @@ public class LevelBase : MonoBehaviour
     public float timeWrong = 2;
     [Header("過關後要播放的動畫參數")]
     public string aniPass = "過關";
-    [Header("是否需要正確錯誤後重新載入遊戲")]
-    public bool afterCorrectWrongReplay = true;
+    [Header("是否需要正確後重新載入遊戲")]
+    public bool afterCorrectReplay = true;
+    [Header("是否需要錯誤後重新載入遊戲")]
+    public bool afterWrongReplay = true;
     [Header("是否需要顯示正確物件")]
     public bool needShowCorrectObject;
     [Header("正確次數：要正確幾次才會過關")]
@@ -86,8 +88,9 @@ public class LevelBase : MonoBehaviour
     /// 問題
     /// </summary>
     /// <param name="delayStart">延遲開始</param>
-    protected virtual void Question(float delayStart)
+    protected virtual IEnumerator Question(float delayStart)
     {
+        yield return null;
         Invoke("StartGame", delayStart);
     }
 
@@ -110,7 +113,7 @@ public class LevelBase : MonoBehaviour
         if (correctParticle) correctParticle.Play();
         if (needShowCorrectObject) StartCoroutine(ShowCorrectObject(index));
 
-        if (afterCorrectWrongReplay)
+        if (afterCorrectReplay)
         {
             final.raycastTarget = true;
             final.transform.SetAsLastSibling();
@@ -152,7 +155,7 @@ public class LevelBase : MonoBehaviour
         ani.SetTrigger("錯誤");
         aud.PlayOneShot(soundWrong, 2);
 
-        if (afterCorrectWrongReplay)
+        if (afterWrongReplay)
         {
             final.raycastTarget = true;
             final.transform.SetAsLastSibling();

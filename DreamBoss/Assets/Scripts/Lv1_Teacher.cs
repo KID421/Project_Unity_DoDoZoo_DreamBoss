@@ -166,14 +166,14 @@ public class Lv1_Teacher : LevelBase
         if (Recognize()) StartCoroutine(Correct()); else StartCoroutine(Wrong());
     }
 
-    protected override void Question(float delayStart)
+    protected override IEnumerator Question(float delayStart)
     {
         index = Random.Range(0, questions.Length);
         answer = questions[index];
 
         imgQuestion.sprite = sprQuestion[index];
 
-        base.Question(delayStart);
+        yield return base.Question(delayStart);
     }
 
     public override IEnumerator Correct(int index = 0)
