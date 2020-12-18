@@ -45,7 +45,11 @@ public class Lv10_CivilServant : LevelBase
     private void ClickSeal(int sealIndex)
     {
         if (sealIndex == answer) StartCoroutine(Correct());
-        else StartCoroutine(Wrong());
+        else
+        {
+            seals.GetChild(sealIndex).GetComponent<Button>().interactable = false;
+            StartCoroutine(Wrong());
+        }
     }
 
     /// <summary>

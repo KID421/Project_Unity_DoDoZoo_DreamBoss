@@ -36,10 +36,14 @@ public class LevelBase : MonoBehaviour
     public bool afterWrongReplay = true;
     [Header("是否需要顯示正確物件")]
     public bool needShowCorrectObject;
+    [Header("是否透過正確次數來過關")]
+    public bool needCorrectCountToPass = true;
     [Header("正確次數：要正確幾次才會過關")]
     public int countCorrect = 5;
     [Header("分享畫面圖片：預設皆為一張")]
     public Sprite[] sprShares;
+    [Header("是否需要錯誤音效")]
+    public bool needWrongSound = true;
 
     protected Transform canvas;
     protected AudioSource aud;
@@ -107,8 +111,10 @@ public class LevelBase : MonoBehaviour
     /// </summary>
     public virtual IEnumerator Correct(int index = 0)
     {
+        // KID 2020.12.18 是否需要透過正確次數來過關
+        if (needCorrectCountToPass) winCount++;
+
         ani.SetTrigger("正確");
-        winCount++;
         aud.PlayOneShot(soundCorrect);
         if (correctParticle) correctParticle.Play();
         if (needShowCorrectObject) StartCoroutine(ShowCorrectObject(index));
@@ -153,7 +159,7 @@ public class LevelBase : MonoBehaviour
     public virtual IEnumerator Wrong()
     {
         ani.SetTrigger("錯誤");
-        aud.PlayOneShot(soundWrong, 2);
+        if (needWrongSound) aud.PlayOneShot(soundWrong, 2);
 
         if (afterWrongReplay)
         {
@@ -176,7 +182,7 @@ public class LevelBase : MonoBehaviour
     /// <summary>
     /// 勝利
     /// </summary>
-    private IEnumerator WinPanel()
+    protected IEnumerator WinPanel()
     {
         ani.SetTrigger(aniPass);
         allCorrectParticle.Play();

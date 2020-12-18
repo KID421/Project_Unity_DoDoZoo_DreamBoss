@@ -1107,11 +1107,14 @@ MonoBehaviour:
   timeCorrect: 2
   timeWrong: 2
   aniPass: "\u904E\u95DC"
-  afterCorrectWrongReplay: 0
+  afterCorrectReplay: 0
+  afterWrongReplay: 0
   needShowCorrectObject: 0
+  needCorrectCountToPass: 1
   countCorrect: 5
   sprShares:
   - {fileID: 21300000, guid: fbc849bd90fcb2044a69f7001b242cf2, type: 3}
+  needWrongSound: 1
   answers:
   - rectAnswers:
     - {fileID: 1010931576}

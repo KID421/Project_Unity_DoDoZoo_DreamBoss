@@ -341,14 +341,17 @@ MonoBehaviour:
   countTime: 8
   allCorrectParticle: {fileID: 368878739}
   ani: {fileID: 1837703505310701549}
-  timeCorrect: 2
+  timeCorrect: 3.5
   timeWrong: 2
   aniPass: "\u904E\u95DC"
-  afterCorrectWrongReplay: 0
+  afterCorrectReplay: 1
+  afterWrongReplay: 0
   needShowCorrectObject: 0
+  needCorrectCountToPass: 1
   countCorrect: 5
   sprShares:
   - {fileID: 21300000, guid: e3206ad08a5e2ff4985dfa8e27ae1686, type: 3}
+  needWrongSound: 1
   fruites:
   - {fileID: 1529942300}
   - {fileID: 1647394277}

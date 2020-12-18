@@ -21,7 +21,7 @@ public class Lv2_Doctor : LevelBase
 
     private void Start()
     {
-        Question(0);
+        StartCoroutine(Question(0));
     }
 
     protected override void StartGame()

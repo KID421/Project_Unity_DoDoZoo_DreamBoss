@@ -120,6 +120,9 @@ public class LevelManager : MonoBehaviour
     {
         aniCrossImage.SetTrigger("進入場景");
 
+        // 正確次數歸零
+        LevelBase.winCount = 0;
+
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class Lv11_Stylist : LevelBase
@@ -33,7 +34,7 @@ public class Lv11_Stylist : LevelBase
     /// 8 裙子
     /// 9 褲子
     /// </summary>
-    public Vector2[] posCorrectAll =
+    private Vector2[] posCorrectAllOutOfSchool =
     {
         new Vector2(-20, -45),
         new Vector2(-20, -39),
@@ -47,12 +48,70 @@ public class Lv11_Stylist : LevelBase
         new Vector2(-19, -155)
     };
     /// <summary>
+    /// 帽子制服
+    /// 帽子運動
+    /// 褲子運動
+    /// 褲子制服
+    /// 衣服制服
+    /// 衣服運動
+    /// 書包運動
+    /// 書包制服
+    /// 襪子
+    /// 鞋子運動
+    /// 鞋子制服
+    /// </summary>
+    private Vector2[] posCorrectAllInSchool =
+    {
+        new Vector2(-30, 260),
+        new Vector2(5, 270),
+        new Vector2(-18, -150),
+        new Vector2(-18, -140),
+        new Vector2(-19, -45),
+        new Vector2(-20, -46),
+        new Vector2(0, -84),
+        new Vector2(-54, -73),
+        new Vector2(-20, -270),
+        new Vector2(-18, -286),
+        new Vector2(-19, -290)
+    };
+
+    /// <summary>
+    /// 正確位置：兩組
+    /// </summary>
+    public DressPosition[] dressPositions;
+
+    /// <summary>
+    /// 目前選取的場景
+    /// 0 戶外
+    /// 1 學校
+    /// </summary>
+    public int indexCurrent;
+
+    /// <summary>
     /// 是否選取所有部位：頭飾、上衣、飾品、褲子、鞋子
     /// </summary>
-    /// [HideInInspector]
+    [HideInInspector]
     public bool[] chooseParts = { false, false, false, false, false };
     [Header("判定距離：小於此距離就算判定成功")]
     public float distance = 30f;
+    [Header("小女孩")]
+    public Animator aniGirl;
+    [Header("切換學校與戶外按鈕")]
+    public Button btnSwitch;
+    [Header("學校")]
+    public GameObject[] dressSchool;
+    [Header("戶外")]
+    public GameObject[] dressOutside;
+
+    /// <summary>
+    /// 是否在學校內
+    /// </summary>
+    private bool inSchool;
+
+    /// <summary>
+    /// 小女孩拍照位置
+    /// </summary>
+    private Transform traPictureParent;
 
     /// <summary>
     /// 選取的部位編號 
@@ -74,7 +133,72 @@ public class Lv11_Stylist : LevelBase
     {
         base.Awake();
 
+        dressPositions[0].posCorrectAll = posCorrectAllOutOfSchool;
+        dressPositions[1].posCorrectAll = posCorrectAllInSchool;
+
         instance = this;
+        traPictureParent = GameObject.Find("小女孩拍照位置").transform;
+
+        // 切換學校戶外按鈕點擊設定
+        btnSwitch.onClick.AddListener(SwitchSchool);
+    }
+
+    /// <summary>
+    /// 切換學校與戶外
+    /// </summary>
+    private void SwitchSchool()
+    {
+        inSchool = !inSchool;
+
+        if (inSchool)
+        {
+            indexCurrent = 1;
+            btnSwitch.transform.Find("圓圈").GetComponent<RectTransform>().anchoredPosition = new Vector2(65, 0);
+            btnSwitch.transform.Find("學校切換").GetComponent<Image>().color = new Color(0.5f, 0.8f, 0.3f);
+
+            for (int i = 0; i < dressSchool.Length; i++) dressSchool[i].SetActive(true);
+            for (int i = 0; i < dressOutside.Length; i++) dressOutside[i].SetActive(false);
+        }
+        else
+        {
+            indexCurrent = 0;
+            btnSwitch.transform.Find("圓圈").GetComponent<RectTransform>().anchoredPosition = new Vector2(-65, 0);
+            btnSwitch.transform.Find("學校切換").GetComponent<Image>().color = new Color(0.8f, 0.2f, 0.3f);
+
+            for (int i = 0; i < dressSchool.Length; i++) dressSchool[i].SetActive(false);
+            for (int i = 0; i < dressOutside.Length; i++) dressOutside[i].SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// 分享按鈕
+    /// </summary>
+    public void ButtonCameraClickToShare()
+    {
+        StartCoroutine(WinPanel());
+        StartCoroutine(MoveToPicturePosition());
+    }
+
+    /// <summary>
+    /// 所有 刺蝟小女孩拍照 標籤物件移動到分享畫面
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator MoveToPicturePosition()
+    {
+        yield return new WaitForSeconds(2f);
+        GameObject[] girl = GameObject.FindGameObjectsWithTag("刺蝟小女孩拍照");
+
+        for (int i = 0; i < girl.Length; i++)
+        {
+            girl[i].transform.SetParent(traPictureParent); 
+        }
+        traPictureParent.localScale = Vector3.one * 0.5f;
+        traPictureParent.GetComponent<RectTransform>().anchoredPosition = new Vector2(10, 35);
+
+        for (int i = 0; i < traPictureParent.childCount; i++)
+        {
+            if (traPictureParent.GetChild(i).name == "帽子 制服") traPictureParent.GetChild(i).SetAsFirstSibling();
+        }
     }
 
     /* 舊模式
@@ -114,4 +238,13 @@ public class Lv11_Stylist : LevelBase
         if (truePart.ToList().Count == 5) StartCoroutine(Correct());
     }
     */
+}
+
+/// <summary>
+/// 飾品正確位置
+/// </summary>
+[System.Serializable]
+public struct DressPosition
+{
+    public Vector2[] posCorrectAll;
 }

@@ -85,6 +85,9 @@ public class DragObjectBase : MonoBehaviour, IDragHandler, IEndDragHandler
         else PositionWrong();
     }
 
+    /// <summary>
+    /// 位置正確
+    /// </summary>
     protected virtual void PositionCorrect()
     {
         correct = true;                                                     // 已在正確位置
@@ -92,6 +95,9 @@ public class DragObjectBase : MonoBehaviour, IDragHandler, IEndDragHandler
         StartCoroutine(level.Correct());                                    // 正確特效
     }
 
+    /// <summary>
+    /// 位置錯誤
+    /// </summary>
     protected virtual void PositionWrong()
     {
         rect.anchoredPosition = posOriginal;                // 回到原點
