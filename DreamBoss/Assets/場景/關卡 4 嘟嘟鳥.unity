@@ -1110,7 +1110,8 @@ MonoBehaviour:
   afterCorrectWrongReplay: 0
   needShowCorrectObject: 0
   countCorrect: 5
-  sprShares: []
+  sprShares:
+  - {fileID: 21300000, guid: fbc849bd90fcb2044a69f7001b242cf2, type: 3}
   answers:
   - rectAnswers:
     - {fileID: 1010931576}

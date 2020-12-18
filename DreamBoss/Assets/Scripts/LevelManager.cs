@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
     public float delayLoadScene = 0.8f;
     [Header("每一關的按鈕")]
     public Button[] buttons;
+    [Header("水平捲動")]
+    public Scrollbar barHorizontal;
 
     /// <summary>
     /// 要載入的場景名稱
@@ -40,16 +42,49 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
+    /// <summary>
+    /// 水平捲動的值
+    /// </summary>
+    public static float valueBarHorizontal;
+
+    /// <summary>
+    /// 是否為選單
+    /// </summary>
+    private bool isMenu
+    {
+        get
+        {
+            return SceneManager.GetActiveScene().name == "選單";
+        }
+    }
+
+    /// <summary>
+    /// 是否為選取關卡
+    /// </summary>
+    private bool isSelection
+    {
+        get
+        {
+            return SceneManager.GetActiveScene().name == "選取關卡";
+        }
+    }
+
     private void Awake()
     {
         instance = this;
 
         aud = GetComponent<AudioSource>();
 
-        if (SceneManager.GetActiveScene().name != "選單") aniCrossImage = GameObject.Find("轉場動畫").GetComponent<Animator>();
+        if (!isMenu) aniCrossImage = GameObject.Find("轉場動畫").GetComponent<Animator>();
+
         SetAllButtonClickEvent();
         SetBackButtonInLevel();
         ButtonInLeveleSharePanel();
+    }
+
+    private void Start()
+    {
+        BarHorizontalSetToPlayLevel("");        // 進入選取關卡後更新水平捲動值 - 停在上次位置
     }
 
     /// <summary>
@@ -57,7 +92,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void ButtonInLeveleSharePanel()
     {
-        if (SceneManager.GetActiveScene().name != "選單" && SceneManager.GetActiveScene().name != "選取關卡")
+        if (!isMenu && !isSelection)
         {
             btnShareBackToMenu = GameObject.Find("分享畫面返回選單").GetComponent<Button>();
             btnShareReplay = GameObject.Find("分享畫面重新遊戲").GetComponent<Button>();
@@ -83,7 +118,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private IEnumerator ReplayLevel()
     {
-        LeaveLevel();
+        aniCrossImage.SetTrigger("進入場景");
 
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -94,7 +129,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void SetBackButtonInLevel()
     {
-        if (SceneManager.GetActiveScene().name != "選取關卡" && SceneManager.GetActiveScene().name != "選單")
+        if (!isMenu && !isSelection)
         {
             btnBack = GameObject.Find("關卡_返回按鈕").GetComponent<Button>();
             btnBack.onClick.AddListener(LeaveLevel);
@@ -129,6 +164,30 @@ public class LevelManager : MonoBehaviour
         aud.PlayOneShot(soundButton);
         this.nameScene = nameScene;
         Invoke("LoadScene", delayLoadScene);
+
+        BarHorizontalSetToPlayLevel(nameScene);     // 載入時紀錄水平捲動的值
+    }
+
+    /// <summary>
+    /// 水平卷軸設定為剛玩完的關卡
+    /// </summary>
+    private void BarHorizontalSetToPlayLevel(string nameScene)
+    {
+        // 如果不是選關卡 跳出不處理 - 避免沒有水平捲動 錯誤
+        if (!isSelection) return;
+
+        // 如果 不是選取關卡 並且 不是空值
+        if (nameScene != "選取關卡" && nameScene != "")
+        {
+            barHorizontal = GameObject.Find("水平捲動").GetComponent<Scrollbar>();  // 取得水平捲動
+            valueBarHorizontal = barHorizontal.value;                              // 保存當前水平捲動的值
+        }
+        // 否則 - 在選取關卡內時
+        else
+        {
+            barHorizontal = GameObject.Find("水平捲動").GetComponent<Scrollbar>();  // 取得水平捲動
+            barHorizontal.value = valueBarHorizontal;                              // 設定水平捲動的值
+        }
     }
 
     /// <summary>

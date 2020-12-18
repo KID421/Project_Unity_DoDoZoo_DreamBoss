@@ -13,6 +13,10 @@ public class Lv7_Entrepreneur : LevelBase
     /// 是否點到起點
     /// </summary>
     private bool clickStart;
+    /// <summary>
+    /// 是否點到終點
+    /// </summary>
+    private bool clickEnd;
 
     /// <summary>
     /// 點擊的介面
@@ -51,6 +55,7 @@ public class Lv7_Entrepreneur : LevelBase
 
     private void Mouse()
     {
+
         // 是否按下左鍵
         if (!startClick && Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -64,6 +69,8 @@ public class Lv7_Entrepreneur : LevelBase
             pointer.position = Input.mousePosition;
             results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(pointer, results);
+
+            if (!results[0].gameObject.GetComponent<Lv7_Brick>()) return;
 
             // 如果碰到介面
             if (results.Count > 0)
@@ -96,6 +103,14 @@ public class Lv7_Entrepreneur : LevelBase
                             aud.PlayOneShot(soundCoin);
                             ani.SetTrigger("吃到金幣");
                         }
+
+                        // 如果是終點，就改為一般顏色
+                        if (results[0].gameObject.GetComponent<Lv7_Brick>().isEnd)
+                        {
+                            clickEnd = true;
+                            results[0].gameObject.GetComponent<Image>().color = colorNormal;
+                            StartCoroutine(Correct());
+                        }
                     }
                 }
             }
@@ -112,6 +127,8 @@ public class Lv7_Entrepreneur : LevelBase
                     // 如果是終點，就改為一般顏色
                     if (results[0].gameObject.GetComponent<Lv7_Brick>().isEnd)
                     {
+                        clickEnd = true;
+                        print(123);
                         results[0].gameObject.GetComponent<Image>().color = colorNormal;
                         StartCoroutine(Correct());
                     }
@@ -126,7 +143,7 @@ public class Lv7_Entrepreneur : LevelBase
                     }
                 }
                 // 否則就改為起點顏色
-                else
+                else if (!clickEnd)
                 {
                     prevBrick.GetComponent<Image>().color = colorStart;
                 }

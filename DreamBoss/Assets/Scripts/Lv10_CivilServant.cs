@@ -64,8 +64,20 @@ public class Lv10_CivilServant : LevelBase
         aniSeal.SetTrigger("蓋印章");
         psDust.Play();
 
-        // 文件上的印章恢復原本顏色
-        traSealOnPaper.GetChild(answer).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        StartCoroutine(ShowSeal());
+
         yield return base.Correct(index);
+
+    }
+
+    /// <summary>
+    /// 顯示正確的印章
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ShowSeal()
+    {
+        // 文件上的印章恢復原本顏色
+        yield return new WaitForSeconds(0.7f);
+        traSealOnPaper.GetChild(answer).GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 }

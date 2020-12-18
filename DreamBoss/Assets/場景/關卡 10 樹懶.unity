@@ -424,13 +424,14 @@ MonoBehaviour:
   countTime: 8
   allCorrectParticle: {fileID: 368878739}
   ani: {fileID: 1101651991}
-  timeCorrect: 2
+  timeCorrect: 3
   timeWrong: 2
   aniPass: "\u904E\u95DC"
   afterCorrectWrongReplay: 1
   needShowCorrectObject: 0
   countCorrect: 5
-  sprShares: []
+  sprShares:
+  - {fileID: 21300000, guid: c0ac316b93e5316449e0fa81a2c0d994, type: 3}
   traSealOnPaper: {fileID: 2076154194}
   seals: {fileID: 1490655579}
   aniSeal: {fileID: 5157910}
