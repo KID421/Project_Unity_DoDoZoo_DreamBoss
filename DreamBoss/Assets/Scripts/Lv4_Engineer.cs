@@ -22,6 +22,9 @@ public class Lv4_Engineer : LevelBase
     /// 題目
     /// </summary>
     public static List<Lv4_Answer> questions = new List<Lv4_Answer>();
+    /// <summary>
+    /// 題目的編號
+    /// </summary>
     public static List<int> questionsIndex = new List<int>();
 
     /// <summary>
@@ -45,31 +48,41 @@ public class Lv4_Engineer : LevelBase
     /// </summary>
     private void SetQuestion()
     {
+        // 如果 題目數量 為零 就初始化題目
         if (questions.Count == 0)
         {
+            // 所有答案：用來抽取並設定每題不同用
             List<Lv4_Answer> allAnswer = answers.ToList();
+            // 所有答案：用來配對編號用
+            List<Lv4_Answer> tempAnswers = answers.ToList();
 
+            // 執行題數：預設為 5 次
             for (int i = 0; i < countQuestion; i++)
             {
+                // 隨機抽題並加入題庫
                 int r = Random.Range(0, allAnswer.Count);
                 questions.Add(allAnswer[r]);
-                questionsIndex.Add(r);
+
+                // 匹配當前題目編號
+                for (int j = 0; j < tempAnswers.Count; j++) if (questions[i].Equals(tempAnswers[j])) questionsIndex.Add(j);
+
+                // 刪除用來抽取用清單
                 allAnswer.RemoveAt(r);
             }
         }
 
-        // indexQuestion = Random.Range(0, answers.Length);
-        // countCorrect += answers[indexQuestion].rectAnswers.Length;
-
+        // 取得題目編號與正確數量：根據每一提的按鈕而定
         indexQuestion = questionsIndex[0];
         countCorrect = questions[0].rectAnswers.Length;
 
+        // 顯示題目與按鈕
         objQuestiones.GetChild(indexQuestion).gameObject.SetActive(true);
         objButtons.GetChild(indexQuestion).gameObject.SetActive(true);
     }
 
     protected override IEnumerator Pass(bool showShare = true)
     {
+        // 如果題目還有一題以上就刪除當前題目並歸零正確數量與重新遊戲
         if (questions.Count > 1)
         {
             yield return base.Pass(false);
@@ -79,6 +92,7 @@ public class Lv4_Engineer : LevelBase
             yield return new WaitForSeconds(2);
             Replay();
         }
+        // 否則就過關，顯示分享畫面
         else
         {
             yield return base.Pass(true);
