@@ -131,11 +131,11 @@ public class LevelBase : MonoBehaviour
             yield return new WaitForSeconds(timeCorrect);
 
             if (winCount < countCorrect) Replay();
-            else StartCoroutine(WinPanel());
+            else StartCoroutine(Pass());
         }
         else
         {
-            if (winCount == countCorrect) StartCoroutine(WinPanel());
+            if (winCount == countCorrect) StartCoroutine(Pass());
         }
     }
 
@@ -178,22 +178,25 @@ public class LevelBase : MonoBehaviour
     /// <summary>
     /// 重新開始
     /// </summary>
-    private void Replay()
+    protected void Replay()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
-    /// 勝利
+    /// 過關：全部都正確後，顯示分享畫面
     /// </summary>
-    protected virtual IEnumerator WinPanel()
+    protected virtual IEnumerator Pass(bool showShare = true)
     {
         ani.SetTrigger(aniPass);
         allCorrectParticle.Play();
 
-        // 等待兩秒後顯示分享畫面
-        yield return new WaitForSeconds(2);
-        yield return StartCoroutine(ShowShare());
+        if (showShare)
+        {
+            // 等待兩秒後顯示分享畫面
+            yield return new WaitForSeconds(2);
+            yield return StartCoroutine(ShowShare());
+        }
 
         // 等待一秒後顯示離開場景過場動畫
         //yield return new WaitForSeconds(1);

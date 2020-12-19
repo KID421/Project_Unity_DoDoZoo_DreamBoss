@@ -228,13 +228,13 @@ public class Lv7_Entrepreneur : LevelBase
         StartCoroutine(Correct());
     }
 
-    protected override IEnumerator WinPanel()
+    protected override IEnumerator Pass(bool showShare = true)
     {
         if (coinCount >= 20) indexSharePicture = 0;
         else if (coinCount >= 15) indexSharePicture = 1;
         else if (coinCount >= 10) indexSharePicture = 2;
         else indexSharePicture = 3;
         
-        yield return base.WinPanel();
+        yield return base.Pass();
     }
 }

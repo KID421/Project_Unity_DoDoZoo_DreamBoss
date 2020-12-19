@@ -175,7 +175,7 @@ public class Lv11_Stylist : LevelBase
     /// </summary>
     public void ButtonCameraClickToShare()
     {
-        StartCoroutine(WinPanel());
+        StartCoroutine(Pass());
         StartCoroutine(MoveToPicturePosition());
     }
 

@@ -39,7 +39,6 @@ public class Lv4_DragObject : DragObjectBase
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
-
         Lv4_Engineer.instance.ani.SetBool("移動中", false);
     }
 }
