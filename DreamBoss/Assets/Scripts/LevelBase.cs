@@ -8,11 +8,6 @@ public class LevelBase : MonoBehaviour
 {
     [Header("互動物件")]
     public Transform interactable;
-    [Header("結束畫面")]
-    public Image final;
-    [Header("正確與錯誤音效")]
-    public AudioClip soundCorrect;
-    public AudioClip soundWrong;
     [Header("正確特效")]
     public RectTransform correctRect;
     public ParticleSystem correctParticle;
@@ -20,8 +15,7 @@ public class LevelBase : MonoBehaviour
     public bool needCount;
     [Header("倒數時間")]
     public float countTime = 8;
-    [Header("全對特效")]
-    public ParticleSystem allCorrectParticle;
+    
     [Header("角色動畫控制器")]
     public Animator ani;
     [Header("正確後停留時間")]
@@ -45,6 +39,14 @@ public class LevelBase : MonoBehaviour
     [Header("是否需要錯誤音效")]
     public bool needWrongSound = true;
 
+    //[Header("結束畫面")]
+    protected Image final;
+    //[Header("正確與錯誤音效")]
+    protected AudioClip soundCorrect;
+    protected AudioClip soundWrong;
+    //[Header("過關特效")]
+    protected ParticleSystem allCorrectParticle;
+
     protected Transform canvas;
     protected AudioSource aud;
     protected float timer = 0;
@@ -65,14 +67,21 @@ public class LevelBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        // -- KID 2020.12.20 取得物件
         canvas = GameObject.Find("畫布").transform;
+        soundCorrect = Resources.Load<AudioClip>("正確");
+        soundWrong = Resources.Load<AudioClip>("錯誤");
+        allCorrectParticle = GameObject.Find("過關特效").GetComponent<ParticleSystem>();
+        // -- KID
+
+        final = GameObject.Find("結束畫面").GetComponent<Image>();
         aud = GetComponent<AudioSource>();
 
-        // KID 2020.12.16
+        // -- KID 2020.12.16
         // 取得過關分享畫面 
         groupShare = GameObject.Find("過關分享畫面群組").GetComponent<CanvasGroup>();
         imgShare = GameObject.Find("過關分享畫面").GetComponent<Image>();
-        // KID --
+        // -- KID
 
         InteractableSwitch(false);
     }
