@@ -224,6 +224,9 @@ public class LevelBase : MonoBehaviour
         imgShare.sprite = sprShares[indexSharePicture];
         groupShare.transform.SetAsLastSibling();
 
+        // 返回按鈕順序調整
+        GameObject.Find("關卡_返回按鈕").transform.SetAsLastSibling();
+
         while (groupShare.alpha < 1)
         {
             groupShare.alpha += 1 * Time.deltaTime;
