@@ -486,8 +486,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 528357284}
-  - component: {fileID: 528357283}
   - component: {fileID: 528357285}
+  - component: {fileID: 528357283}
   m_Layer: 0
   m_Name: "\u95DC\u5361\u7BA1\u7406\u5668"
   m_TagString: Untagged
@@ -508,14 +508,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 658759478}
-  final: {fileID: 970476545}
-  soundCorrect: {fileID: 8300000, guid: 91a4e300c781b5141ab02b68dfe0c4f0, type: 3}
-  soundWrong: {fileID: 8300000, guid: 8808ea4ccc804af42aa789758e564ad9, type: 3}
   correctRect: {fileID: 767882637}
   correctParticle: {fileID: 904457435}
   needCount: 0
   countTime: 8
-  allCorrectParticle: {fileID: 759801367}
   ani: {fileID: 796079934}
   timeCorrect: 2
   timeWrong: 2
@@ -560,7 +556,7 @@ AudioSource:
   m_GameObject: {fileID: 528357282}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 4100052219708245228, guid: 93a96b40dcf3e3243b0678e00c405d6f,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 93a96b40dcf3e3243b0678e00c405d6f,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -1070,12 +1066,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d04db8a6b9912b4da269ef1db920484, type: 3}
---- !u!198 &759801367 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 979715016318515521, guid: 0d04db8a6b9912b4da269ef1db920484,
-    type: 3}
-  m_PrefabInstance: {fileID: 759801366}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &762656599
 GameObject:
   m_ObjectHideFlags: 0

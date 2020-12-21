@@ -1179,6 +1179,17 @@ MonoBehaviour:
           m_StringArgument: "\u95DC\u5361 8 \u8B8A\u8272\u9F8D"
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &224590725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1457,6 +1468,17 @@ MonoBehaviour:
           m_StringArgument: "\u95DC\u5361 12 \u5927\u8C61"
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &273851534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,10 +1523,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050750255}
     m_Modifications:
+    - target: {fileID: -6893163686409052639, guid: 49d369ba2adc0bf4796f8c05f6338dbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3560850891669061278, guid: 49d369ba2adc0bf4796f8c05f6338dbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218377386012577831, guid: 49d369ba2adc0bf4796f8c05f6338dbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771517876809526373, guid: 49d369ba2adc0bf4796f8c05f6338dbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436974337173774412, guid: 49d369ba2adc0bf4796f8c05f6338dbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6188245643337555980, guid: 49d369ba2adc0bf4796f8c05f6338dbf,
         type: 3}
       propertyPath: m_Name
-      value: "\u7AE0\u9B5A"
+      value: "\u9B77\u9B5A"
       objectReference: {fileID: 0}
     - target: {fileID: 6644443461340243938, guid: 49d369ba2adc0bf4796f8c05f6338dbf,
         type: 3}
@@ -2121,7 +2168,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1424824158}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3450,7 +3497,7 @@ GameObject:
   - component: {fileID: 804534351}
   - component: {fileID: 804534352}
   m_Layer: 0
-  m_Name: "\u651D\u5F71\u6A5F_\u7AE0\u9B5A"
+  m_Name: "\u651D\u5F71\u6A5F_\u9B77\u9B5A"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3754,6 +3801,17 @@ MonoBehaviour:
           m_StringArgument: "\u95DC\u5361 10 \u6A39\u61F6"
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &840198389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3825,7 +3883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858221564
@@ -3956,6 +4014,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u95DC\u5361 1 \u9577\u9838\u9E7F"
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &861157715
@@ -4153,7 +4222,7 @@ GameObject:
   - component: {fileID: 926454814}
   - component: {fileID: 926454813}
   m_Layer: 5
-  m_Name: "\u95DC\u5361 3 \u7AE0\u9B5A"
+  m_Name: "\u95DC\u5361 3 \u9B77\u9B5A"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4233,7 +4302,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: "\u95DC\u5361 3 \u7AE0\u9B5A"
+          m_StringArgument: "\u95DC\u5361 3 \u9B77\u9B5A"
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &926454814
@@ -4445,6 +4525,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u95DC\u5361 2 \u868A\u5B50"
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &932512105
@@ -5027,6 +5118,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u95DC\u5361 4 \u561F\u561F\u9CE5"
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1107127673
@@ -5622,7 +5724,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dc48ec89e0cf2a74c9337d5558b61c72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 10.24, y: 10.24}
@@ -5799,6 +5901,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u95DC\u5361 7 \u5317\u6975\u718A"
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1226363357
@@ -5994,8 +6107,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2133495179}
   m_HandleRect: {fileID: 2133495178}
   m_Direction: 0
-  m_Value: -0.000000049221907
-  m_Size: 0.11428572
+  m_Value: 0
+  m_Size: 0.11428571
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6488,6 +6601,12 @@ PrefabInstance:
 --- !u!4 &1360025116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6272616283760045401, guid: 4d8b452b61445b44e871e86aee0c00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1360025115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1360025117 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 539543633981553983, guid: 4d8b452b61445b44e871e86aee0c00c1,
     type: 3}
   m_PrefabInstance: {fileID: 1360025115}
   m_PrefabAsset: {fileID: 0}
@@ -7113,6 +7232,17 @@ MonoBehaviour:
           m_StringArgument: "\u95DC\u5361 9 \u6CB3\u99AC"
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1587108174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7391,6 +7521,17 @@ MonoBehaviour:
           m_StringArgument: "\u95DC\u5361 6 \u7384\u9CF3"
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1718692866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7522,6 +7663,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u95DC\u5361 11 \u523A\u875F"
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1741332917
@@ -8064,6 +8216,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u95DC\u5361 5 \u8001\u864E"
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1360025117}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u958B\u5FC3\u8DF3\u4E00\u4E0B"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1956608338
@@ -8704,6 +8867,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 334600644, guid: ba4994422a7ba3f43806652951d21b53, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 93a96b40dcf3e3243b0678e00c405d6f,
+        type: 2}
     - target: {fileID: 3809189920801513844, guid: ba4994422a7ba3f43806652951d21b53,
         type: 3}
       propertyPath: buttons.Array.size

@@ -228,7 +228,7 @@ public class Lv7_Entrepreneur : LevelBase
         StartCoroutine(Correct());
     }
 
-    protected override IEnumerator Pass(bool showShare = true)
+    public override IEnumerator Pass(bool showShare = true)
     {
         if (coinCount >= 20) indexSharePicture = 0;
         else if (coinCount >= 15) indexSharePicture = 1;

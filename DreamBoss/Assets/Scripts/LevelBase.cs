@@ -195,7 +195,7 @@ public class LevelBase : MonoBehaviour
     /// <summary>
     /// 過關：全部都正確後，顯示分享畫面
     /// </summary>
-    protected virtual IEnumerator Pass(bool showShare = true)
+    public virtual IEnumerator Pass(bool showShare = true)
     {
         ani.SetTrigger(aniPass);
         allCorrectParticle.Play();

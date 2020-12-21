@@ -376,12 +376,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214751848}
   m_CullTransparentMesh: 0
---- !u!198 &368878739 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 979715016318515521, guid: 0d04db8a6b9912b4da269ef1db920484,
-    type: 3}
-  m_PrefabInstance: {fileID: 979715016124751314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &397363450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,14 +1600,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 176079755}
-  final: {fileID: 1288990466}
-  soundCorrect: {fileID: 8300000, guid: 91a4e300c781b5141ab02b68dfe0c4f0, type: 3}
-  soundWrong: {fileID: 8300000, guid: 8808ea4ccc804af42aa789758e564ad9, type: 3}
   correctRect: {fileID: 0}
   correctParticle: {fileID: 0}
   needCount: 1
   countTime: 8
-  allCorrectParticle: {fileID: 368878739}
   ani: {fileID: 1985903352}
   timeCorrect: 2
   timeWrong: 2
@@ -1807,7 +1797,8 @@ AudioSource:
   m_GameObject: {fileID: 1709939466}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 93a96b40dcf3e3243b0678e00c405d6f,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

@@ -80,7 +80,7 @@ public class Lv4_Engineer : LevelBase
         objButtons.GetChild(indexQuestion).gameObject.SetActive(true);
     }
 
-    protected override IEnumerator Pass(bool showShare = true)
+    public override IEnumerator Pass(bool showShare = true)
     {
         // 如果題目還有一題以上就刪除當前題目並歸零正確數量與重新遊戲
         if (questions.Count > 1)
