@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using PDollarGestureRecognizer;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 
 public class Lv1_Teacher : LevelBase
 {
