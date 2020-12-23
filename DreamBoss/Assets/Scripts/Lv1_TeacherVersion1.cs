@@ -8,7 +8,7 @@ public class Lv1_TeacherVersion1 : LevelBase
     /// <summary>
     /// 題目線條：放所有製作完成的題目線條
     /// </summary>
-    public LineRenderer lineQuestion;
+    public TeacherQuestion[] lineQuestion;
 
     /// <summary>
     /// 線條渲染：玩家繪製產生的線條
@@ -18,6 +18,11 @@ public class Lv1_TeacherVersion1 : LevelBase
     /// 線條編號：玩家繪製產生的線條編號
     /// </summary>
     private int indexLine;
+
+    /// <summary>
+    /// 步驟的編號
+    /// </summary>
+    private int indexStep = 0;
 
     protected override void Awake()
     {
@@ -33,8 +38,10 @@ public class Lv1_TeacherVersion1 : LevelBase
     {
         line = GetComponent<LineRenderer>();
 
+        LineRenderer q = lineQuestion[0].lineSteps[0];
+
         // 取得題目的第一個點
-        Vector3 posLineQuestion = lineQuestion.GetPosition(indexLine);
+        Vector3 posLineQuestion = q.GetPosition(indexLine);
         line.positionCount = 1;
         line.SetPosition(indexLine, posLineQuestion);
         // 編號遞增
@@ -55,7 +62,11 @@ public class Lv1_TeacherVersion1 : LevelBase
     private void CheckMousePoisition()
     {
         // 如果線條編號超過 99 就跳出，※ 後續要改為根據每個題目的數量
-        if (indexLine > 99) return;
+        //if (indexLine > lineQuestion[0].lineSteps[indexStep].positionCount) return;
+        if (indexStep == 0 && indexLine == lineQuestion[0].lineSteps[indexStep].positionCount && indexStep < lineQuestion[0].lineSteps.Length)
+        {
+            indexStep++;
+        }
 
         // 如果按住左鍵
         if (Input.GetKey(KeyCode.Mouse0))
@@ -64,7 +75,14 @@ public class Lv1_TeacherVersion1 : LevelBase
             Vector3 posMouse = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
             Vector3 posMouseWorld = Camera.main.ScreenToWorldPoint(posMouse);
             // 取得題目位置
-            Vector3 posLineQuestion = lineQuestion.GetPosition(indexLine);
+            LineRenderer q = lineQuestion[0].lineSteps[indexStep];
+
+            // 減去前一個步驟的數量
+            int indexCurrent;
+            if (indexStep == 1) indexCurrent = indexLine - lineQuestion[0].lineSteps[indexStep - 1].positionCount;
+            else indexCurrent = indexLine;
+
+            Vector3 posLineQuestion = q.GetPosition(indexCurrent);
             // 判斷 滑鼠 與 題目 距離
             float dis = Vector3.Distance(posMouseWorld, posLineQuestion);
 
@@ -81,4 +99,14 @@ public class Lv1_TeacherVersion1 : LevelBase
             }
         }
     }
+}
+
+/// <summary>
+/// 教師題目
+/// </summary>
+[System.Serializable]
+public struct TeacherQuestion
+{
+    [Header("線條步驟")]
+    public LineRenderer[] lineSteps;
 }

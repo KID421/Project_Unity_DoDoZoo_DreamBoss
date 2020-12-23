@@ -2163,7 +2163,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0973cfda878f8ae4cac7de4b692861cf, type: 3}
   needWrongSound: 1
   drawDistance: 1.2
-  lineQuestion: {fileID: 897700261}
+  lineQuestion:
+  - lineSteps:
+    - {fileID: 897700261}
+    - {fileID: 1822490422}
 --- !u!120 &1155308686
 LineRenderer:
   m_ObjectHideFlags: 0
