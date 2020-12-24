@@ -26,13 +26,10 @@ public class Lv4_Engineer : LevelBase
     /// 題目的編號
     /// </summary>
     public static List<int> questionsIndex = new List<int>();
-
     /// <summary>
     /// 本次題目的編號
     /// </summary>
     private int indexQuestion;
-
-    public List<Lv4_Answer> test = new List<Lv4_Answer>();
 
     protected override void Awake()
     {
@@ -71,7 +68,7 @@ public class Lv4_Engineer : LevelBase
             }
         }
 
-        // 取得題目編號與正確數量：根據每一提的按鈕而定
+        // 取得題目編號與正確數量：根據每一題的按鈕而定
         indexQuestion = questionsIndex[0];
         countCorrect = questions[0].rectAnswers.Length;
 

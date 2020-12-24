@@ -15,7 +15,6 @@ public class LevelBase : MonoBehaviour
     public bool needCount;
     [Header("倒數時間")]
     public float countTime = 8;
-    
     [Header("角色動畫控制器")]
     public Animator ani;
     [Header("正確後停留時間")]
@@ -257,4 +256,11 @@ public class LevelBase : MonoBehaviour
     {
 
     }
+}
+
+[System.Serializable]
+public struct Answer<T>
+{
+    [Header("所有答案")]
+    public T[] answers;
 }
