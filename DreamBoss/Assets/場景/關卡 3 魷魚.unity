@@ -465,7 +465,9 @@ MonoBehaviour:
   needCorrectCountToPass: 0
   countCorrect: 20
   sprShares:
-  - {fileID: 21300000, guid: 0973cfda878f8ae4cac7de4b692861cf, type: 3}
+  - {fileID: 21300000, guid: 3f525c99c524d984e81e4689e1820799, type: 3}
+  - {fileID: 21300000, guid: adf944554dec0a344834e61d01a5dac4, type: 3}
+  - {fileID: 21300000, guid: f5a353812cb66824ea2a2f6402f58673, type: 3}
   needWrongSound: 0
   cells:
   - {fileID: 2364363165999126503, guid: e3798b584faa25647a1dac4da589ac97, type: 3}

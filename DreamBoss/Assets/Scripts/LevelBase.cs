@@ -37,6 +37,8 @@ public class LevelBase : MonoBehaviour
     public Sprite[] sprShares;
     [Header("是否需要錯誤音效")]
     public bool needWrongSound = true;
+    [Header("所有答案")]
+    public Answer<object>[] allAnswers;
 
     //[Header("結束畫面")]
     protected Image final;
@@ -253,6 +255,14 @@ public class LevelBase : MonoBehaviour
     /// 時間倒數完畢
     /// </summary>
     protected virtual void TimeStop()
+    {
+
+    }
+
+    /// <summary>
+    /// 設定所有題目
+    /// </summary>
+    protected virtual void SetAllQuestion(int countQuestion)
     {
 
     }
