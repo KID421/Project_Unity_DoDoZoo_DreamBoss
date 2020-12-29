@@ -7,6 +7,13 @@ public class Lv12_Investor : LevelBase
 {
     [Header("捲動間隔時間"), Range(0f, 1f)]
     public float interval = 0.02f;
+    [Header("遊戲開始擁有的資金")]
+    private int coin = 1000;
+
+    /// <summary>
+    /// 文字：擁有的資金
+    /// </summary>
+    private Text textCoin;
 
     /// <summary>
     /// 原本的間隔時間
@@ -33,19 +40,44 @@ public class Lv12_Investor : LevelBase
     {
         base.Awake();
 
-        intervalOriginal = interval;
+        FindAndButtonSetting();
+    }
 
+    /// <summary>
+    /// 尋找物件與按鈕設定
+    /// </summary>
+    private void FindAndButtonSetting()
+    {
+        intervalOriginal = interval;                                                // 設定原始間隔時間
+
+        // 介面
+        textCoin = GameObject.Find("擁有的資金").GetComponent<Text>();
+        textCoin.text = coin + "";
+
+        // 尋找三排內容物
         contents[0] = GameObject.Find("內容物 1").GetComponent<RectTransform>();
         contents[1] = GameObject.Find("內容物 2").GetComponent<RectTransform>();
         contents[2] = GameObject.Find("內容物 3").GetComponent<RectTransform>();
 
+        // 一百塊按鈕點擊設定：三排內容物開始捲動
         btn100 = GameObject.Find("按鈕 100 上方").GetComponent<Button>();
-        btn100.onClick.AddListener(() => 
-        { 
+        btn100.onClick.AddListener(() =>
+        {
+            SetCoin(-100);
             StartCoroutine(ScrollContent(0));
             StartCoroutine(ScrollContent(1));
             StartCoroutine(ScrollContent(2));
         });
+    }
+
+    /// <summary>
+    /// 設定金幣並更新介面
+    /// </summary>
+    /// <param name="value">要更新金幣的值，例如：100、-100</param>
+    private void SetCoin(int value)
+    {
+        coin += value;
+        textCoin.text = coin + "";
     }
 
     /// <summary>
@@ -54,6 +86,8 @@ public class Lv12_Investor : LevelBase
     /// <param name="indexOfContent">要捲動的內容編號 0 - 2</param>
     private IEnumerator ScrollContent(int indexOfContent)
     {
+        contents[indexOfContent].parent.parent.GetChild(2).gameObject.SetActive(false);
+
         int count = 0;                              // 捲動次數歸零
         int countTotal = Random.Range(10, 16);      // 捲動次數 10 - 15 次，會乘以 100，實際次數為 100 - 150
         countTotal = 5;
@@ -89,7 +123,30 @@ public class Lv12_Investor : LevelBase
         if (allFinish.ToList().Count == 3)                                                                              // 如果 所有內容都完成
         {
             var allFirstChilds = firstChilds.Where(x => x.name == firstChilds[0].name);                                 // 取得所有內容的物品 是不是 等於 第一個物品 (如果都是代表三個相同)
-            if (allFirstChilds.ToList().Count == 3) print(firstChilds[0].GetChild(0).name);
+            if (allFirstChilds.ToList().Count == 3) GetObject(firstChilds[0].GetChild(0).name);
+        }
+    }
+
+    /// <summary>
+    /// 取得物件
+    /// </summary>
+    /// <param name="objectName">獲得物件的名稱</param>
+    private void GetObject(string objectName)
+    {
+        switch (objectName)
+        {
+            case "金幣":
+                print("+100");
+                break;
+            case "鈔票":
+                print("+200");
+                break;
+            case "股票":
+                print("股票");
+                break;
+            case "豬公":
+                print("豬公");
+                break;
         }
     }
 }
