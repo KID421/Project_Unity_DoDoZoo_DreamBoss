@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections;
+using UnityEditor;
 
 public class Lv12_Investor : LevelBase
 {
@@ -13,8 +14,12 @@ public class Lv12_Investor : LevelBase
     public Sprite spr100;
     [Header("圖片：-200")]
     public Sprite spr200;
-    [Header("獲取的物品圖片：金幣、鈔票、股票、豬公、汽車、直升機、房子")]
+    [Header("獲取的物品圖片：+100、+200、股票、豬公、汽車、直升機、房子")]
     public Sprite[] sprObjects;
+    [Header("右下角桌上的物品：無、無、股票、豬公、汽車、直升機、房子")]
+    public Image[] imgOnTheTable;
+    [Header("分享畫面的物品：無、無、股票、豬公、汽車、直升機、房子")]
+    public Image[] imgInShare;
 
     /// <summary>
     /// 文字：擁有的資金
@@ -52,6 +57,10 @@ public class Lv12_Investor : LevelBase
     /// 取得的物件圖片
     /// </summary>
     private Image imgGetObject;
+    /// <summary>
+    /// 是否取得物件：金幣、鈔票、股票、豬公、汽車、直升機、房子
+    /// </summary>
+    private bool[] getObject = { false, false, false, false, false, false, false };
 
     protected override void Awake()
     {
@@ -122,14 +131,18 @@ public class Lv12_Investor : LevelBase
     /// <param name="value">要更新金幣的值，例如：100、-100</param>
     private void SetCoin(int value)
     {
-        coin += value;
-        textCoin.text = coin + "";
+        coin += value;                                                          // 金幣值更新
+        textCoin.text = coin + "";                                              // 界面更新
 
-        Sprite spr = value == -100 ? spr100 : spr200;
-
-        StartCoroutine(CoinEffect(rectCoinOnWallet, spr));
+        if (value > 0) return;                                                  // 如果為正值 就 跳出
+        Sprite spr = value == -100 ? spr100 : spr200;                           // 如果是 -100 就顯示 -100 圖片 否則 -200 圖片
+        StartCoroutine(CoinEffect(rectCoinOnWallet, spr, Vector3.zero));        // 顯示金幣效果 - 左下角錢包 扣錢
     }
 
+    /// <summary>
+    /// 按鈕壓下去彈開的效果
+    /// </summary>
+    /// <param name="btn">按鈕</param>
     private IEnumerator ButtonEffect(RectTransform btn)
     {
         btn100.interactable = false;
@@ -156,7 +169,7 @@ public class Lv12_Investor : LevelBase
     /// <param name="rectCoin">要執行特效的金幣</param>
     /// <param name="spr">要顯示的圖片 -100 或 -200</param>
     /// <param name="up">往上升多少，預設為 200</param>
-    private IEnumerator CoinEffect(RectTransform rectCoin, Sprite spr, float up = 200)
+    private IEnumerator CoinEffect(RectTransform rectCoin, Sprite spr, Vector3 size, float up = 200)
     {
         Vector3 posOriginal = rectCoin.anchoredPosition;        // 取的原始位置，最後恢復用
 
@@ -172,6 +185,7 @@ public class Lv12_Investor : LevelBase
             pos.y += 30;
             img.color += new Color(0, 0, 0, 0.3f);
             rectCoin.anchoredPosition = pos;
+            rectCoin.localScale += size;
             yield return new WaitForSeconds(0.05f);
         }
         while (img.color.a > 0)                                 // 上升後隱藏
@@ -181,6 +195,7 @@ public class Lv12_Investor : LevelBase
         }
 
         rectCoin.anchoredPosition = posOriginal;                // 回到原始位置
+        rectCoin.localScale = Vector3.one * 0.5f;               // 恢復尺寸
         img.color = new Color(1, 1, 1, 0);                      // 透明
     }
 
@@ -202,14 +217,14 @@ public class Lv12_Investor : LevelBase
         // 當捲動次數 小於 總捲動次數 * 10 時 - 100 - 150 次
         while (count < countTotal * 10)
         {
-            count++;                                                                                                    // 捲動次數遞增
-            contents[indexType, indexOfContent].anchoredPosition -= Vector2.up * 27.5f;                                            // 每次往下捲動 27.5 - 每張卡片大小為 275
+            count++;                                                                                                                        // 捲動次數遞增
+            contents[indexType, indexOfContent].anchoredPosition -= Vector2.up * 27.5f;                                                     // 每次往下捲動 27.5 - 每張卡片大小為 275
 
-            if (count % 10 == 0)                                                                                        // 每捲動 10 次 就將 第一個子物件向上位移
+            if (count % 10 == 0)                                                                                                            // 每捲動 10 次 就將 第一個子物件向上位移
             {
-                firstChilds[indexType, indexOfContent] = contents[indexType, indexOfContent].GetChild(0).GetComponent<RectTransform>();       // 取得第一個子物件
-                firstChilds[indexType, indexOfContent].anchoredPosition += Vector2.up * 275f * 4;                                  // 向上移動 大小 275 * 4 (內容物有幾張)
-                firstChilds[indexType, indexOfContent].SetAsLastSibling();                                                         // 並將其設定為最後一個子物件
+                firstChilds[indexType, indexOfContent] = contents[indexType, indexOfContent].GetChild(0).GetComponent<RectTransform>();     // 取得第一個子物件
+                firstChilds[indexType, indexOfContent].anchoredPosition += Vector2.up * 275f * 4;                                           // 向上移動 大小 275 * 4 (內容物有幾張)
+                firstChilds[indexType, indexOfContent].SetAsLastSibling();                                                                  // 並將其設定為最後一個子物件
             }
 
             // 漸漸變慢的效果
@@ -221,23 +236,33 @@ public class Lv12_Investor : LevelBase
             yield return new WaitForSeconds(intervalTemp);                                                              // 等待間隔時間
         }
 
-        firstChilds[indexType, indexOfContent] = contents[indexType, indexOfContent].GetChild(0).GetComponent<RectTransform>();               // 取得第一個子物件
-        finishes[indexType, indexOfContent] = true;                                                                                // 設定此內容已經結束
+        firstChilds[indexType, indexOfContent] = contents[indexType, indexOfContent].GetChild(0).GetComponent<RectTransform>();             // 取得第一個子物件
+        finishes[indexType, indexOfContent] = true;                                                                                         // 設定此內容已經結束
 
-        bool[] column = new bool[3];
-        for (int i = 0; i < 3; i++) column[i] = finishes[indexType, i];
+        bool[] column = new bool[3];                                                                            // 欄位
+        for (int i = 0; i < 3; i++) column[i] = finishes[indexType, i];                                         // 取得欄位 - 三欄
 
-        RectTransform[] cihlds = new RectTransform[3];
-        for (int i = 0; i < 3; i++) cihlds[i] = firstChilds[indexType, i];
+        RectTransform[] cihlds = new RectTransform[3];                                                          // 子物件
+        for (int i = 0; i < 3; i++) cihlds[i] = firstChilds[indexType, i];                                      // 取得子物件 - 三個
 
-        var allFinish = column.Where(x => x == true);                                                                 // 查詢三個內容中有幾個完成
-        if (allFinish.ToList().Count == 3)                                                                              // 如果 所有內容都完成
+        var allFinish = column.Where(x => x == true);                                                           // 查詢三個內容中有幾個完成
+        if (allFinish.ToList().Count == 3)                                                                      // 如果 所有內容都完成
         {
-            var allFirstChilds = cihlds.Where(x => x.name == cihlds[0].name);                                 // 取得所有內容的物品 是不是 等於 第一個物品 (如果都是代表三個相同)
-            if (allFirstChilds.ToList().Count == 3) GetObject(cihlds[0].GetChild(0).name);
+            var allFirstChilds = cihlds.Where(x => x.name == cihlds[0].name);                                   // 取得所有內容的物品 是不是 等於 第一個物品 (如果都是代表三個相同)
+            if (allFirstChilds.ToList().Count == 3) GetObject(cihlds[0].GetChild(0).name);                      // 如果有三個相同的 就處理 取得物件效果
 
-            btn100.interactable = true;
-            btn200.interactable = true;
+            if (coin == 0)
+            {
+                var getObjectAll = getObject.Where(x => x == true);
+
+                indexSharePicture = getObjectAll.ToList().Count > 0 ? 1 : 0;
+                StartCoroutine(Pass());
+            }
+            else
+            {
+                btn100.interactable = true;         // 按鈕 100 可以互動
+                btn200.interactable = true;         // 按鈕 200 可以互動
+            }
         }
     }
 
@@ -250,33 +275,74 @@ public class Lv12_Investor : LevelBase
         switch (objectName)
         {
             case "金幣":
-                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[0]));
-                print("+100");
+                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[0], Vector3.one * 0.1f));
+                SetCoin(100);
                 break;
             case "鈔票":
-                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[1]));
-                print("+200");
+                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[1], Vector3.one * 0.1f));
+                SetCoin(200);
                 break;
             case "股票":
-                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[2]));
-                print("股票");
+                StartCoroutine(GetObjectEffect(imgGetObject.rectTransform, sprObjects[2], 2));
                 break;
             case "豬公":
-                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[3]));
-                print("豬公");
+                StartCoroutine(GetObjectEffect(imgGetObject.rectTransform, sprObjects[3], 3));
                 break;
             case "汽車":
-                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[4]));
-                print("汽車");
+                StartCoroutine(GetObjectEffect(imgGetObject.rectTransform, sprObjects[4], 4));
                 break;
             case "直升機":
-                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[5]));
-                print("直升機");
+                StartCoroutine(GetObjectEffect(imgGetObject.rectTransform, sprObjects[5], 5));
                 break;
             case "房子":
-                StartCoroutine(CoinEffect(imgGetObject.rectTransform, sprObjects[6]));
-                print("房子");
+                StartCoroutine(GetObjectEffect(imgGetObject.rectTransform, sprObjects[6], 6));
                 break;
         }
+    }
+
+    /// <summary>
+    /// 取得物件效果
+    /// </summary>
+    /// <param name="rectObject">取得物件的圖片</param>
+    /// <param name="spr">要顯示的圖片</param>
+    /// <param name="indexObject">當前取的物件的編號</param>
+    private IEnumerator GetObjectEffect(RectTransform rectObject, Sprite spr, int indexObject)
+    {
+        getObject[indexObject] = true;                          // 已經取得物件
+        imgInShare[indexObject].color = new Color(1, 1, 1, 1);  // 顯示分享畫面內的物件
+
+        Vector2 posOriginal = rectObject.anchoredPosition;      // 原始位置
+        Vector2 pos = rectObject.anchoredPosition;              // 取得位置
+
+        Image img = rectObject.GetComponent<Image>();           // 圖片設定
+        img.sprite = spr;
+        img.SetNativeSize();
+
+        while (pos.x != 0)                                      // 移動到畫面正中間並放大
+        {
+            pos += new Vector2(20f, 0);
+            rectObject.anchoredPosition = pos;
+            img.color += new Color(0, 0, 0, 0.3f);
+            rectObject.localScale += Vector3.one * 0.2f;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.5f);                  // 停留 0.5 秒
+
+        Vector2 posEnd = imgOnTheTable[indexObject].rectTransform.anchoredPosition;                 // 移動到右下角
+        while (Vector2.Distance(pos, posEnd) > 10)
+        {
+            pos = Vector2.Lerp(pos, posEnd, 0.35f);
+            rectObject.anchoredPosition = pos;
+            if (rectObject.localScale.x >= 0.5f) rectObject.localScale -= Vector3.one * 0.2f;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        // 歸位
+        rectObject.anchoredPosition = posEnd;
+        img.color = new Color(1, 1, 1, 0);
+        imgOnTheTable[indexObject].color = new Color(1, 1, 1, 1);
+        rectObject.anchoredPosition = posOriginal;
+        rectObject.localScale = Vector3.one * 0.5f;
     }
 }
