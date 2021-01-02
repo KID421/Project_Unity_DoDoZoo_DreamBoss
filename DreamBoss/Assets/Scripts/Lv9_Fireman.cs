@@ -22,15 +22,15 @@ public class Lv9_Fireman : LevelBase
     /// <summary>
     /// 消防車
     /// </summary>
-    private RectTransform rectCar;
+    private RectTransform rectFiretruck;
     /// <summary>
     /// 消防車右邊位置
     /// </summary>
-    private RectTransform rectCarPositionRight;
+    private RectTransform rectFiretruckPositionRight;
     /// <summary>
     /// 消防車左邊位置
     /// </summary>
-    private RectTransform rectCarPositionLeft;
+    private RectTransform rectFiretruckPositionLeft;
     /// <summary>
     /// 河馬：角色
     /// </summary>
@@ -38,11 +38,23 @@ public class Lv9_Fireman : LevelBase
     /// <summary>
     /// 在消防車上的河馬：角色 - 無裝備
     /// </summary>
-    private RectTransform rectCharacterOnCar;
+    private RectTransform rectCharacterOnFiretruck;
     /// <summary>
     /// 嘿嘿
     /// </summary>
     private GameObject goHey;
+    /// <summary>
+    /// 群組：房子上的人
+    /// </summary>
+    private CanvasGroup groupPeople;
+    /// <summary>
+    /// 圖片：梯子
+    /// </summary>
+    private Image imgLadder;
+    /// <summary>
+    /// 消防車
+    /// </summary>
+    private Lv9_DragObjectFiretruck firetruck;
     /// <summary>
     /// 所有裝備清單
     /// </summary>
@@ -67,12 +79,15 @@ public class Lv9_Fireman : LevelBase
     {
         textLoudlyNumber = GameObject.Find("大聲公上的數字").GetComponent<Text>();
         rectBG = GameObject.Find("背景").GetComponent<RectTransform>();
-        rectCar = GameObject.Find("消防車").GetComponent<RectTransform>();
-        rectCarPositionRight = GameObject.Find("消防車右邊位置").GetComponent<RectTransform>();
-        rectCarPositionLeft = GameObject.Find("消防車左邊位置").GetComponent<RectTransform>();
+        rectFiretruck = GameObject.Find("消防車").GetComponent<RectTransform>();
+        firetruck = GameObject.Find("消防車").GetComponent<Lv9_DragObjectFiretruck>();
+        rectFiretruckPositionRight = GameObject.Find("消防車右邊位置").GetComponent<RectTransform>();
+        rectFiretruckPositionLeft = GameObject.Find("消防車左邊位置").GetComponent<RectTransform>();
         rectCharacter = GameObject.Find("角色 - 無裝備").GetComponent<RectTransform>();
-        rectCharacterOnCar = GameObject.Find("角色 - 消防車上").GetComponent<RectTransform>();
+        rectCharacterOnFiretruck = GameObject.Find("角色 - 消防車上").GetComponent<RectTransform>();
         goHey = GameObject.Find("嘿嘿物件");
+        groupPeople = GameObject.Find("房子上的人").GetComponent<CanvasGroup>();
+        imgLadder = GameObject.Find("梯子").GetComponent<Image>();
     }
 
     /// <summary>
@@ -84,13 +99,13 @@ public class Lv9_Fireman : LevelBase
     }
 
     /// <summary>
-    /// 大聲公上的數字效果
+    /// 大聲公上的數字效果：大聲公後背景移動到右邊
     /// </summary>
     /// <returns></returns>
     private IEnumerator NumberEffect()
     {
         Vector2 posNumber = textLoudlyNumber.rectTransform.anchoredPosition;
-        Vector2 posNumberEnd = posNumber + new Vector2(350, 80);
+        Vector2 posNumberEnd = posNumber + new Vector2(200, 50);
 
         while (Vector2.Distance(posNumber, posNumberEnd) > 10)
         {
@@ -132,29 +147,68 @@ public class Lv9_Fireman : LevelBase
     {
         equipments[equip] = true;
         var all = equipments.Where(x => x.Value == true);
-        if (all.ToList().Count == 5) StartCoroutine(AllEquipmentAndCarIn());
+        if (all.ToList().Count == 5) StartCoroutine(AllEquipmentAndFiretruckIn());
     }
 
     /// <summary>
     /// 所有裝備都穿上並且消防車進入
     /// </summary>
     /// <returns></returns>
-    private IEnumerator AllEquipmentAndCarIn()
+    private IEnumerator AllEquipmentAndFiretruckIn()
     {
-        goHey.SetActive(false);
+        goHey.SetActive(false);     // 隱藏 嘿嘿
+        groupPeople.alpha = 1;      // 顯示房子上的人
 
-        yield return StartCoroutine(MoveRectToPosition(rectCar, rectCarPositionRight.anchoredPosition));
-
-        yield return MoveRectToPosition(rectCharacter, rectCharacter.anchoredPosition - Vector2.right * 200);
-
-        rectCharacter.gameObject.SetActive(false);
-        rectCharacterOnCar.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-
-        yield return new WaitForSeconds(1);
-
-        StartCoroutine(MoveRectToPosition(rectCar, rectCarPositionLeft.anchoredPosition));
-        
         yield return new WaitForSeconds(0.5f);
-        yield return StartCoroutine(MoveRectToPosition(rectBG, new Vector2(700, 0)));
+        yield return StartCoroutine(MoveRectToPosition(rectFiretruck, rectFiretruckPositionRight.anchoredPosition));            // 車子 進入 右邊位置
+        // yield return MoveRectToPosition(rectCharacter, rectCharacter.anchoredPosition - Vector2.right * 100);                // 角色走向車子
+
+        rectCharacter.gameObject.SetActive(false);                                                                              // 地上角色隱藏
+        rectCharacterOnFiretruck.GetComponent<Image>().color = new Color(1, 1, 1, 1);                                           // 車上角色顯示
+
+        yield return new WaitForSeconds(1);                                                                                     // 中間等待一秒鐘
+
+        StartCoroutine(MoveRectToPosition(rectFiretruck, rectFiretruckPositionLeft.anchoredPosition - Vector2.up * 50));        // 車子 進入 左邊位置
+
+        while (rectFiretruck.localScale.x > 0.8f)                                                                               // 車子縮小
+        {
+            rectFiretruck.localScale -= Vector3.one * 0.1f;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.5f);                                                                      // 等待 0.5 秒
+        yield return StartCoroutine(MoveRectToPosition(rectBG, new Vector2(700, 0)));                               // 背景回到左邊
+
+        imgLadder.color = new Color(1, 1, 1, 1);                                                                    // 顯示梯子
+        yield return StartCoroutine(LadderMove(400, 50));                                                           // 梯子 上升 400
+
+        firetruck.enabled = true;                                                                                   // 啟動消防車功能
+    }
+
+    /// <summary>
+    /// 移動梯子
+    /// </summary>
+    /// <param name="move">要移動的單位</param>
+    /// <param name="moveStep">每次移動的值</param>
+    private IEnumerator LadderMove(float move, float moveStep)
+    {
+        RectTransform rectLadder = imgLadder.GetComponent<RectTransform>();                                         // 梯子 變形元件
+        Vector2 posLadderUp = rectLadder.anchoredPosition + Vector2.up * move;                                      // 梯子 上升座標
+
+        while (Vector2.Distance(rectLadder.anchoredPosition, posLadderUp) > 5)                                      // 梯子 上升
+        {
+            rectLadder.anchoredPosition += Vector2.up * moveStep;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    public IEnumerator AllPeopleDownLadder()
+    {
+        firetruck.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+
+        yield return StartCoroutine(MoveRectToPosition(rectFiretruck, rectFiretruckPositionLeft.anchoredPosition - Vector2.up * 50));       // 車子 回到 左邊位置
+        yield return StartCoroutine(LadderMove(-400, -50));                                                                                 // 梯子 下降 400
+        imgLadder.color = new Color(1, 1, 1, 0);                                                                                            // 隱藏梯子
     }
 }
