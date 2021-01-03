@@ -56,6 +56,10 @@ public class Lv9_Fireman : LevelBase
     /// </summary>
     private Lv9_DragObjectFiretruck firetruck;
     /// <summary>
+    /// 粒子系統：水柱
+    /// </summary>
+    private ParticleSystem psWater;
+    /// <summary>
     /// 所有裝備清單
     /// </summary>
     private Dictionary<string, bool> equipments = new Dictionary<string, bool>
@@ -87,6 +91,7 @@ public class Lv9_Fireman : LevelBase
         rectCharacterOnFiretruck = GameObject.Find("角色 - 消防車上").GetComponent<RectTransform>();
         goHey = GameObject.Find("嘿嘿物件");
         groupPeople = GameObject.Find("房子上的人").GetComponent<CanvasGroup>();
+        psWater = GameObject.Find("水柱").GetComponent<ParticleSystem>();
         imgLadder = GameObject.Find("梯子").GetComponent<Image>();
     }
 
@@ -202,6 +207,9 @@ public class Lv9_Fireman : LevelBase
         }
     }
 
+    /// <summary>
+    /// 所有人都下樓梯
+    /// </summary>
     public IEnumerator AllPeopleDownLadder()
     {
         firetruck.enabled = false;
@@ -210,5 +218,7 @@ public class Lv9_Fireman : LevelBase
         yield return StartCoroutine(MoveRectToPosition(rectFiretruck, rectFiretruckPositionLeft.anchoredPosition - Vector2.up * 50));       // 車子 回到 左邊位置
         yield return StartCoroutine(LadderMove(-400, -50));                                                                                 // 梯子 下降 400
         imgLadder.color = new Color(1, 1, 1, 0);                                                                                            // 隱藏梯子
+
+        psWater.Play();
     }
 }
