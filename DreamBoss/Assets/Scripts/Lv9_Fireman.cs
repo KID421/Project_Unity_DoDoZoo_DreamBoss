@@ -60,6 +60,10 @@ public class Lv9_Fireman : LevelBase
     /// </summary>
     private ParticleSystem psWater;
     /// <summary>
+    /// 水柱管理器
+    /// </summary>
+    private Lv9_FireParticleSystem water;
+    /// <summary>
     /// 所有裝備清單
     /// </summary>
     private Dictionary<string, bool> equipments = new Dictionary<string, bool>
@@ -92,6 +96,7 @@ public class Lv9_Fireman : LevelBase
         goHey = GameObject.Find("嘿嘿物件");
         groupPeople = GameObject.Find("房子上的人").GetComponent<CanvasGroup>();
         psWater = GameObject.Find("水柱").GetComponent<ParticleSystem>();
+        water = psWater.GetComponent<Lv9_FireParticleSystem>();
         imgLadder = GameObject.Find("梯子").GetComponent<Image>();
     }
 
@@ -220,5 +225,6 @@ public class Lv9_Fireman : LevelBase
         imgLadder.color = new Color(1, 1, 1, 0);                                                                                            // 隱藏梯子
 
         psWater.Play();
+        water.canRotate = true;
     }
 }
