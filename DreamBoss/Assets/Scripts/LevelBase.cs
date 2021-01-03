@@ -51,6 +51,7 @@ public class LevelBase : MonoBehaviour
     protected Transform canvas;
     protected AudioSource aud;
     protected float timer = 0;
+    protected float timeTotal;
     /// <summary>
     /// 分享畫面群組元件
     /// </summary>
@@ -83,6 +84,11 @@ public class LevelBase : MonoBehaviour
         groupShare = GameObject.Find("過關分享畫面群組").GetComponent<CanvasGroup>();
         imgShare = GameObject.Find("過關分享畫面").GetComponent<Image>();
         // -- KID
+
+        // -- KID 2021.01.03
+        timeTotal = countTime;          // 總時數：倒數用
+        // -- KID
+
 
         InteractableSwitch(false);
     }
@@ -248,7 +254,11 @@ public class LevelBase : MonoBehaviour
             needCount = false;
             TimeStop();
         }
-        else timer += Time.deltaTime;
+        else
+        {
+            timer += Time.deltaTime;
+            timeTotal -= Time.deltaTime;
+        }
     }
 
     /// <summary>
