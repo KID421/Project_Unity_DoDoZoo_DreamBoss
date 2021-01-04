@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections;
-using UnityEditor;
 
 public class Lv12_Investor : LevelBase
 {

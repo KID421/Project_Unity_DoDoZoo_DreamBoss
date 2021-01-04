@@ -18,7 +18,7 @@ public class Lv5_Police : LevelBase
     {
         base.Awake();
 
-        StartCoroutine(ShowQuestion());
+        // StartCoroutine(ShowQuestion());
     }
 
     /// <summary>
