@@ -8,6 +8,9 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class LineRendererBezier : MonoBehaviour
 {
+    [Header("數量")]
+    public int count;
+
     private LineRenderer lineRenderer;
 
     public Transform p0;
@@ -34,7 +37,7 @@ public class LineRendererBezier : MonoBehaviour
     /// <param name="point3"></param>
     private void DrawQuadraticBezierCurve(Vector3 point0, Vector3 point1, Vector3 point2, Vector3 point3)
     {
-        lineRenderer.positionCount = 100;
+        lineRenderer.positionCount = count;
 
         float t = 0f;
 
