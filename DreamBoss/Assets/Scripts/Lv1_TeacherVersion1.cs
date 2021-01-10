@@ -84,9 +84,15 @@ public class Lv1_TeacherVersion1 : LevelBase
     {
         // 已經完成
         if (finish) return;
+
+        // 正確
         if (indexStep == lineQuestion[indexQuestion].lineSteps.Length - 1 && indexCurrent == lineQuestion[indexQuestion].lineSteps[indexStep].positionCount)
         {
             finish = true;
+
+            for (int i = 0; i < 3; i++) lines[i].enabled = false;
+            imgQuestion.color = Color.white;
+
             StartCoroutine(Correct());
         }
 
