@@ -1,18 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Lv1_TeacherVersion1 : LevelBase
 {
     [Header("繪製判斷距離"), Range(0.5f, 5)]
     public float drawDistance = 1.3f;
-
+    [Header("題目編號")]
+    public int indexQuestion;
+    [Header("題目：數字 0 - 10")]
+    public Sprite[] sprQuestions;
     /// <summary>
     /// 題目線條：放所有製作完成的題目線條
     /// </summary>
     public TeacherQuestion[] lineQuestion;
+
+    /// <summary>
+    /// 題目圖片
+    /// </summary>
+    private Image imgQuestion;
     /// <summary>
     /// 線條渲染：玩家繪製產生的線條
     /// </summary>
-    private LineRenderer[] lines = new LineRenderer[2];
+    private LineRenderer[] lines = new LineRenderer[3];
     /// <summary>
     /// 線條編號：玩家繪製產生的線條編號
     /// </summary>
@@ -39,12 +48,18 @@ public class Lv1_TeacherVersion1 : LevelBase
 
     /// <summary>
     /// 初始化線條
+    /// 隨奇蹄目
     /// </summary>
     private void InitializeLine()
     {
-        for (int i = 0; i < 2; i++) lines[i] = GameObject.Find("線段 " + i).GetComponent<LineRenderer>();
+        // 隨機題目
+        imgQuestion = GameObject.Find("題目圖片").GetComponent<Image>();
+        indexQuestion = Random.Range(0, lineQuestion.Length);
+        imgQuestion.sprite = sprQuestions[indexQuestion];
 
-        LineRenderer q = lineQuestion[0].lineSteps[0];
+        for (int i = 0; i < 3; i++) lines[i] = GameObject.Find("線段 " + i).GetComponent<LineRenderer>();
+
+        LineRenderer q = lineQuestion[indexQuestion].lineSteps[0];
 
         // 取得題目的第一個點
         Vector3 posLineQuestion = q.GetPosition(indexLine);
@@ -69,15 +84,17 @@ public class Lv1_TeacherVersion1 : LevelBase
     {
         // 已經完成
         if (finish) return;
-        if (indexStep == lineQuestion[0].lineSteps.Length - 1 && indexCurrent == lineQuestion[0].lineSteps[indexStep].positionCount)
+        if (indexStep == lineQuestion[indexQuestion].lineSteps.Length - 1 && indexCurrent == lineQuestion[indexQuestion].lineSteps[indexStep].positionCount)
         {
             finish = true;
-            StartCoroutine(Pass());
+            StartCoroutine(Correct());
         }
 
-        // 如果線條編號超過 99 就跳出，※ 後續要改為根據每個題目的數量
-        //if (indexLine > lineQuestion[0].lineSteps[indexStep].positionCount) return;
-        if (indexStep == 0 && indexLine == lineQuestion[0].lineSteps[indexStep].positionCount && indexStep < lineQuestion[0].lineSteps.Length)
+        if (indexStep == 0 && indexStep < lineQuestion[indexQuestion].lineSteps.Length && indexLine == lineQuestion[indexQuestion].lineSteps[indexStep].positionCount)
+        {
+            indexStep++;
+        }
+        else if (lineQuestion[indexQuestion].lineSteps.Length > 2 && indexStep == 1 && indexStep < lineQuestion[indexQuestion].lineSteps.Length && indexLine == lineQuestion[indexQuestion].lineSteps[indexStep].positionCount + lineQuestion[indexQuestion].lineSteps[indexStep - 1].positionCount)
         {
             indexStep++;
         }
@@ -90,13 +107,14 @@ public class Lv1_TeacherVersion1 : LevelBase
             Vector3 posMouseWorld = Camera.main.ScreenToWorldPoint(posMouse);
 
             // 取得題目位置
-            LineRenderer q = lineQuestion[0].lineSteps[indexStep];
+            LineRenderer q = lineQuestion[indexQuestion].lineSteps[indexStep];
 
             // 減去前一個步驟的數量
-            if (indexStep == 1) indexCurrent = indexLine - lineQuestion[0].lineSteps[indexStep - 1].positionCount;
+            if (indexStep == 1) indexCurrent = indexLine - lineQuestion[indexQuestion].lineSteps[indexStep - 1].positionCount;
+            else if (indexStep == 2) indexCurrent = indexLine - lineQuestion[indexQuestion].lineSteps[indexStep - 1].positionCount - lineQuestion[indexQuestion].lineSteps[indexStep - 2].positionCount;
             else if (indexCurrent < q.positionCount) indexCurrent = indexLine;
 
-            if (indexCurrent == lineQuestion[0].lineSteps[indexStep].positionCount) return;                                 // 避免 編號 跑到 最後一個 導致錯誤
+            if (indexCurrent == lineQuestion[indexQuestion].lineSteps[indexStep].positionCount) return;                                 // 避免 編號 跑到 最後一個 導致錯誤
             Vector3 posLineQuestion = q.GetPosition(indexCurrent);                                                          // 取得題目的每個當前位置
             
             float dis = Vector3.Distance(posMouseWorld, posLineQuestion);                                                   // 判斷 滑鼠 與 題目 距離
