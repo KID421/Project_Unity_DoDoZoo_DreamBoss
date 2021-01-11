@@ -23,6 +23,36 @@ public class Lv3_TestTube : MonoBehaviour
     /// </summary>
     public static bool pass;
 
+    private void Start()
+    {
+        SpawnCell();
+    }
+
+    private void SpawnCell()
+    {
+        GameObject goCell = Lv3_Scientist.instance.cells[Random.Range(0, Lv3_Scientist.instance.cells.Length)];
+        GameObject spawnCell = Instantiate(goCell);
+
+        Lv3_DragObject cell = spawnCell.GetComponent<Lv3_DragObject>();
+
+        // 設定細胞為子物件並調整尺寸
+        cell.transform.SetParent(transform);
+        cell.transform.localScale = Vector3.one * 0.8f;
+
+        // 取得細胞與細胞位置的變形元件
+        RectTransform rectCell = cell.GetComponent<RectTransform>();
+        RectTransform rectPosition = cellsPosition[countCell];
+
+        cell.GetComponent<Button>().interactable = false;
+        cell.enabled = false;
+
+        rectCell.anchoredPosition = rectPosition.anchoredPosition;
+
+        // 細胞添加到清單內並將編號遞增
+        cells.Add(cell);
+        countCell++;
+    }
+
     /// <summary>
     /// 設定細胞：於 Lv3_DragObject 拖拉結束後呼叫 OnEndDrag
     /// </summary>
@@ -70,7 +100,69 @@ public class Lv3_TestTube : MonoBehaviour
             cells.Add(cell);
             countCell++;
 
-            CheckThreeSameCell();
+            //CheckThreeSameCell();
+            CheckTwoSameCell();
+        }
+    }
+
+    /// <summary>
+    /// 檢查是不是有三顆相連的相同細胞
+    /// </summary>
+    private void CheckTwoSameCell()
+    {
+        // 如果細胞數量為 2
+        if (countCell == 2)
+        {
+            // 1 與 2 顆 是否相同
+            bool one_two = cells[0].name == cells[1].name;
+            // 如果 1 與 2 相同
+            if (one_two)
+            {
+                Destroy(cells[0].gameObject);
+                Destroy(cells[1].gameObject);
+            }
+            
+            // 否則 1 與 2，2 與 3 不同時：可能為 紅綠綠 的狀況
+            // 如果細胞數量為 4 顆
+            else if (countCell == 4)
+            {
+                // 2 與 3 是否相同
+                bool two_three_2 = cells[1].name == cells[2].name;
+                // 3 與 4 是否相同
+                bool three_four_2 = cells[2].name == cells[3].name;
+
+                // 可能為 紅綠綠綠 的狀況
+                // 如果 2 與 3，3 與 4 相同就過關
+                if (two_three_2 && three_four_2)
+                {
+                    pass = true;
+                    StartCoroutine(Lv3_Scientist.instance.Pass());
+                }
+            }
+        }
+        // 如果細胞數量為 3
+        if (countCell == 3)
+        {
+            // 2 與 3 顆 是否相同
+            bool two_three = cells[1].name == cells[2].name;
+            // 如果 2 與 3 相同
+            if (two_three)
+            {
+                Destroy(cells[1].gameObject);
+                Destroy(cells[2].gameObject);
+            }
+        }
+        // 如果細胞數量為 4
+        if (countCell == 4)
+        {
+            // 3 與 4 顆 是否相同
+            bool three_four = cells[2].name == cells[3].name;
+            // 如果 3 與 4 相同
+            if (three_four)
+            {
+                Destroy(cells[3].gameObject);
+                Destroy(cells[4].gameObject);
+            }
         }
     }
 

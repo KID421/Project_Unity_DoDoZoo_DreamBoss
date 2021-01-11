@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Lv5_PoliceVersion1 : LevelBase
 {
@@ -10,6 +10,11 @@ public class Lv5_PoliceVersion1 : LevelBase
     public static Lv5_PoliceVersion1 instance;
 
     /// <summary>
+    /// 是否點擊第一次
+    /// </summary>
+    public bool click;
+
+    /// <summary>
     /// 右邊綠燈是否亮
     /// </summary>
     private bool rightLight = true;
@@ -17,6 +22,14 @@ public class Lv5_PoliceVersion1 : LevelBase
     /// 按鈕：按鈕上方
     /// </summary>
     private Button btnClick;
+    /// <summary>
+    /// 分數
+    /// </summary>
+    private int score;
+    /// <summary>
+    /// 介面：分數
+    /// </summary>
+    private Text textScore;
 
     public delegate void SwitchLight(bool right);
     public event SwitchLight onSwitchLight;
@@ -26,14 +39,26 @@ public class Lv5_PoliceVersion1 : LevelBase
         base.Awake();
 
         instance = this;
+        textScore = GameObject.Find("分數").GetComponent<Text>();
 
         btnClick = GameObject.Find("按鈕上方").GetComponent<Button>();
-        btnClick.onClick.AddListener(() => { StartCoroutine(ButtonEffect()); });
+        btnClick.onClick.AddListener(() => 
+        {
+            // 如果 右邊綠燈 並且 右邊所有人都通過 或者 左邊綠燈 並且 左邊所有人都通過 才能切換燈號
+            if ((rightLight && Lv5_People.passRightAll) || (!rightLight && Lv5_People.passLeftAll)) StartCoroutine(ButtonEffect());
+        });
     }
 
     private void Start()
     {
         StartCoroutine(SetLight());
+
+        Timer.instance.onTimeStop += TimerStop;
+    }
+
+    private void TimerStop()
+    {
+        StartCoroutine(Pass());
     }
 
     /// <summary>
@@ -84,6 +109,7 @@ public class Lv5_PoliceVersion1 : LevelBase
     /// </summary>
     private IEnumerator ButtonEffect()
     {
+        click = true;
         btnClick.interactable = false;
         RectTransform btn = btnClick.GetComponent<RectTransform>();
 
@@ -104,5 +130,16 @@ public class Lv5_PoliceVersion1 : LevelBase
 
         yield return new WaitForSeconds(1);                                 // 等一秒再才能再按
         btnClick.interactable = true;
+    }
+
+    /// <summary>
+    /// 設定分數
+    /// </summary>
+    /// <param name="value">要增減的值</param>
+    public void SetScore(int value)
+    {
+        score += value;
+        score = Mathf.Clamp(score, 0, 999);
+        textScore.text = score + "";
     }
 }

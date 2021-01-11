@@ -22,8 +22,16 @@ public class Timer : MonoBehaviour
     /// </summary>
     private float timer;
 
+    public delegate void timeStop();
+    public event timeStop onTimeStop;
+
+    public static Timer instance;
+
+    public bool stop;
+
     private void Awake()
     {
+        instance = this;
         imgTime = transform.Find("時鐘效果").GetComponent<Image>();
         textTime = transform.Find("時鐘秒數").GetComponent<Text>();
         timer = total;
@@ -39,9 +47,13 @@ public class Timer : MonoBehaviour
     /// </summary>
     private void TimerStart()
     {
+        if (stop) return;
+
         if (timer <= 0)
         {
             timer = 0;
+            stop = true;
+            onTimeStop();
         }
         else
         {
