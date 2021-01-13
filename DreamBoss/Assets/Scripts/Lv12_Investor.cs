@@ -60,6 +60,10 @@ public class Lv12_Investor : LevelBase
     /// 是否取得物件：金幣、鈔票、股票、豬公、汽車、直升機、房子
     /// </summary>
     private bool[] getObject = { false, false, false, false, false, false, false };
+    /// <summary>
+    /// 粒子：光芒
+    /// </summary>
+    private ParticleSystem psLight;
 
     protected override void Awake()
     {
@@ -74,6 +78,9 @@ public class Lv12_Investor : LevelBase
     private void FindAndButtonSetting()
     {
         intervalOriginal = interval;                                                // 設定原始間隔時間
+
+        // 粒子
+        psLight = GameObject.Find("光芒").GetComponent<ParticleSystem>();
 
         // 介面
         textCoin = GameObject.Find("擁有的資金").GetComponent<Text>();
@@ -209,9 +216,9 @@ public class Lv12_Investor : LevelBase
 
         int count = 0;                              // 捲動次數歸零
         int countTotal = Random.Range(10, 16);      // 捲動次數 10 - 15 次，會乘以 100，實際次數為 100 - 150
-        countTotal = 5;
-        interval = intervalOriginal;                // 設定為原始間隔時間
-        finishes[indexType, indexOfContent] = false;           // 將所有捲動內容設定為尚未結束
+        countTotal = 3;                                       // 測試用 200 元 3 是 101
+        interval = intervalOriginal;                            // 設定為原始間隔時間
+        finishes[indexType, indexOfContent] = false;            // 將所有捲動內容設定為尚未結束
 
         // 當捲動次數 小於 總捲動次數 * 10 時 - 100 - 150 次
         while (count < countTotal * 10)
@@ -221,8 +228,9 @@ public class Lv12_Investor : LevelBase
 
             if (count % 10 == 0)                                                                                                            // 每捲動 10 次 就將 第一個子物件向上位移
             {
+                int childCount = contents[indexType, indexOfContent].childCount;                                                            // 內容物子物件數量
                 firstChilds[indexType, indexOfContent] = contents[indexType, indexOfContent].GetChild(0).GetComponent<RectTransform>();     // 取得第一個子物件
-                firstChilds[indexType, indexOfContent].anchoredPosition += Vector2.up * 275f * 4;                                           // 向上移動 大小 275 * 4 (內容物有幾張)
+                firstChilds[indexType, indexOfContent].anchoredPosition += Vector2.up * 275f * childCount;                                  // 向上移動 大小 275 * 內容物子物件數量 (內容物有幾張)
                 firstChilds[indexType, indexOfContent].SetAsLastSibling();                                                                  // 並將其設定為最後一個子物件
             }
 
@@ -317,6 +325,9 @@ public class Lv12_Investor : LevelBase
         img.sprite = spr;
         img.SetNativeSize();
 
+        if (indexObject == 6) img.rectTransform.localScale = Vector3.one * 0.1f;        // 如果 101 就縮小 0.1
+        else img.rectTransform.localScale = Vector3.one * 0.5f;                         // 否則 原本尺寸 0.5
+
         while (pos.x != 0)                                      // 移動到畫面正中間並放大
         {
             pos += new Vector2(20f, 0);
@@ -326,7 +337,9 @@ public class Lv12_Investor : LevelBase
             yield return new WaitForSeconds(0.05f);
         }
 
-        yield return new WaitForSeconds(0.5f);                  // 停留 0.5 秒
+        if (indexObject == 5 || indexObject == 6) psLight.Play();                       // 直升機與 101 顯示光芒效果
+
+        yield return new WaitForSeconds(1f);                                            // 停留 1 秒
 
         Vector2 posEnd = imgOnTheTable[indexObject].rectTransform.anchoredPosition;                 // 移動到右下角
         while (Vector2.Distance(pos, posEnd) > 10)
