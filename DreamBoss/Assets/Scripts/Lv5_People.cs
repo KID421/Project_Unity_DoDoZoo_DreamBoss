@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.Rendering;
 using System.Linq;
 
 public class Lv5_People : MonoBehaviour
