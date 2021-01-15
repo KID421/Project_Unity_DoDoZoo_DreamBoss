@@ -12,7 +12,10 @@ public class Lv1_TeacherVersion1 : LevelBase
     /// <summary>
     /// 題目線條：放所有製作完成的題目線條
     /// </summary>
+    [Header("題目線條：有 Line Renderer 的物件")]
     public TeacherQuestion[] lineQuestion;
+    [Header("題目物件，父物件，包含提示物件")]
+    public GameObject[] lineObject;
 
     /// <summary>
     /// 題目圖片
@@ -55,7 +58,13 @@ public class Lv1_TeacherVersion1 : LevelBase
         // 隨機題目
         imgQuestion = GameObject.Find("題目圖片").GetComponent<Image>();
         indexQuestion = Random.Range(0, lineQuestion.Length);
+
+        // 測試
+        indexQuestion = 0;
+
         imgQuestion.sprite = sprQuestions[indexQuestion];
+        // 顯示提示物件
+        lineObject[indexQuestion].SetActive(true);
 
         for (int i = 0; i < 3; i++) lines[i] = GameObject.Find("線段 " + i).GetComponent<LineRenderer>();
 
@@ -90,6 +99,8 @@ public class Lv1_TeacherVersion1 : LevelBase
         {
             finish = true;
 
+            lineObject[indexQuestion].transform.Find("提示 " + indexStep).gameObject.SetActive(false);
+
             for (int i = 0; i < 3; i++) lines[i].enabled = false;
             imgQuestion.color = Color.white;
 
@@ -98,7 +109,9 @@ public class Lv1_TeacherVersion1 : LevelBase
 
         if (indexStep == 0 && indexStep < lineQuestion[indexQuestion].lineSteps.Length && indexLine == lineQuestion[indexQuestion].lineSteps[indexStep].positionCount)
         {
+            lineObject[indexQuestion].transform.Find("提示 " + indexStep).gameObject.SetActive(false);
             indexStep++;
+            lineObject[indexQuestion].transform.Find("提示 " + indexStep).gameObject.SetActive(true);
         }
         else if (lineQuestion[indexQuestion].lineSteps.Length > 2 && indexStep == 1 && indexStep < lineQuestion[indexQuestion].lineSteps.Length && indexLine == lineQuestion[indexQuestion].lineSteps[indexStep].positionCount + lineQuestion[indexQuestion].lineSteps[indexStep - 1].positionCount)
         {
