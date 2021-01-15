@@ -1466,7 +1466,7 @@ ScriptsOnlyBuild:
     className: AspectRatioFitter
   - hash:
       serializedVersion: 2
-      Hash: 69806b518a148357728044c2b3379bc4
+      Hash: 11ba5d3b8bbbe2f894bcbbc29fa57e95
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv1_Tip
@@ -1502,7 +1502,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: fdc95b03de2efd89f836a5c8911edabe
+      Hash: b6d5a125865e5e8db0fdb539254d3f59
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv1_TeacherVersion1
@@ -1936,4 +1936,4 @@ ScriptsOnlyBuild:
   - "Assets/\u5834\u666F/\u95DC\u5361 10 \u6A39\u61F6.unity"
   - "Assets/\u5834\u666F/\u95DC\u5361 11 \u523A\u875F.unity"
   - "Assets/\u5834\u666F/\u95DC\u5361 12 \u8C93\u982D\u9DF9.unity"
-  playerPath: C:/KID/Projects/Unity/Project_Unity_DoDoZoo_DreamBoss/DreamBossAPK_1_7.apk
+  playerPath: C:/KID/Projects/Unity/Project_Unity_DoDoZoo_DreamBoss/DreamBossAPK_1_8.apk
