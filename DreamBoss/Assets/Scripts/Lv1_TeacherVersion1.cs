@@ -60,7 +60,7 @@ public class Lv1_TeacherVersion1 : LevelBase
         indexQuestion = Random.Range(0, lineQuestion.Length);
 
         // 測試
-        indexQuestion = 0;
+        indexQuestion = 1;
 
         imgQuestion.sprite = sprQuestions[indexQuestion];
         // 顯示提示物件

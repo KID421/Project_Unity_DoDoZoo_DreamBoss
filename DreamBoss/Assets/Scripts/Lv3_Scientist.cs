@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Lv3_Scientist : LevelBase
@@ -7,9 +8,18 @@ public class Lv3_Scientist : LevelBase
     public GameObject[] cells;
 
     /// <summary>
+    /// 分數
+    /// </summary>
+    private int score;
+    /// <summary>
+    /// 分數文字
+    /// </summary>
+    private Text textScore;
+
+    /// <summary>
     /// 生成的細胞總數
     /// </summary>
-    private int totalCreateCell;
+    public static int totalCreateCell;
 
     public static Lv3_Scientist instance;
 
@@ -18,8 +28,19 @@ public class Lv3_Scientist : LevelBase
         base.Awake();
 
         instance = this;
+        textScore = GameObject.Find("分數文字").GetComponent<Text>();
 
         CreateCell();
+    }
+
+    private void Start()
+    {
+        Timer.instance.onTimeStop += TimerStop;
+    }
+
+    private void TimerStop()
+    {
+        StartCoroutine(Pass());
     }
 
     /// <summary>
@@ -61,5 +82,14 @@ public class Lv3_Scientist : LevelBase
 
         // 錯誤後 產生新的細胞
         CreateCell();
+    }
+
+    /// <summary>
+    /// 加分
+    /// </summary>
+    public void AddScore()
+    {
+        score += 5;
+        textScore.text = score + "";
     }
 }
