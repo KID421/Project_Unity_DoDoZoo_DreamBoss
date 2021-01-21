@@ -26,13 +26,17 @@ public class Lv5_Icon : MonoBehaviour
     /// <summary>
     /// 設定圖片
     /// </summary>
-    /// <param name="index">圖片編號：+5、-5、問號、困惑、閃電、+100、-15</param>
-    public void SetImage(int index)
+    /// <param name="index">圖片編號：+5、-5、問號、困惑、喇叭、+100、-15</param>
+    public void SetImage(int index, bool flip = false)
     {
+        rect.localScale = sizeOriginal;
+        rect.eulerAngles = new Vector3(0, flip ? 180 : 0, 0);
         img.sprite = sprIcons[index];
         img.SetNativeSize();
 
-        if (index == 0) rect.localScale *= 2;
+        if (index == 0) rect.localScale *= 3;               // +5 放大
+        else if (index == 1) rect.localScale *= 3;          // -5 放大
+        else if (index == 4) rect.localScale *= 5;          // 喇叭 放大
         else rect.localScale = sizeOriginal;
     }
 

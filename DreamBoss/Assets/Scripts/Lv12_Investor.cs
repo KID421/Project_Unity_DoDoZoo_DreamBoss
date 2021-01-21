@@ -216,7 +216,7 @@ public class Lv12_Investor : LevelBase
 
         int count = 0;                              // 捲動次數歸零
         int countTotal = Random.Range(10, 16);      // 捲動次數 10 - 15 次，會乘以 100，實際次數為 100 - 150
-        countTotal = 3;                                       // 測試用 200 元 3 是 101
+        // countTotal = 3;                                       // 測試用 200 元 3 是 101
         interval = intervalOriginal;                            // 設定為原始間隔時間
         finishes[indexType, indexOfContent] = false;            // 將所有捲動內容設定為尚未結束
 
