@@ -128,10 +128,12 @@ public class Lv5_People : MonoBehaviour
     {
         if (goToEnd)
         {
+            StopAllCoroutines();
             rect.anchoredPosition = posOriginal;                                        // 回到原點
             goToEnd = false;
         }
-        else StartCoroutine(Walk(right));
+        
+        StartCoroutine(Walk(right));
     }
 
     /// <summary>
@@ -192,9 +194,9 @@ public class Lv5_People : MonoBehaviour
     {
         icon.StopAllCoroutines();
         icon.ResetIcon();
-        StartCoroutine(WalkToEnd());                                                // 前往終點
-
         if (rect.anchoredPosition == posPass.anchoredPosition) StartPass();         // 通過後再加分
+
+        StartCoroutine(WalkToEnd());                                                // 前往終點
 
         if (peopleRight) passRight[index] = true;
         else passLeft[index] = true;
@@ -206,6 +208,7 @@ public class Lv5_People : MonoBehaviour
     private IEnumerator WalkToEnd()
     {
         goToEnd = true;
+        stop = false;
 
         Vector2 pos = posEnd.anchoredPosition;
         Vector2 posPeople = rect.anchoredPosition;

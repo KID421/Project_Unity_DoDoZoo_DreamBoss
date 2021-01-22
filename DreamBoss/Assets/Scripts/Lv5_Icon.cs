@@ -66,7 +66,7 @@ public class Lv5_Icon : MonoBehaviour
 
     public void ResetIcon()
     {
-        img.color = Color.clear;
+        img.color = new Color(1, 1, 1, 0);
         rect.anchoredPosition = posOriginal;
     }
 
