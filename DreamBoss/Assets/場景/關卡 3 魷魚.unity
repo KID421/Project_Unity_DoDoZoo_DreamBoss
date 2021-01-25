@@ -475,7 +475,6 @@ MonoBehaviour:
   - {fileID: 4584821288291408412, guid: c7e94132686e4af4591535a47c24da7b, type: 3}
   - {fileID: 8494646541237456407, guid: 640e947451997e74dbb300bfa79de778, type: 3}
   - {fileID: 6126904507716739359, guid: ce270d85ebd76bf43b43a6955e00b1ef, type: 3}
-  score: 0
 --- !u!82 &205757193
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7211,6 +7210,26 @@ PrefabInstance:
         type: 3}
       propertyPath: total
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396782861567053093, guid: cd8adbbbd35ef9144ba205938deeb9f2,
+        type: 3}
+      propertyPath: colorCountDown.r
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396782861567053093, guid: cd8adbbbd35ef9144ba205938deeb9f2,
+        type: 3}
+      propertyPath: colorCountDown.g
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396782861567053093, guid: cd8adbbbd35ef9144ba205938deeb9f2,
+        type: 3}
+      propertyPath: colorCountDown.b
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396782861567053093, guid: cd8adbbbd35ef9144ba205938deeb9f2,
+        type: 3}
+      propertyPath: colorCountDown.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2396782861567053094, guid: cd8adbbbd35ef9144ba205938deeb9f2,
         type: 3}
