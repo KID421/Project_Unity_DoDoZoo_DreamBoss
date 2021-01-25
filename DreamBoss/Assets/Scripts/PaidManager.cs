@@ -15,6 +15,8 @@ public class PaidManager : MonoBehaviour
     public AudioClip soundCorrect;
     [Header("錯誤音效")]
     public AudioClip soundWrong;
+    [Header("要解鎖的關卡")]
+    public Transform[] tranLevel;
 
     /// <summary>
     /// 數字按鈕 1 - 9
@@ -43,6 +45,7 @@ public class PaidManager : MonoBehaviour
     {
         GetObject();
         SetQuestion();
+        if (PlayerPrefs.GetInt("是否購買") == 1) PaidAndUnlock();
     }
     /// <summary>
     /// 取得物件
@@ -110,6 +113,21 @@ public class PaidManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             answerNumber.sprite = null;
             SetQuestion();
+        }
+    }
+
+    public void PaidAndUnlock()
+    {
+        PlayerPrefs.SetInt("是否購買", 1);  // 1 為已經購買，0 為尚未購買
+
+        Color white = new Color(1, 1, 1, 1);
+
+        for (int i = 0; i < tranLevel.Length; i++)
+        {
+            tranLevel[i].GetComponent<Button>().interactable = true;
+            tranLevel[i].Find("渲染圖片").GetComponent<RawImage>().color = white;
+            tranLevel[i].Find("名稱").GetComponent<Image>().color = white;
+            tranLevel[i].Find("鎖").gameObject.SetActive(false);
         }
     }
 }

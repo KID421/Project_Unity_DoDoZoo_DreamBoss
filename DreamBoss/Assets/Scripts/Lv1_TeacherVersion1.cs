@@ -60,7 +60,7 @@ public class Lv1_TeacherVersion1 : LevelBase
         indexQuestion = Random.Range(0, lineQuestion.Length);
 
         // 測試
-        indexQuestion = 1;
+        // indexQuestion = 8;
 
         imgQuestion.sprite = sprQuestions[indexQuestion];
         // 顯示提示物件
@@ -115,7 +115,9 @@ public class Lv1_TeacherVersion1 : LevelBase
         }
         else if (lineQuestion[indexQuestion].lineSteps.Length > 2 && indexStep == 1 && indexStep < lineQuestion[indexQuestion].lineSteps.Length && indexLine == lineQuestion[indexQuestion].lineSteps[indexStep].positionCount + lineQuestion[indexQuestion].lineSteps[indexStep - 1].positionCount)
         {
+            lineObject[indexQuestion].transform.Find("提示 " + indexStep).gameObject.SetActive(false);
             indexStep++;
+            lineObject[indexQuestion].transform.Find("提示 " + indexStep).gameObject.SetActive(true);
         }
 
         // 如果按住左鍵
