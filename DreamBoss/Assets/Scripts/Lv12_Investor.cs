@@ -257,6 +257,7 @@ public class Lv12_Investor : LevelBase
         {
             var allFirstChilds = cihlds.Where(x => x.name == cihlds[0].name);                                   // 取得所有內容的物品 是不是 等於 第一個物品 (如果都是代表三個相同)
             if (allFirstChilds.ToList().Count == 3) GetObject(cihlds[0].GetChild(0).name);                      // 如果有三個相同的 就處理 取得物件效果
+            else if (coin != 0) StartCoroutine(Wrong());
 
             if (coin == 0)
             {
@@ -279,6 +280,8 @@ public class Lv12_Investor : LevelBase
     /// <param name="objectName">獲得物件的名稱</param>
     private void GetObject(string objectName)
     {
+        StartCoroutine(Correct());
+
         switch (objectName)
         {
             case "金幣":

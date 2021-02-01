@@ -172,6 +172,14 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 第一關長頸鹿重新設定
+    /// </summary>
+    public void Lv1Reset()
+    {
+        Lv1_TeacherVersion1.englishMode = false;        // 重設為數字模式
+    }
+
+    /// <summary>
     /// 水平卷軸設定為剛玩完的關卡
     /// </summary>
     private void BarHorizontalSetToPlayLevel(string nameScene)

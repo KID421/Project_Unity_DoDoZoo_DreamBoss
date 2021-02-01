@@ -18,12 +18,20 @@ public class Lv1_Tip : MonoBehaviour
     /// </summary>
     private void SetTip()
     {
+        int orderLayer = 0;
+
         for (int i = 0; i < tipObjects.Length; i++)
         {
             Transform temp = transform.Find("提示 " + i);
+            orderLayer++;
             tipObjects[i].traStart = temp.Find("提示開始");
+            tipObjects[i].traStart.GetComponent<SpriteRenderer>().sortingOrder = orderLayer;
+            orderLayer++;
             tipObjects[i].traEnd = temp.Find("提示結束");
+            tipObjects[i].traEnd.GetComponent<SpriteRenderer>().sortingOrder = orderLayer;
+            orderLayer++;
             tipObjects[i].traArrow = temp.Find("箭頭");
+            tipObjects[i].traArrow.GetComponent<SpriteRenderer>().sortingOrder = orderLayer;
 
             Transform tempLine = transform.GetChild(i);
             LineRenderer line = tempLine.GetComponent<LineRenderer>();

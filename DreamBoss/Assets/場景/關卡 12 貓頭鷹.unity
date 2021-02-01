@@ -893,14 +893,14 @@ MonoBehaviour:
   correctParticle: {fileID: 0}
   needCount: 0
   countTime: 8
-  ani: {fileID: 0}
+  ani: {fileID: 1485517053}
   timeCorrect: 2
   timeWrong: 2
   aniPass: "\u904E\u95DC"
-  afterCorrectReplay: 1
-  afterWrongReplay: 1
+  afterCorrectReplay: 0
+  afterWrongReplay: 0
   needShowCorrectObject: 0
-  needCorrectCountToPass: 1
+  needCorrectCountToPass: 0
   countCorrect: 5
   sprShares:
   - {fileID: 21300000, guid: 4e156976b820c4742a81f88707a67608, type: 3}
@@ -6442,6 +6442,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e83a69413dc850846968a63d666add1c, type: 3}
+--- !u!95 &1485517053 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7692791116320147175, guid: e83a69413dc850846968a63d666add1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1485517052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1486923001
 GameObject:
   m_ObjectHideFlags: 0

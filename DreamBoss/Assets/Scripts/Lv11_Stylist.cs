@@ -138,9 +138,8 @@ public class Lv11_Stylist : LevelBase
 
         instance = this;
         traPictureParent = GameObject.Find("小女孩拍照位置").transform;
-
-        // 切換學校戶外按鈕點擊設定
-        btnSwitch.onClick.AddListener(SwitchSchool);
+        
+        btnSwitch.onClick.AddListener(SwitchSchool);                                // 切換學校戶外按鈕點擊設定
     }
 
     /// <summary>
@@ -154,7 +153,7 @@ public class Lv11_Stylist : LevelBase
         {
             indexCurrent = 1;
             btnSwitch.transform.Find("圓圈").GetComponent<RectTransform>().anchoredPosition = new Vector2(65, 0);
-            btnSwitch.transform.Find("學校切換").GetComponent<Image>().color = new Color(0.5f, 0.8f, 0.3f);
+            btnSwitch.transform.Find("有顏色底圖").GetComponent<Image>().color = new Color(0.5f, 0.8f, 0.3f);
 
             for (int i = 0; i < dressSchool.Length; i++) dressSchool[i].SetActive(true);
             for (int i = 0; i < dressOutside.Length; i++) dressOutside[i].SetActive(false);
@@ -163,7 +162,7 @@ public class Lv11_Stylist : LevelBase
         {
             indexCurrent = 0;
             btnSwitch.transform.Find("圓圈").GetComponent<RectTransform>().anchoredPosition = new Vector2(-65, 0);
-            btnSwitch.transform.Find("學校切換").GetComponent<Image>().color = new Color(0.8f, 0.2f, 0.3f);
+            btnSwitch.transform.Find("有顏色底圖").GetComponent<Image>().color = new Color(0.8f, 0.2f, 0.3f);
 
             for (int i = 0; i < dressSchool.Length; i++) dressSchool[i].SetActive(false);
             for (int i = 0; i < dressOutside.Length; i++) dressOutside[i].SetActive(true);

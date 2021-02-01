@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PaidManager : MonoBehaviour
@@ -17,6 +18,14 @@ public class PaidManager : MonoBehaviour
     public AudioClip soundWrong;
     [Header("要解鎖的關卡")]
     public Transform[] tranLevel;
+    [Header("八關的鎖")]
+    public Button[] btnLock = new Button[8];
+
+    /// <summary>
+    /// 是否付費
+    /// </summary>
+    public static bool paid;
+    public static PaidManager instance;
 
     /// <summary>
     /// 數字按鈕 1 - 9
@@ -35,6 +44,10 @@ public class PaidManager : MonoBehaviour
     /// </summary>
     private CanvasGroup groupQuestion;
     /// <summary>
+    /// 群組：解鎖畫面
+    /// </summary>
+    private CanvasGroup groupPaidPanel;
+    /// <summary>
     /// 關閉按鈕
     /// </summary>
     private Button btnClose;
@@ -43,10 +56,35 @@ public class PaidManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         GetObject();
         SetQuestion();
+
+        PlayerPrefs.SetInt("是否購買", 0);
         if (PlayerPrefs.GetInt("是否購買") == 1) PaidAndUnlock();
+
+        if (SceneManager.GetActiveScene().name == "選取關卡") for (int i = 0; i < btnLock.Length; i++) btnLock[i].onClick.AddListener(ClickLock);
     }
+
+    /// <summary>
+    /// 點擊鎖
+    /// </summary>
+    public void ClickLock()
+    {
+        btnClose.interactable = true;
+
+        groupPaidPanel.alpha = 1;
+        groupPaidPanel.interactable = true;
+        groupPaidPanel.blocksRaycasts = true;
+
+        groupQuestion.alpha = 0;
+        groupQuestion.interactable = false;
+        groupQuestion.blocksRaycasts = false;
+
+        SetQuestion();
+    }
+
     /// <summary>
     /// 取得物件
     /// </summary>
@@ -59,6 +97,7 @@ public class PaidManager : MonoBehaviour
         questionSign = GameObject.Find("題目符號").GetComponent<Image>();
         answerNumber = GameObject.Find("答案").GetComponent<Image>();
         groupQuestion = GameObject.Find("問券").GetComponent<CanvasGroup>();
+        groupPaidPanel = GameObject.Find("解鎖畫面").GetComponent<CanvasGroup>();
         btnClose = GameObject.Find("關閉").GetComponent<Button>();
 
         for (int i = 0; i < btnNumber.Length; i++)
@@ -74,6 +113,7 @@ public class PaidManager : MonoBehaviour
     /// </summary>
     private void SetQuestion()
     {
+        answerNumber.sprite = null;
         indexQuestion = Random.Range(0, paidQuestion.Length);
         PaidQuestion paidQ = paidQuestion[indexQuestion];
         questionNumber1.sprite = questionNumber[paidQ.number1];
@@ -118,10 +158,13 @@ public class PaidManager : MonoBehaviour
 
     public void PaidAndUnlock()
     {
-        PlayerPrefs.SetInt("是否購買", 1);  // 1 為已經購買，0 為尚未購買
+        paid = true;
+
+        // PlayerPrefs.SetInt("是否購買", 1);  // 1 為已經購買，0 為尚未購買
 
         Color white = new Color(1, 1, 1, 1);
 
+        /* 暫時關閉解鎖
         for (int i = 0; i < tranLevel.Length; i++)
         {
             tranLevel[i].GetComponent<Button>().interactable = true;
@@ -129,6 +172,7 @@ public class PaidManager : MonoBehaviour
             tranLevel[i].Find("名稱").GetComponent<Image>().color = white;
             tranLevel[i].Find("鎖").gameObject.SetActive(false);
         }
+        */
     }
 }
 
