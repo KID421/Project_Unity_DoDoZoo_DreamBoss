@@ -160,19 +160,22 @@ public class PaidManager : MonoBehaviour
     {
         paid = true;
 
-        // PlayerPrefs.SetInt("是否購買", 1);  // 1 為已經購買，0 為尚未購買
+        PlayerPrefs.SetInt("是否購買", 1);  // 1 為已經購買，0 為尚未購買
 
         Color white = new Color(1, 1, 1, 1);
 
-        /* 暫時關閉解鎖
+        /* 暫時關閉解鎖*/
+
+        if (SceneManager.GetActiveScene().name != "選取關卡") return;
+
         for (int i = 0; i < tranLevel.Length; i++)
         {
             tranLevel[i].GetComponent<Button>().interactable = true;
             tranLevel[i].Find("渲染圖片").GetComponent<RawImage>().color = white;
             tranLevel[i].Find("名稱").GetComponent<Image>().color = white;
-            tranLevel[i].Find("鎖").gameObject.SetActive(false);
+            tranLevel[i].GetChild(3).gameObject.SetActive(false);
         }
-        */
+        /**/
     }
 }
 

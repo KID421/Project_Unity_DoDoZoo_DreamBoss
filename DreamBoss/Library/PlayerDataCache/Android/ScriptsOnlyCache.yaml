@@ -48,8 +48,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -953,6 +955,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13122}
     - Class: 114
       Script: {instanceID: 13170}
+    - Class: 114
+      Script: {instanceID: 13666}
     - Class: 114
       Script: {instanceID: 13822}
     - Class: 114
@@ -2284,4 +2288,4 @@ ScriptsOnlyBuild:
   - "Assets/\u5834\u666F/\u95DC\u5361 10 \u6A39\u61F6.unity"
   - "Assets/\u5834\u666F/\u95DC\u5361 11 \u523A\u875F.unity"
   - "Assets/\u5834\u666F/\u95DC\u5361 12 \u8C93\u982D\u9DF9.unity"
-  playerPath: C:/KID/Projects/Unity/Project_Unity_DoDoZoo_DreamBoss/DreamBoss_AAB_2_0.aab
+  playerPath: C:/KID/Projects/Unity/Project_Unity_DoDoZoo_DreamBoss/DreamBossAPK_2_1.apk
