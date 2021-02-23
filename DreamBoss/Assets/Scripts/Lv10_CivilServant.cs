@@ -12,6 +12,8 @@ public class Lv10_CivilServant : LevelBase
     public Animator aniSeal;
     [Header("蓋印章灰塵特效")]
     public ParticleSystem psDust;
+    [Header("正確後要顯示的圖片")]
+    public Sprite[] sprCorrectSeal;
 
     /// <summary>
     /// 正確答案
@@ -82,6 +84,7 @@ public class Lv10_CivilServant : LevelBase
     {
         // 文件上的印章恢復原本顏色
         yield return new WaitForSeconds(0.7f);
-        traSealOnPaper.GetChild(answer).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        // traSealOnPaper.GetChild(answer).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        traSealOnPaper.GetChild(answer).GetComponent<Image>().sprite = sprCorrectSeal[answer];      // 顯示正確的印章圖樣
     }
 }

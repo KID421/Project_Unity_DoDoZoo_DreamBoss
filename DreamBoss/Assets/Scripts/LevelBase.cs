@@ -42,8 +42,10 @@ public class LevelBase : MonoBehaviour
 
     //[Header("結束畫面")]
     protected Image final;
-    //[Header("正確與錯誤音效")]
-    protected AudioClip soundCorrect;
+    [Header("正確音效")]
+    public AudioClip soundCorrect;
+    [Header("正確音效音量")]
+    public float volumeCorrect = 1f;
     protected AudioClip soundWrong;
     //[Header("過關特效")]
     protected ParticleSystem allCorrectParticle;
@@ -71,7 +73,7 @@ public class LevelBase : MonoBehaviour
     {
         // -- KID 2020.12.20 取得物件
         canvas = GameObject.Find("畫布").transform;
-        soundCorrect = Resources.Load<AudioClip>("正確");
+        //soundCorrect = Resources.Load<AudioClip>("正確");
         soundWrong = Resources.Load<AudioClip>("錯誤");
         allCorrectParticle = GameObject.Find("過關特效").GetComponent<ParticleSystem>();
         // -- KID
@@ -135,7 +137,7 @@ public class LevelBase : MonoBehaviour
         if (needCorrectCountToPass) winCount++;
 
         ani.SetTrigger("正確");
-        aud.PlayOneShot(soundCorrect);
+        aud.PlayOneShot(soundCorrect, volumeCorrect);
         if (correctParticle) correctParticle.Play();
         if (needShowCorrectObject) StartCoroutine(ShowCorrectObject(index));
 
@@ -213,6 +215,7 @@ public class LevelBase : MonoBehaviour
             yield return new WaitForSeconds(2);
             yield return StartCoroutine(ShowShare());
         }
+
 
         // 等待一秒後顯示離開場景過場動畫
         //yield return new WaitForSeconds(1);

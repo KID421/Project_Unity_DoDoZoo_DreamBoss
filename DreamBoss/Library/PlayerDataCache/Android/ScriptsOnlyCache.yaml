@@ -743,6 +743,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 82
@@ -750,6 +752,8 @@ ScriptsOnlyBuild:
     - Class: 83
       Script: {instanceID: 0}
     - Class: 84
+      Script: {instanceID: 0}
+    - Class: 91
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
@@ -781,6 +785,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12606}
     - Class: 114
       Script: {instanceID: 13122}
+    - Class: 114
+      Script: {instanceID: 13666}
     - Class: 114
       Script: {instanceID: 14178}
     - Class: 114
@@ -1404,7 +1410,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 2d44e5a4e816fde43d94dd47bf1b319b
+      Hash: a3b22cf52563556d962921f99703b4be
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv8_Artist
@@ -1476,7 +1482,7 @@ ScriptsOnlyBuild:
     className: Scrollbar
   - hash:
       serializedVersion: 2
-      Hash: 486e5685064d340d3cbcb791a0980900
+      Hash: 2681d4e076fcaf40072c0da622083b2b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LV6_Music
@@ -1488,7 +1494,7 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
-      Hash: e2b2266540a524eb385a521a7d6b2ae0
+      Hash: 723f028687386191134adca01e70a0e7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv3_Scientist
@@ -1548,7 +1554,7 @@ ScriptsOnlyBuild:
     className: UdpInstallInstructionsWindow
   - hash:
       serializedVersion: 2
-      Hash: 9494532043514edb7c30b920d83408d6
+      Hash: be03c40b6c6378d3d750fdab538ec570
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv12_Investor
@@ -1560,7 +1566,7 @@ ScriptsOnlyBuild:
     className: Pay
   - hash:
       serializedVersion: 2
-      Hash: 09883d78af86103a9973727f5056cce8
+      Hash: 10ef630702b3ac7962895e2240546163
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv4_Engineer
@@ -1758,7 +1764,7 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
-      Hash: c0e63d72998980502d95dc746d861faa
+      Hash: c0097d2003495d60c884f63f1795ac75
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv7_Entrepreneur
@@ -1776,13 +1782,13 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: d0e3d0a53001c6dc4e3447efdf97f75b
+      Hash: 0785dd06726b0efa4887ac748ce4d9db
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv1_TeacherVersion1
   - hash:
       serializedVersion: 2
-      Hash: 2bd04641bc2902405bff988ad1e13cbc
+      Hash: 10985eeb818f9a9b01ee55f9d2e07e5b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv2_Doctor
@@ -1866,7 +1872,7 @@ ScriptsOnlyBuild:
     className: Lv11_DragObject
   - hash:
       serializedVersion: 2
-      Hash: 31ea105e5780ca1e22fade69c8a14edc
+      Hash: 7f9c09953eb8691deedbfec881f475c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv5_Police
@@ -1974,13 +1980,13 @@ ScriptsOnlyBuild:
     className: MainMenu
   - hash:
       serializedVersion: 2
-      Hash: aa866ec417c88e7938fbbdcebd47e672
+      Hash: 1dfa6e3c6f094ff812c3d083c4fd3b91
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv9_Fireman
   - hash:
       serializedVersion: 2
-      Hash: 62ba9d78e6d098eb332a185655e93f2b
+      Hash: 40c19e124a1f06ce0fe3a850b117c0d8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv1_Teacher
@@ -2046,7 +2052,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: aa2d593de07e4f58051074391167ed4d
+      Hash: 42ad732c48176c9bca74232704474ea4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv5_PoliceVersion1
@@ -2058,7 +2064,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 63283c1318ee86c41e49d43c9ee9589f
+      Hash: 48ce1d60cf2a5a96ec20630929e41a63
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv10_CivilServant
@@ -2148,7 +2154,7 @@ ScriptsOnlyBuild:
     className: Lv9_DragObject
   - hash:
       serializedVersion: 2
-      Hash: 88154233e2c8fb7a6df334073997c0f5
+      Hash: fc81ebf7353eeb4d31f9aa0797959483
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lv11_Stylist
@@ -2244,7 +2250,7 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
-      Hash: 592430977d18567b653fde74a7ddc962
+      Hash: b5485dba3ddcaa30a574a21ef1fe507c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelBase
@@ -2288,4 +2294,4 @@ ScriptsOnlyBuild:
   - "Assets/\u5834\u666F/\u95DC\u5361 10 \u6A39\u61F6.unity"
   - "Assets/\u5834\u666F/\u95DC\u5361 11 \u523A\u875F.unity"
   - "Assets/\u5834\u666F/\u95DC\u5361 12 \u8C93\u982D\u9DF9.unity"
-  playerPath: C:/KID/Projects/Unity/Project_Unity_DoDoZoo_DreamBoss/DreamBossAPK_2_1.apk
+  playerPath: C:/KID/Projects/Unity/Project_Unity_DoDoZoo_DreamBoss/DreamBossAPK_2_3.apk

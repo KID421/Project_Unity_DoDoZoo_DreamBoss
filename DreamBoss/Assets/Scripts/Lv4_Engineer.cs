@@ -92,6 +92,9 @@ public class Lv4_Engineer : LevelBase
         // 否則就過關，顯示分享畫面
         else
         {
+            questions.RemoveAt(0);
+            questionsIndex.RemoveAt(0);
+            winCount = 0;
             yield return base.Pass(true);
         }
     }

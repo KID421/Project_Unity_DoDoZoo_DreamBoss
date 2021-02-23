@@ -383,6 +383,8 @@ MonoBehaviour:
   sprShares:
   - {fileID: 21300000, guid: c6c55db6e339ce54a96e15bf8adf4ac1, type: 3}
   needWrongSound: 1
+  soundCorrect: {fileID: 8300000, guid: 91a4e300c781b5141ab02b68dfe0c4f0, type: 3}
+  volumeCorrect: 1
   distance: 150
 --- !u!82 &205757193
 AudioSource:
@@ -393,7 +395,7 @@ AudioSource:
   m_GameObject: {fileID: 205757190}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 93a96b40dcf3e3243b0678e00c405d6f,
+  OutputAudioMixerGroup: {fileID: 4100052219708245228, guid: 93a96b40dcf3e3243b0678e00c405d6f,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -1289,7 +1291,7 @@ GameObject:
   - component: {fileID: 499773693}
   - component: {fileID: 499773692}
   m_Layer: 0
-  m_Name: Kazoom - Quincas Moreira
+  m_Name: "\u80CC\u666F\u97F3\u6A02"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1304,10 +1306,11 @@ AudioSource:
   m_GameObject: {fileID: 499773691}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8778172722489070785, guid: 93a96b40dcf3e3243b0678e00c405d6f,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 0493fc3751705784f834c708114e969b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

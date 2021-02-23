@@ -19,6 +19,10 @@ public class Lv12_Investor : LevelBase
     public Image[] imgOnTheTable;
     [Header("分享畫面的物品：無、無、股票、豬公、汽車、直升機、房子")]
     public Image[] imgInShare;
+    [Header("一百元中獎機率"), Range(0f, 1f)]
+    public float percent100 = 0.8f;
+    [Header("兩百元中獎機率"), Range(0f, 1f)]
+    public float percent200 = 0.5f;
 
     /// <summary>
     /// 文字：擁有的資金
@@ -44,6 +48,14 @@ public class Lv12_Investor : LevelBase
     /// 是否捲動結束
     /// </summary>
     private bool[,] finishes = { { false, false, false }, { false, false, false } };
+    /// <summary>
+    /// 捲動次數累計
+    /// </summary>
+    private int[,] countAll = { { 0, 0, 0 }, { 0, 0, 0 } };
+    /// <summary>
+    /// 每排要捲動的次數
+    /// </summary>
+    private int[,] countAllAdd = { { 0, 0, 0 }, { 0, 0, 0 } };
     /// <summary>
     /// 三個內容區塊的第一個子物件
     /// </summary>
@@ -110,6 +122,48 @@ public class Lv12_Investor : LevelBase
 
             for (int i = 0; i < 6; i++) contents[i / 3, i % 3].transform.parent.gameObject.SetActive(i < 3);
 
+            float r = Random.Range(0f, 1f);
+
+            if (r <= percent100)
+            {
+                // print("中獎");
+
+                int[] all = new int[3];
+                for (int i = 0; i < 3; i++) all[i] = countAll[0, i];
+
+                int max = all.Max();                                                                // 取得最大值　　　　　　　　取得 15 14 13 取得 15
+                int maxIndex = all.ToList().IndexOf(max);                                           // 取得最大值的編號　　　　　取得 15 編號 0
+
+                int rAdd = Random.Range(10, 16);                                                    // 要增加的值　　　　　　　　隨機 13
+                max += rAdd;                                                                        // 最大值加上要增加的值　　　結果 15 + 13 = 28
+                countAllAdd[0, maxIndex] = rAdd;                                                    // 要增加的值儲存在陣列內　　結果 13 0 0
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i != maxIndex)
+                    {
+                        int add = max - countAll[0, i];                                             // 計算其餘要增加的值　　　　結果 0 14 15
+                        countAllAdd[0, i] = add;                                                    // 要增加的值儲存在其餘陣列　結果 13 14 15
+                    }
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    // print("排：" + i + " | 增加的值：" + countAllAdd[0, i]);
+                }
+            }
+            else
+            {
+                // print("沒中");
+
+                for (int i = 0; i < 3; i++)
+                {
+                    countAllAdd[0, i] = 15 + i;
+
+                    // print("排：" + i + " | 增加的值：" + countAllAdd[0, i]);
+                }
+            }
+
             SetCoin(-100);
             StartCoroutine(ScrollContent(0, 0));
             StartCoroutine(ScrollContent(0, 1));
@@ -122,6 +176,48 @@ public class Lv12_Investor : LevelBase
             if (coin < 200) return;
 
             for (int i = 0; i < 6; i++) contents[i / 3, i % 3].transform.parent.gameObject.SetActive(i > 2);
+
+            float r = Random.Range(0f, 1f);
+
+            if (r <= percent200)
+            {
+                // print("中獎");
+
+                int[] all = new int[3];
+                for (int i = 0; i < 3; i++) all[i] = countAll[1, i];
+
+                int max = all.Max();                                                                // 取得最大值　　　　　　　　取得 15 14 13 取得 15
+                int maxIndex = all.ToList().IndexOf(max);                                           // 取得最大值的編號　　　　　取得 15 編號 0
+
+                int rAdd = Random.Range(10, 16);                                                    // 要增加的值　　　　　　　　隨機 13
+                max += rAdd;                                                                        // 最大值加上要增加的值　　　結果 15 + 13 = 28
+                countAllAdd[1, maxIndex] = rAdd;                                                    // 要增加的值儲存在陣列內　　結果 13 0 0
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i != maxIndex)
+                    {
+                        int add = max - countAll[1, i];                                             // 計算其餘要增加的值　　　　結果 0 14 15
+                        countAllAdd[1, i] = add;                                                    // 要增加的值儲存在其餘陣列　結果 13 14 15
+                    }
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    // print("排：" + i + " | 增加的值：" + countAllAdd[0, i]);
+                }
+            }
+            else
+            {
+                // print("沒中");
+
+                for (int i = 0; i < 3; i++)
+                {
+                    countAllAdd[1, i] = 15 + i;
+
+                    // print("排：" + i + " | 增加的值：" + countAllAdd[0, i]);
+                }
+            }
 
             SetCoin(-200);
             StartCoroutine(ScrollContent(1, 0));
@@ -214,9 +310,15 @@ public class Lv12_Investor : LevelBase
     {
         contents[indexType, indexOfContent].parent.parent.GetChild(3).gameObject.SetActive(false);     // 貓頭鷹消失
 
-        int count = 0;                              // 捲動次數歸零
-        int countTotal = Random.Range(10, 16);      // 捲動次數 10 - 15 次，會乘以 100，實際次數為 100 - 150
-        // countTotal = 3;                                       // 測試用 200 元 3 是 101
+        int count = 0;                                                  // 捲動次數歸零
+        // int countTotal = Random.Range(10, 16);                       // 捲動次數 10 - 15 次，會乘以 100，實際次數為 100 - 150
+        // countTotal = 3;                                              // 測試用 200 元 3 是 101
+
+        int countTotal = countAllAdd[indexType, indexOfContent];        // 取得要增加的數值
+
+        countAll[indexType, indexOfContent] += countTotal;              // 累計次數
+        // print("排：" + indexOfContent + " | 累計：" + countAll[indexType, indexOfContent]);       // 觀察每排累計次數用
+
         interval = intervalOriginal;                            // 設定為原始間隔時間
         finishes[indexType, indexOfContent] = false;            // 將所有捲動內容設定為尚未結束
 
@@ -340,11 +442,12 @@ public class Lv12_Investor : LevelBase
             yield return new WaitForSeconds(0.05f);
         }
 
-        if (indexObject == 5 || indexObject == 6) psLight.Play();                       // 直升機與 101 顯示光芒效果
+        // if (indexObject == 5 || indexObject == 6) psLight.Play();                    // 直升機與 101 顯示光芒效果
+        psLight.Play();                                                                 // 顯示光芒效果 --- 2021.02.17 改
 
         yield return new WaitForSeconds(1f);                                            // 停留 1 秒
 
-        Vector2 posEnd = imgOnTheTable[indexObject].rectTransform.anchoredPosition;                 // 移動到右下角
+        Vector2 posEnd = imgOnTheTable[indexObject].rectTransform.anchoredPosition;     // 移動到右下角
         while (Vector2.Distance(pos, posEnd) > 10)
         {
             pos = Vector2.Lerp(pos, posEnd, 0.35f);

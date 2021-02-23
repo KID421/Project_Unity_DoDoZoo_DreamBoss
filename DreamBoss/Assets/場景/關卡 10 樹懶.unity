@@ -309,13 +309,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2225054417465516255, guid: 718ed218ad18d9242a06e3bcc2dc57dc,
+  m_Sprite: {fileID: -3411013196014848723, guid: 79c9c2a78abd54a489998fc820ed7791,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -431,10 +431,20 @@ MonoBehaviour:
   sprShares:
   - {fileID: 21300000, guid: c0ac316b93e5316449e0fa81a2c0d994, type: 3}
   needWrongSound: 1
+  soundCorrect: {fileID: 8300000, guid: 91a4e300c781b5141ab02b68dfe0c4f0, type: 3}
+  volumeCorrect: 1
   traSealOnPaper: {fileID: 2076154194}
   seals: {fileID: 1490655579}
   aniSeal: {fileID: 5157910}
   psDust: {fileID: 2128451612}
+  sprCorrectSeal:
+  - {fileID: 8793915729297761979, guid: 718ed218ad18d9242a06e3bcc2dc57dc, type: 3}
+  - {fileID: 3704470676555248339, guid: 718ed218ad18d9242a06e3bcc2dc57dc, type: 3}
+  - {fileID: -7022848119627903314, guid: 718ed218ad18d9242a06e3bcc2dc57dc, type: 3}
+  - {fileID: -2473454646853352467, guid: 718ed218ad18d9242a06e3bcc2dc57dc, type: 3}
+  - {fileID: 4722022798227898725, guid: 718ed218ad18d9242a06e3bcc2dc57dc, type: 3}
+  - {fileID: 8885494730473029114, guid: 718ed218ad18d9242a06e3bcc2dc57dc, type: 3}
+  - {fileID: 2225054417465516255, guid: 718ed218ad18d9242a06e3bcc2dc57dc, type: 3}
 --- !u!82 &205757193
 AudioSource:
   m_ObjectHideFlags: 0
@@ -444,7 +454,7 @@ AudioSource:
   m_GameObject: {fileID: 205757190}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 93a96b40dcf3e3243b0678e00c405d6f,
+  OutputAudioMixerGroup: {fileID: 4100052219708245228, guid: 93a96b40dcf3e3243b0678e00c405d6f,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -700,13 +710,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7022848119627903314, guid: 718ed218ad18d9242a06e3bcc2dc57dc,
+  m_Sprite: {fileID: 8728764000925404028, guid: 79c9c2a78abd54a489998fc820ed7791,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1181,7 +1191,7 @@ GameObject:
   - component: {fileID: 608125553}
   - component: {fileID: 608125552}
   m_Layer: 0
-  m_Name: Robot Boogie - Quincas Moreira
+  m_Name: "\u80CC\u666F\u97F3\u6A02"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1196,10 +1206,11 @@ AudioSource:
   m_GameObject: {fileID: 608125551}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8778172722489070785, guid: 93a96b40dcf3e3243b0678e00c405d6f,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 37120917563c15e44a2665615bf8f7e6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1958,13 +1969,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4722022798227898725, guid: 718ed218ad18d9242a06e3bcc2dc57dc,
+  m_Sprite: {fileID: 2932272490824178975, guid: 79c9c2a78abd54a489998fc820ed7791,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -2327,13 +2338,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8793915729297761979, guid: 718ed218ad18d9242a06e3bcc2dc57dc,
+  m_Sprite: {fileID: 5318511367502442349, guid: 79c9c2a78abd54a489998fc820ed7791,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -2872,13 +2883,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8885494730473029114, guid: 718ed218ad18d9242a06e3bcc2dc57dc,
+  m_Sprite: {fileID: 4925463054826463762, guid: 79c9c2a78abd54a489998fc820ed7791,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -3672,13 +3683,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2473454646853352467, guid: 718ed218ad18d9242a06e3bcc2dc57dc,
+  m_Sprite: {fileID: 8526094692843054663, guid: 79c9c2a78abd54a489998fc820ed7791,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -3952,13 +3963,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3704470676555248339, guid: 718ed218ad18d9242a06e3bcc2dc57dc,
+  m_Sprite: {fileID: 7012619545748368858, guid: 79c9c2a78abd54a489998fc820ed7791,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
