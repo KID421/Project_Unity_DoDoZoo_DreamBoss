@@ -21,6 +21,8 @@ public class Lv5_People : MonoBehaviour
     /// </summary>
     [Header("編號")]
     public int index;
+    [Header("要控制的動畫控制器")]
+    public Animator ani;
 
     /// <summary>
     /// 右邊是否通過
@@ -142,6 +144,9 @@ public class Lv5_People : MonoBehaviour
     /// <param name="right">是否亮右邊燈號</param>
     private IEnumerator Walk(bool right)
     {
+        // 走路
+        if (!car) ani.SetBool("走路開關", true);
+
         // 判定要前往哪一個位置
         Vector2 pos = right == peopleRight ? posPass.anchoredPosition : posStop.anchoredPosition;
         Vector2 posPeople = rect.anchoredPosition;
@@ -229,6 +234,9 @@ public class Lv5_People : MonoBehaviour
     /// </summary>
     private void Stop()
     {
+        // 停止走路
+        if (!car) ani.SetBool("走路開關", false);
+
         float r = Random.Range(0f, 1f);
         if (r < percentIcon)
         {
@@ -257,6 +265,7 @@ public class Lv5_People : MonoBehaviour
                 float r = Random.Range(0f, 1f);
                 if (r < percentIcon)
                 {
+                    if (!car) ani.SetTrigger("困惑觸發");        // 困惑動畫
                     int i = 3;                                  // 圖示預設為 問號 編號 3
                     bool flipIcon = false;
 
