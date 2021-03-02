@@ -31,9 +31,15 @@ public class Timer : MonoBehaviour
     /// 時鐘邊框
     /// </summary>
     private Image imgBorder;
+    /// <summary>
+    /// 剩餘十秒鐘呼叫一次
+    /// </summary>
+    private bool callTimeLessTen;
 
     public delegate void timeStop();
     public event timeStop onTimeStop;
+    public delegate void timeLessTen();
+    public event timeLessTen onTimeLessTen;
 
     public static Timer instance;
 
@@ -77,6 +83,12 @@ public class Timer : MonoBehaviour
             {
                 imgCenter.color = colorCountDown;
                 imgBorder.color = colorCountDown;
+
+                if (!callTimeLessTen)
+                {
+                    callTimeLessTen = true;
+                    onTimeLessTen();
+                }
             }
         }
     }

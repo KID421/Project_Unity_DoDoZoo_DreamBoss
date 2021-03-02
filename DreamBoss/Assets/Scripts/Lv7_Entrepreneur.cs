@@ -29,7 +29,7 @@ public class Lv7_Entrepreneur : LevelBase
     /// <summary>
     /// 倒數計時的全部時間
     /// </summary>
-    private float timeTotal;
+    private float timeTotalBear;
 
     [Header("起點顏色")]
     public Color colorStart;
@@ -47,6 +47,8 @@ public class Lv7_Entrepreneur : LevelBase
     public Text textCoin;
     [Header("時間文字")]
     public Text textTime;
+    [Header("熊頭動畫")]
+    public Animator aniBearHead;
 
     public static int coinCount;
 
@@ -64,7 +66,7 @@ public class Lv7_Entrepreneur : LevelBase
         SetBear();
 
         // 指定全部時間並更新金幣介面
-        timeTotal = countTime;
+        timeTotalBear = countTime;
         textCoin.text = coinCount + "";
     }
 
@@ -150,6 +152,7 @@ public class Lv7_Entrepreneur : LevelBase
                             Destroy(results[0].gameObject.transform.GetChild(0).gameObject);
                             aud.PlayOneShot(soundCoin);
                             ani.SetTrigger("吃到金幣");
+                            aniBearHead.SetTrigger("吃到金幣");
 
                             // -- KID 2020.12.18 添加 小北極熊金幣特效 並 更新金幣介面
                             psCoin.Play();
@@ -206,14 +209,15 @@ public class Lv7_Entrepreneur : LevelBase
         }
     }
 
+    // 舊版時間
     protected override void TimeCount()
     {
         base.TimeCount();
 
-        if (timeTotal > 0)
+        if (timeTotalBear > 0)
         {
-            timeTotal -= Time.deltaTime;
-            textTime.text = timeTotal.ToString("F2");
+            timeTotalBear -= Time.deltaTime;
+            textTime.text = timeTotalBear.ToString("F2");
         }
         else
         {
@@ -221,6 +225,7 @@ public class Lv7_Entrepreneur : LevelBase
         }
     }
 
+    // 舊版時間
     protected override void TimeStop()
     {
         base.TimeStop();

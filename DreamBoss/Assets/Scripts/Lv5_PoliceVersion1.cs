@@ -6,6 +6,11 @@ public class Lv5_PoliceVersion1 : LevelBase
 {
     [Header("紅綠燈：左綠黃紅、右綠黃紅")]
     public GameObject[] lights;
+    [Header("闖紅燈左邊與右邊")]
+    public GameObject rectRedLeft;
+    public GameObject rectRedRight;
+    [Header("闖紅燈出現機率"), Range(0f, 1f)]
+    public float redPercent = 1;
 
     public static Lv5_PoliceVersion1 instance;
 
@@ -54,8 +59,26 @@ public class Lv5_PoliceVersion1 : LevelBase
         StartCoroutine(SetLight());
 
         Timer.instance.onTimeStop += TimerStop;
+        Timer.instance.onTimeLessTen += TimeLessTen;
     }
 
+    /// <summary>
+    /// 時間小於十秒
+    /// </summary>
+    private void TimeLessTen()
+    {
+        float r = Random.Range(0f, 1f);
+
+        if (r <= redPercent)
+        {
+            if (!rightLight) rectRedRight.SetActive(true);
+            else rectRedLeft.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// 時間停止
+    /// </summary>
     private void TimerStop()
     {
         StartCoroutine(Pass());
@@ -141,5 +164,14 @@ public class Lv5_PoliceVersion1 : LevelBase
         score += value;
         score = Mathf.Clamp(score, 0, 999);
         textScore.text = score + "";
+    }
+
+    /// <summary>
+    /// 播放動畫
+    /// </summary>
+    /// <param name="aniName">動畫參數名稱：開心笑、開心跳、困惑</param>
+    public void PlayAnimation(string aniName)
+    {
+        if (!ani.GetCurrentAnimatorStateInfo(0).IsName(aniName)) ani.SetTrigger(aniName);
     }
 }

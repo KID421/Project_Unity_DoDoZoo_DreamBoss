@@ -18,20 +18,20 @@ public class Lv9_DragObjectFiretruck : DragObjectBase
         new Vector2(-1200, -1160),
     };
 
-    private Image[] peopleOnHouse = new Image[3];
+    private RawImage[] peopleOnHouse = new RawImage[3];
     private Image[] peopleOnLadder = new Image[3];
 
     protected override void Awake()
     {
         base.Awake();
 
-        peopleOnHouse[0] = GameObject.Find("房子上的人 少年").GetComponent<Image>();
-        peopleOnHouse[1] = GameObject.Find("房子上的人 中年女").GetComponent<Image>();
-        peopleOnHouse[2] = GameObject.Find("房子上的人 老男人").GetComponent<Image>();
+        peopleOnHouse[0] = GameObject.Find("房子上的人 男孩").GetComponent<RawImage>();
+        peopleOnHouse[1] = GameObject.Find("房子上的人 女人").GetComponent<RawImage>();
+        peopleOnHouse[2] = GameObject.Find("房子上的人 老人").GetComponent<RawImage>();
 
-        peopleOnLadder[0] = GameObject.Find("梯子上的人 少年").GetComponent<Image>();
-        peopleOnLadder[1] = GameObject.Find("梯子上的人 中年女").GetComponent<Image>();
-        peopleOnLadder[2] = GameObject.Find("梯子上的人 老男人").GetComponent<Image>();
+        peopleOnLadder[0] = GameObject.Find("梯子上的人 男孩").GetComponent<Image>();
+        peopleOnLadder[1] = GameObject.Find("梯子上的人 女人").GetComponent<Image>();
+        peopleOnLadder[2] = GameObject.Find("梯子上的人 老人").GetComponent<Image>();
     }
 
     private void Start()

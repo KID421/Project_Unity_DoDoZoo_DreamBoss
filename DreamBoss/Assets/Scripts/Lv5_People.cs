@@ -197,6 +197,7 @@ public class Lv5_People : MonoBehaviour
     /// </summary>
     private void Pass()
     {
+        Lv5_PoliceVersion1.instance.PlayAnimation("開心笑");                        // 老虎開心笑
         icon.StopAllCoroutines();
         icon.ResetIcon();
         if (rect.anchoredPosition == posPass.anchoredPosition) StartPass();         // 通過後再加分
@@ -265,8 +266,9 @@ public class Lv5_People : MonoBehaviour
                 float r = Random.Range(0f, 1f);
                 if (r < percentIcon)
                 {
-                    if (!car) ani.SetTrigger("困惑觸發");        // 困惑動畫
-                    int i = 3;                                  // 圖示預設為 問號 編號 3
+                    if (!car) ani.SetTrigger("困惑觸發");                    // 困惑動畫
+                    Lv5_PoliceVersion1.instance.PlayAnimation("困惑");       // 老虎困惑
+                    int i = 3;                                              // 圖示預設為 問號 編號 3
                     bool flipIcon = false;
 
                     if (car)
