@@ -102,17 +102,22 @@ public class Lv11_Stylist : LevelBase
     public GameObject[] dressSchool;
     [Header("戶外")]
     public GameObject[] dressOutside;
+    [Header("拍照音效")]
+    public AudioClip soundPicture;
 
     /// <summary>
     /// 是否在學校內
     /// </summary>
     private bool inSchool;
-
     /// <summary>
     /// 小女孩拍照位置
     /// </summary>
     private Transform traPictureParent;
-
+    /// <summary>
+    /// 拍照效果
+    /// </summary>
+    private Image imgPictureEffect;
+    
     /// <summary>
     /// 選取的部位編號 
     /// 0 藍色上衣
@@ -138,6 +143,7 @@ public class Lv11_Stylist : LevelBase
 
         instance = this;
         traPictureParent = GameObject.Find("小女孩拍照位置").transform;
+        imgPictureEffect = GameObject.Find("拍照效果").GetComponent<Image>();
         
         btnSwitch.onClick.AddListener(SwitchSchool);                                // 切換學校戶外按鈕點擊設定
     }
@@ -176,6 +182,28 @@ public class Lv11_Stylist : LevelBase
     {
         StartCoroutine(Pass());
         StartCoroutine(MoveToPicturePosition());
+        StartCoroutine(PictureEffect());
+    }
+
+    private IEnumerator PictureEffect()
+    {
+        aud.PlayOneShot(soundPicture);
+
+        float fill = imgPictureEffect.fillAmount;
+
+        while (fill < 1)
+        {
+            fill += 0.2f;
+            imgPictureEffect.fillAmount = fill;
+            yield return new WaitForSeconds(0.02f);
+        }
+
+        while (fill > 0)
+        {
+            fill -= 0.2f;
+            imgPictureEffect.fillAmount = fill;
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 
     /// <summary>

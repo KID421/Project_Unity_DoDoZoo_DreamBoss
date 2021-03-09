@@ -10,6 +10,10 @@ public class Timer : MonoBehaviour
     public float total = 60;
     [Header("倒數顏色")]
     public Color colorCountDown;
+    [Header("倒數音效")]
+    public AudioClip soundCount;
+    [Header("是否需要倒數十秒的事件")]
+    public bool needLessTenEvent;
 
     /// <summary>
     /// 圖片時間：時鐘效果 - 360 用
@@ -35,6 +39,10 @@ public class Timer : MonoBehaviour
     /// 剩餘十秒鐘呼叫一次
     /// </summary>
     private bool callTimeLessTen;
+    /// <summary>
+    /// 音源
+    /// </summary>
+    private AudioSource aud;
 
     public delegate void timeStop();
     public event timeStop onTimeStop;
@@ -47,6 +55,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
+        aud = GetComponent<AudioSource>();
         instance = this;
         imgTime = transform.Find("時鐘效果").GetComponent<Image>();
         imgCenter = transform.Find("時鐘中心").GetComponent<Image>();
@@ -72,6 +81,7 @@ public class Timer : MonoBehaviour
             timer = 0;
             stop = true;
             onTimeStop();
+            aud.Stop();
         }
         else
         {
@@ -87,7 +97,10 @@ public class Timer : MonoBehaviour
                 if (!callTimeLessTen)
                 {
                     callTimeLessTen = true;
-                    onTimeLessTen();
+                    if (needLessTenEvent) onTimeLessTen();
+
+                    aud.clip = soundCount;
+                    aud.Play();
                 }
             }
         }
